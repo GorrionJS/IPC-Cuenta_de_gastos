@@ -1,0 +1,7 @@
+1. Instalar el descargable del siguiente enlace: https://desktop.github.com/?ref_cta=download+desktop&ref_loc=installing+github+desktop&ref_page=docs
+
+2. Iniciad sesión en el caso de tener una cuenta, registraros en caso contrario.
+
+3. Aceptáis mi invitación.
+
+4. Cada vez que se realicen cambios en algún archivo o se termine de trabajar: hacer un FETCH y un PUSH (para que los cambios se nos realicen a todos).
