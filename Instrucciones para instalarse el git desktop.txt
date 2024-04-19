@@ -5,3 +5,5 @@
 3. Aceptáis mi invitación.
 
 4. Cada vez que se realicen cambios en algún archivo o se termine de trabajar: hacer un FETCH y un PUSH (para que los cambios se nos realicen a todos).
+
+5. IMPORTANTE REALIZAR EL FETCH Y EL PUSH.
