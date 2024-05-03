@@ -13,12 +13,15 @@ import javafx.stage.Stage;
 
 
 public class JavaFXMLApplication extends Application {
+       
+    // Modificar si se cambia el nombre del archivo
+    private final String archivo = "BaseInicial_BETA";
     
     @Override
     public void start(Stage stage) throws Exception {
         //======================================================================
-        // 1- creación del grafo de escena a partir del fichero FXML
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+        // Modificado el archivo FXML para que concuerde con el nombre
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource(archivo + "fxml"));
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
@@ -28,7 +31,8 @@ public class JavaFXMLApplication extends Application {
         //     - configuracion del stage
         //     - se muestra el stage de manera no modal mediante el metodo show()
         stage.setScene(scene);
-        stage.setTitle("start PROJECT - IPC:");
+        // Modificado para que cambie el titulo de arriba (antes ponia proyecto inicial)
+        stage.setTitle("IPC-ENTREGA");
         stage.show();
     }
 
