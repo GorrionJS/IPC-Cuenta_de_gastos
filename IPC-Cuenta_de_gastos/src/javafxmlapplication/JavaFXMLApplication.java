@@ -21,7 +21,7 @@ public class JavaFXMLApplication extends Application {
     public void start(Stage stage) throws Exception {
         //======================================================================
         // Modificado el archivo FXML para que concuerde con el nombre
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource(archivo + "fxml"));
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource(archivo + ".fxml"));
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
