@@ -1,0 +1,11 @@
+
+.test1 {
+    -fx-background-color: rgb(21, 255, 0);
+}
+.test2 {
+    -fx-background-color: rgb(255, 0, 0);
+}
+
+.title {
+    font-size: 24px;
+}
