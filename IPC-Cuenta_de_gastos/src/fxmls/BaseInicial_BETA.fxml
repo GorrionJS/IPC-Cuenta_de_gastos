@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.BaseInicial_BETAController">
+<BorderPane fx:id="borderPANE" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.BaseInicial_BETAController">
    <top>
       <HBox prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                <children>
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" GridPane.columnIndex="2">
                      <children>
-                        <Button fx:id="login_button" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="90.0" text="Iniciar Sesion">
+                        <Button fx:id="login_button" mnemonicParsing="false" onMousePressed="#login" prefHeight="30.0" prefWidth="90.0" text="Iniciar Sesion">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>
@@ -82,7 +82,7 @@
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="border" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test1">
                <children>
