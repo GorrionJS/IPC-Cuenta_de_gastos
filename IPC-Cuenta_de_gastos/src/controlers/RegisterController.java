@@ -6,7 +6,11 @@ package controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -15,6 +19,11 @@ import javafx.fxml.Initializable;
  */
 public class RegisterController implements Initializable {
 
+    @FXML
+    private Text errorNombre;
+    @FXML
+    private TextField inputNombre;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +31,13 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+    }
+
+    @FXML
+    private void acceptar(ActionEvent event) {
+    }
     
 }
