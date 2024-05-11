@@ -17,7 +17,8 @@ public class JavaFXMLApplication extends Application {
     // Minimo de redimension de la pantalla (X)
     private static final int MIN_WIDTH = 640;
     // Minimo de redimension de la pantalla (Y) 
-    private static final int MIN_HEIGHT = 480;
+    // Actualmente 480 + 32 (VGA standard + title bar Windows 11 (32))
+    private static final int MIN_HEIGHT = 516;
        
     // Nombre de la ruta del archivo FXML
     private final String archivo = "/fxmls/BaseInicial_BETA";
@@ -25,7 +26,7 @@ public class JavaFXMLApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Establecido minimo posible de redimension de pantalla (ACTUALMENTE VGA)
+        // Establecido minimo posible de redimension de pantalla (ACTUALMENTE VGA
         stage.setMinWidth(MIN_WIDTH);
         stage.setMinHeight(MIN_HEIGHT);
         
