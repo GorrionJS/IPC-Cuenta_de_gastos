@@ -40,8 +40,8 @@ public class ConfirmacionCancelarController implements Initializable {
     @FXML
     private void cancelar(ActionEvent event) {
         
-        Stage stage = RegisterController.getStage();
-        stage.close();
+        // Stage stage = RegisterController.getStage();
+        //   stage.close();
     }
 
     @FXML

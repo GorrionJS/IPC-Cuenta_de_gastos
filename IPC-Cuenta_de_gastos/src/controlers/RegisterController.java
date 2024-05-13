@@ -7,9 +7,7 @@ package controlers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-<<<<<<< Updated upstream
 import javafx.fxml.Initializable;
-=======
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
->>>>>>> Stashed changes
 
 /**
  * FXML Controller class
@@ -35,8 +32,6 @@ public class RegisterController implements Initializable {
     private static final Color ERR = Color.RED;
     private static final Color GOOD = Color.GREEN;
 
-<<<<<<< Updated upstream
-=======
     @FXML
     private TextField inputNombre;
     @FXML
@@ -65,18 +60,15 @@ public class RegisterController implements Initializable {
     private String pass; 
     
     private Stage stage;
->>>>>>> Stashed changes
     /**
      * Initializes the controller class.
      */
     
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< Updated upstream
-        // TODO
+
     }    
-=======
-        // Introducir los valores por defecto cuando este listo
-    }
+
+    // Introducir los valores por defecto cuando este listo
     
     /** Metodo para modificar el texto de error
      *
@@ -164,7 +156,6 @@ public class RegisterController implements Initializable {
         KeyEvent x = null;
         evaluateEm(x);
     }
->>>>>>> Stashed changes
     
     /** EVALUACION CONTRASEÑA 1 **/
     
