@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,12 +43,21 @@ public class PrimeraPantallaController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    private static void resizable(AnchorPane pan, Node child) {
+        pan.setBottomAnchor(child, 0.0);
+        pan.setTopAnchor(child, 0.0);
+        pan.setRightAnchor(child, 0.0);
+        pan.setLeftAnchor(child, 0.0);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String dir = "/fxmls/Novedades";
         try {
             AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
              screen.getChildren().setAll(newFXML);
+             resizable(screen, newFXML);
         } catch (IOException ex) {
             System.err.println("Error al acceder a las novedades. Error " + ex); }
       
@@ -55,6 +65,7 @@ public class PrimeraPantallaController implements Initializable {
         try {
             AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
             sideScreen.getChildren().setAll(newFXML);
+            resizable(screen, newFXML);
         } catch (IOException ex) {
             System.err.println("Error al acceder a las FAQ. Error " + ex); }
     }    
@@ -64,8 +75,9 @@ public class PrimeraPantallaController implements Initializable {
         // Direccion del FXML asociado al registro
         String archivo = "/fxmls/Register_Prueba" ;
         try {
-            AnchorPane newFXML2 = (AnchorPane) FXMLLoader.load((getClass().getResource(archivo + ".fxml")));
-            screen.getChildren().setAll(newFXML2);
+            AnchorPane newFXML = (AnchorPane) FXMLLoader.load((getClass().getResource(archivo + ".fxml")));
+            screen.getChildren().setAll(newFXML);
+            resizable(screen, newFXML);
             singup_button.setDisable(true);
         } catch (IOException ex) {
             System.err.println("Error al acceder al formulario de registro. Error " + ex); }
