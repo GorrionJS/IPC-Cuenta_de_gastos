@@ -23,7 +23,10 @@ import javafx.scene.layout.VBox;
  *
  * @author joanb
  */
-public class BaseInicial_BASEController implements Initializable {
+
+// Controlador del MARCO
+
+public class PrimeraPantallaController implements Initializable {
 
     @FXML
     private BorderPane borderPANE;
@@ -34,7 +37,7 @@ public class BaseInicial_BASEController implements Initializable {
     @FXML
     private AnchorPane screen;
     @FXML
-    private VBox right_screen;
+    private AnchorPane sideScreen;
 
     /**
      * Initializes the controller class.
@@ -43,18 +46,25 @@ public class BaseInicial_BASEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String dir = "/fxmls/Novedades";
         try {
-            VBox newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
-            screen.getChildren().setAll(newFXML);
+            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
+             screen.getChildren().setAll(newFXML);
         } catch (IOException ex) {
             System.err.println("Error al acceder a las novedades. Error " + ex); }
+      
+        dir = "/fxmls/FAQ";
+        try {
+            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
+            sideScreen.getChildren().setAll(newFXML);
+        } catch (IOException ex) {
+            System.err.println("Error al acceder a las FAQ. Error " + ex); }
     }    
 
     @FXML
     private void signup(ActionEvent event) {
         // Direccion del FXML asociado al registro
-        String formulario = "/fxmls/register" ;
+        String archivo = "/fxmls/Register_Prueba" ;
         try {
-            AnchorPane newFXML2 = FXMLLoader.load((getClass().getResource(formulario + ".fxml")));
+            AnchorPane newFXML2 = (AnchorPane) FXMLLoader.load((getClass().getResource(archivo + ".fxml")));
             screen.getChildren().setAll(newFXML2);
             singup_button.setDisable(true);
         } catch (IOException ex) {
