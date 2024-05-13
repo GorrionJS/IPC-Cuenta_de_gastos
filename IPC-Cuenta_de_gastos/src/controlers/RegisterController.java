@@ -7,6 +7,8 @@ package controlers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -104,11 +106,11 @@ public class RegisterController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Confirmar acción");
         stage.show();
-        
     }
 
     @FXML
     private void acceptar(ActionEvent event) {
+
         // Se realiza un check a todos los elementos y si es correcto todo se sube a la base de datos
         
         // Mostrar ventana de confirmar datos

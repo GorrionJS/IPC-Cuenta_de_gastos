@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
  *
  * @author Usuario
  */
-public class formularioController implements Initializable {
+public class FormularioController implements Initializable {
 
     @FXML
     private TextField userText;
