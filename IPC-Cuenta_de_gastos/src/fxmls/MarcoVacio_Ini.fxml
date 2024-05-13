@@ -10,11 +10,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPANE" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.BaseInicial_BASEController">
+<BorderPane fx:id="borderPANE" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PrimeraPantallaController">
    <top>
       <HBox prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -67,17 +66,17 @@
          </BorderPane.margin>
       </HBox>
    </top>
-   <right>
-      <VBox fx:id="right_screen" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="400.0" prefWidth="287.0" styleClass="test1" BorderPane.alignment="TOP_CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </right>
    <center>
-      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" styleClass="test2" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin></AnchorPane>
    </center>
+   <right>
+      <AnchorPane fx:id="sideScreen" minHeight="400.0" minWidth="280.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </AnchorPane>
+   </right>
 </BorderPane>

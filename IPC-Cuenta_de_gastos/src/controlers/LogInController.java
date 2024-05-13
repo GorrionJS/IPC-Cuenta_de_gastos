@@ -23,7 +23,7 @@ import model.AcountDAOException;
  *
  * @author Usuario
  */
-public class FormularioController implements Initializable {
+public class LogInController implements Initializable {
 
     @FXML
     private TextField userText;

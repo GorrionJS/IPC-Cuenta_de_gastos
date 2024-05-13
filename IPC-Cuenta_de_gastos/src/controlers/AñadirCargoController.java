@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author Usuario
  */
-public class añadirCargorController implements Initializable {
+public class AñadirCargoController implements Initializable {
 
     /**
      * Initializes the controller class.
