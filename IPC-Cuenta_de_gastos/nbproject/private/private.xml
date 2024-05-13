@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/BaseInicial_BASEController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/PrimeraPantallaController.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/fxmls/register.fxml</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/FormularioController.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/RegisterController.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/LogInController.java</file>
         </group>
     </open-files>
 </project-private>

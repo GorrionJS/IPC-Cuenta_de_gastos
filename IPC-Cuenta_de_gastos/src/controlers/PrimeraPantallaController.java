@@ -27,7 +27,7 @@ import model.Acount;
  *
  * @author joanb
  */
-public class BaseInicial_BASEController implements Initializable {
+public class PrimeraPantallaController implements Initializable {
 
     @FXML
     private BorderPane borderPANE;
@@ -47,6 +47,8 @@ public class BaseInicial_BASEController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -36,7 +36,7 @@ public class LogInController implements Initializable {
     
     
     
-    private BaseInicial_BASEController principal;
+    private PrimeraPantallaController principal;
 
     /**
      * Initializes the controller class.
@@ -47,7 +47,7 @@ public class LogInController implements Initializable {
     }    
     
     
-    public void init( BaseInicial_BASEController princ){
+    public void init( PrimeraPantallaController princ){
         principal = princ;
     }
 
@@ -73,7 +73,7 @@ public class LogInController implements Initializable {
             try {
                 root = fxmlMain.load();
             } catch (IOException ex) {
-                Logger.getLogger(FormularioController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
              //principal.abilitar();
              //principal.getBorderPane().setCenter(root);

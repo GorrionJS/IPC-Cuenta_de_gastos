@@ -63,7 +63,7 @@ public class RegisterController implements Initializable {
     
     private Stage stage;
     
-    private BaseInicial_BASEController principal;
+    private PrimeraPantallaController principal;
     
     /**
      * Initializes the controller class.
@@ -213,7 +213,7 @@ public class RegisterController implements Initializable {
     
     Stage getStage() { return stage; }
     
-    public void init(BaseInicial_BASEController princ){
+    public void init(PrimeraPantallaController princ){
         principal = princ;
     }
 }
