@@ -62,6 +62,9 @@ public class RegisterController implements Initializable {
     private String pass; 
     
     private Stage stage;
+    
+    private BaseInicial_BASEController principal;
+    
     /**
      * Initializes the controller class.
      */
@@ -209,4 +212,8 @@ public class RegisterController implements Initializable {
     }
     
     Stage getStage() { return stage; }
+    
+    public void init(BaseInicial_BASEController princ){
+        principal = princ;
+    }
 }

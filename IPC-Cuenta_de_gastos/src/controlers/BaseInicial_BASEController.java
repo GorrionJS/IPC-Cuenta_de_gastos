@@ -7,16 +7,20 @@ package controlers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.Acount;
 
 /**
  * FXML Controller class
@@ -35,6 +39,11 @@ public class BaseInicial_BASEController implements Initializable {
     private AnchorPane screen;
     @FXML
     private VBox right_screen;
+    
+    
+    private Acount cuenta;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -59,10 +68,25 @@ public class BaseInicial_BASEController implements Initializable {
             singup_button.setDisable(true);
         } catch (IOException ex) {
             System.err.println("Error al acceder al formulario de registro. Error " + ex); }
+        
+        
+ 
+                
+        
     }
+    
 
     @FXML
-    private void login(MouseEvent event) {
+    private void login(MouseEvent event) throws IOException {
+             FXMLLoader fxmlF= new FXMLLoader(getClass().getResource("formulario.fxml"));
+             Parent root = fxmlF.load();
+           
+             borderPANE.setCenter(root);
+    }
+    
+    
+    public Acount getAcount(){
+        return cuenta;
     }
     
 }
