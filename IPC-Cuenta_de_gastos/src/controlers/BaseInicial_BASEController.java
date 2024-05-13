@@ -54,7 +54,7 @@ public class BaseInicial_BASEController implements Initializable {
         // Direccion del FXML asociado al registro
         String formulario = "/fxmls/register" ;
         try {
-            GridPane newFXML2 = FXMLLoader.load((getClass().getResource(formulario + ".fxml")));
+            AnchorPane newFXML2 = FXMLLoader.load((getClass().getResource(formulario + ".fxml")));
             screen.getChildren().setAll(newFXML2);
             singup_button.setDisable(true);
         } catch (IOException ex) {
