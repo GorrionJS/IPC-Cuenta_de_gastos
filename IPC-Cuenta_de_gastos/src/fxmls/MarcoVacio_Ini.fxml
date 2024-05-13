@@ -67,7 +67,7 @@
       </HBox>
    </top>
    <center>
-      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" styleClass="test2" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin></AnchorPane>

@@ -75,7 +75,7 @@ public class PrimeraPantallaController implements Initializable {
         // Direccion del FXML asociado al registro
         String archivo = "/fxmls/Register_Prueba" ;
         try {
-            AnchorPane newFXML = (AnchorPane) FXMLLoader.load((getClass().getResource(archivo + ".fxml")));
+            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(archivo + ".fxml")));
             screen.getChildren().setAll(newFXML);
             resizable(screen, newFXML);
             singup_button.setDisable(true);
