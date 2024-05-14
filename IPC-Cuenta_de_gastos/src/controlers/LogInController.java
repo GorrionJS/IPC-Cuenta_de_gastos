@@ -45,6 +45,8 @@ public class LogInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        wrongPassText.setVisible(false);
+        wrongUserText.setVisible(false);
     }    
     
     
@@ -71,7 +73,7 @@ public class LogInController implements Initializable {
               wrongPassText.setVisible(false);
               
 
-             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("Main_Profile.fxml"));
+             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Main_Profile.fxml"));
              AnchorPane root = fxmlMain.load();
              MiPerfilController perfil = fxmlMain.getController();
              perfil.init(principal);

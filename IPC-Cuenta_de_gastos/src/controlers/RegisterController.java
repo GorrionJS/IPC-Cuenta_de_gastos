@@ -64,7 +64,6 @@ public class RegisterController implements Initializable {
     private Text errorNick;
     @FXML
     private Text errorNombre;
-    @FXML
     private PasswordField inputPass;
     @FXML
     private PasswordField inputPass1;
@@ -86,6 +85,8 @@ public class RegisterController implements Initializable {
     private Image picture;
 
     private Desktop desktop = Desktop.getDesktop();
+    @FXML
+    private PasswordField inputPass2;
     
     /**
      * Initializes the controller class.
@@ -124,8 +125,6 @@ public class RegisterController implements Initializable {
         if(!(e == null || e.getText().equals(""))) e.clear();
     }
     
-    @FXML
-    // De https://docs.oracle.com/javafx/2/ui_controls/file-chooser.htm
     private void uploadPicture(ActionEvent event) throws IOException{
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Ver Imagenes");
@@ -174,10 +173,10 @@ public class RegisterController implements Initializable {
         
         alert.show();
         
-        Acount compte = Acount.getInstance();
-        
+        // compte = Acount.getInstance();
+        Acount compte =principal.getAcount();
         boolean registered = compte.registerUser(inputNombre.getText(), inputApellido.getText(), inputEmail.getText(), inputNick.getText()
-                , inputPass.getText(), (Image) null, LocalDate.now());
+                , inputPass2.getText(), (Image) null, LocalDate.now());
         
         if (!registered) { alert = new Alert(Alert.AlertType.NONE, "No ha sido posible realizar el registro",
         ok, no); }
@@ -187,7 +186,6 @@ public class RegisterController implements Initializable {
         alert.show();
     }
 
-    @FXML
     private void evaluateNk(KeyEvent event) {
         // Se comprueba si el Nick ya esta siendo usado
         
@@ -201,7 +199,6 @@ public class RegisterController implements Initializable {
         }
     }
 
-    @FXML
     private void evaluateNk(MouseEvent event) {
         // Igual que el anterior pero en este caso accedido por el raton
         KeyEvent x = null;
@@ -210,7 +207,6 @@ public class RegisterController implements Initializable {
 
     /** Evaluacion EMAIL **/
     
-    @FXML
     private void evaluateEm(KeyEvent event) {
         // Se evalua si el email esta en el formato correcto
         String email = inputEmail.getText();
@@ -223,7 +219,6 @@ public class RegisterController implements Initializable {
         }
     }
 
-    @FXML
     private void evaluateEm(MouseEvent event) {
         // Igual que el anterior pero accedido por el raton
         KeyEvent x = null;
@@ -233,7 +228,6 @@ public class RegisterController implements Initializable {
     /** EVALUACION CONTRASEÑA 1 **/
     
     
-    @FXML
     private void evaluate(KeyEvent event) {
         String pass = inputPass.getText();
         if(pass.length() < 3 && pass.length() > 16) {
@@ -244,14 +238,12 @@ public class RegisterController implements Initializable {
         }
     }
 
-    @FXML
     private void evaluate(MouseEvent event) {
         evaluate((KeyEvent) null);
     }
     
     /** AVISO DE PERMITIDOS A LA HORA DE INTRODUCIR UNA CONTRASEÑA **/
 
-    @FXML
     private void inform(MouseEvent event) {
         String errS = "La contraseña tiene que ser de entre 4 y 15 caracteres.";
         textModification(errorPass, errS, GOOD);
@@ -259,7 +251,6 @@ public class RegisterController implements Initializable {
 
     /** EVALUACION DE LAS CONTRASEÑAS **/
     
-    @FXML
     private void evaluateEq(KeyEvent event) {
         String pass2 = inputPass1.getText();
         if(!pass.equals(pass2)) {
@@ -268,16 +259,10 @@ public class RegisterController implements Initializable {
         }
     }
 
-    @FXML
     private void evaluateEq(MouseEvent event) {
         evaluateEq((KeyEvent) null);
     }
 
-    /** INFORMAR SOBRE LAS CONTRASEÑA 2 **/
-    
-    @FXML
-    private void informPass(MouseEvent event) {
-    }
     
     Stage getStage() { return stage; }
     

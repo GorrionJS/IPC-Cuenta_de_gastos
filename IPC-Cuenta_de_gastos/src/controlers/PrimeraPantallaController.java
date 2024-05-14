@@ -81,10 +81,14 @@ public class PrimeraPantallaController implements Initializable {
     }
 
     @FXML
-    private void signup(ActionEvent event) {
+    private void signup(ActionEvent event) throws IOException {
         // Direccion del FXML asociado al registro
-        setDisplay("/fxmls/Register", screen);
-        
+        //setDisplay("/fxmls/Register", screen);
+        FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Register.fxml"));
+             AnchorPane login = log.load();
+             RegisterController register = log.getController();
+             register.init(this);
+             screen.getChildren().setAll(login);
     }
     
 
