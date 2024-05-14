@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.AcountDAOException;
 
@@ -53,12 +54,12 @@ public class LogInController implements Initializable {
 
     @FXML
     private void cancelarM(MouseEvent event) {
-        //principal.setDisplay("/fxmls/Novedades", principal.screen);
+        
         
     }
 
     @FXML
-    private void aceptarM(MouseEvent event) throws AcountDAOException {
+    private void aceptarM(MouseEvent event) throws AcountDAOException, IOException {
         String log =userText.getText();
         String con =paswordText.getText();
         
@@ -70,15 +71,11 @@ public class LogInController implements Initializable {
               wrongPassText.setVisible(false);
               
 
-             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(".fxml"));
-             Parent root;
-            try {
-                root = fxmlMain.load();
-            } catch (IOException ex) {
-                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             //principal.abilitar();
-             //principal.getBorderPane().setCenter(root);
+             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("Main_Profile.fxml"));
+             AnchorPane root = fxmlMain.load();
+             MiPerfilController perfil = fxmlMain.getController();
+             perfil.init(principal);
+             principal.getAnchorPane().getChildren().setAll(root);
 //          
             }else{
             userText.setText("incorrecto");

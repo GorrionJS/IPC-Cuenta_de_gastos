@@ -102,4 +102,8 @@ public class PrimeraPantallaController implements Initializable {
     public Acount getAcount(){
         return miCuenta;
     }
+    
+    public AnchorPane getAnchorPane(){
+        return screen;
+    }
 }
