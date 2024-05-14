@@ -38,12 +38,16 @@ public class PrimeraPantallaController implements Initializable {
     @FXML
     private AnchorPane screen;
     @FXML
-    private VBox right_screen;
+    private AnchorPane sideScreen;
+   
     
-    
-    private Acount cuenta;
-    
-    
+    private void setDisplay(String dir, AnchorPane pan) {
+        try {
+            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
+            pan.getChildren().setAll(newFXML);
+        } catch (IOException ex) {
+            System.err.println("Error al acceder a las novedades. Error " + ex); }
+    }
 
     /**
      * Initializes the controller class.
@@ -52,28 +56,15 @@ public class PrimeraPantallaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String dir = "/fxmls/Novedades";
-        try {
-            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
-            screen.getChildren().setAll(newFXML);
-        } catch (IOException ex) {
-            System.err.println("Error al acceder a las novedades. Error " + ex); }
-    }    
+        setDisplay("/fxmls/Novedades", screen);
+        setDisplay("/fxmls/FAQ", sideScreen);
+    }
+        
 
     @FXML
     private void signup(ActionEvent event) {
         // Direccion del FXML asociado al registro
-        String formulario = "/fxmls/register" ;
-        try {
-            AnchorPane newFXML2 = FXMLLoader.load((getClass().getResource(formulario + ".fxml")));
-            screen.getChildren().setAll(newFXML2);
-            singup_button.setDisable(true);
-        } catch (IOException ex) {
-            System.err.println("Error al acceder al formulario de registro. Error " + ex); }
-        
-        
- 
-                
+        setDisplay("/fxmls/Register", screen);
         
     }
     
@@ -85,10 +76,4 @@ public class PrimeraPantallaController implements Initializable {
            
              borderPANE.setCenter(root);
     }
-    
-    
-    public Acount getAcount(){
-        return cuenta;
-    }
-    
 }

@@ -4,8 +4,13 @@
  */
 package controlers;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,13 +21,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Acount;
+import model.AcountDAOException;
+import model.User;
 
 /**
  * FXML Controller class
@@ -58,12 +72,20 @@ public class RegisterController implements Initializable {
     private Text errorPass;
     @FXML
     private Text errorPass1;
+    @FXML
+    private TextField inputApellido;
     
     private String pass; 
     
     private Stage stage;
     
     private PrimeraPantallaController principal;
+    
+    private User cuenta;
+    
+    private Image picture;
+
+    private Desktop desktop = Desktop.getDesktop();
     
     /**
      * Initializes the controller class.
@@ -97,26 +119,72 @@ public class RegisterController implements Initializable {
         errorPass.setVisible(false);
         errorPass1.setVisible(false);
     }
-
+    
+    private void inputClear(TextInputControl e) {
+        if(!(e == null || e.getText().equals(""))) e.clear();
+    }
+    
     @FXML
-    private void cancelar(ActionEvent event) throws IOException {
-        // El objetivo es limpiar todas las partes
-        String archivo = "/fxmls/Conf_cancelar";
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource(archivo + ".fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Confirmar acción");
-        stage.show();
+    // De https://docs.oracle.com/javafx/2/ui_controls/file-chooser.htm
+    private void uploadPicture(ActionEvent event) throws IOException{
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Ver Imagenes");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) { 
+            picture = new Image(new FileInputStream(file));
+        }
     }
 
     @FXML
-    private void acceptar(ActionEvent event) {
+    private void cancelar(ActionEvent event) throws IOException {
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
+        ok, no);
+        
+        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ok) { 
+                inputClear(inputNombre);
+                inputClear(inputApellido);
+                inputClear(inputNick);
+                inputClear(inputEmail);
+                inputClear(inputPass);
+                inputClear(inputPass1);
+                textClear(); 
+            }
+    }
+
+    @FXML
+    private void acceptar(ActionEvent event) throws AcountDAOException, IOException {
 
         // Se realiza un check a todos los elementos y si es correcto todo se sube a la base de datos
         
-        // Mostrar ventana de confirmar datos
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.NONE, "Confirme que los datos introducidos son correctos",
+        ok, no);
+        
+        alert.show();
+        
+        Acount compte = Acount.getInstance();
+        
+        boolean registered = compte.registerUser(inputNombre.getText(), inputApellido.getText(), inputEmail.getText(), inputNick.getText()
+                , inputPass.getText(), (Image) null, LocalDate.now());
+        
+        if (!registered) { alert = new Alert(Alert.AlertType.NONE, "No ha sido posible realizar el registro",
+        ok, no); }
+        else { alert = new Alert(Alert.AlertType.NONE, "Su cuenta ha sido registrada exitosamente, Inicie sesion",
+        ok, no); }
+        
+        alert.show();
     }
 
     @FXML
