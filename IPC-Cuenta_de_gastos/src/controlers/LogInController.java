@@ -53,6 +53,8 @@ public class LogInController implements Initializable {
 
     @FXML
     private void cancelarM(MouseEvent event) {
+        //principal.setDisplay("/fxmls/Novedades", principal.screen);
+        
     }
 
     @FXML
@@ -68,7 +70,7 @@ public class LogInController implements Initializable {
               wrongPassText.setVisible(false);
               
 
-             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("ventanaMain.fxml"));
+             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(".fxml"));
              Parent root;
             try {
                 root = fxmlMain.load();

@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Acount;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -40,8 +41,9 @@ public class PrimeraPantallaController implements Initializable {
     @FXML
     private AnchorPane sideScreen;
    
+    private Acount miCuenta;
     
-    private void setDisplay(String dir, AnchorPane pan) {
+    public void setDisplay(String dir, AnchorPane pan) {
         try {
             AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
             pan.getChildren().setAll(newFXML);
@@ -58,8 +60,25 @@ public class PrimeraPantallaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setDisplay("/fxmls/Novedades", screen);
         setDisplay("/fxmls/FAQ", sideScreen);
+        
+        try {
+            inicializaCuenta();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
+    private void inicializaCuenta() throws AcountDAOException, IOException{
+        try {
+            miCuenta= Acount.getInstance();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
     private void signup(ActionEvent event) {
@@ -71,9 +90,16 @@ public class PrimeraPantallaController implements Initializable {
 
     @FXML
     private void login(MouseEvent event) throws IOException {
-             FXMLLoader fxmlF= new FXMLLoader(getClass().getResource("formulario.fxml"));
-             Parent root = fxmlF.load();
-           
-             borderPANE.setCenter(root);
+             
+             FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Log_In.fxml"));
+             AnchorPane login = log.load();
+             LogInController loge = log.getController();
+             loge.init(this);
+            screen.getChildren().setAll(login);
+    }
+    
+    
+    public Acount getAcount(){
+        return miCuenta;
     }
 }
