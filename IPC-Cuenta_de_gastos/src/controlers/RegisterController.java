@@ -7,6 +7,7 @@ package controlers;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -54,8 +55,6 @@ public class RegisterController implements Initializable {
     private TextField inputNick;
     @FXML
     private TextField inputEmail;
-    @FXML
-    private TextField inputImage;
     @FXML
     private Text errorImagem;
     @FXML
@@ -268,5 +267,21 @@ public class RegisterController implements Initializable {
     
     public void init(PrimeraPantallaController princ){
         principal = princ;
+    }
+
+    @FXML
+    private void uploadPicture2(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Ver Imagenes");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) { 
+            picture = new Image(new FileInputStream(file));
+        }
     }
 }

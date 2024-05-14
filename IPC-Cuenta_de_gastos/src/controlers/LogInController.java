@@ -73,9 +73,9 @@ public class LogInController implements Initializable {
               wrongPassText.setVisible(false);
               
 
-             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Main_Profile.fxml"));
+             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/AñadirCargo.fxml"));
              AnchorPane root = fxmlMain.load();
-             MiPerfilController perfil = fxmlMain.getController();
+             AñadirCargoController perfil = fxmlMain.getController();
              perfil.init(principal);
              principal.getAnchorPane().getChildren().setAll(root);
 //          
