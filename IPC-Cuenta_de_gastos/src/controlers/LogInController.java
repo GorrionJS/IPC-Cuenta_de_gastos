@@ -36,7 +36,7 @@ public class LogInController implements Initializable {
     private Text wrongPassText;
     
     
-    
+    // ventana principal, aqui almacenamos el controller del principal, util en cada clase del anchorPane
     private PrimeraPantallaController principal;
 
     /**
@@ -72,7 +72,7 @@ public class LogInController implements Initializable {
               paswordText.setText("correcto");
               wrongPassText.setVisible(false);
               
-
+             // en principio el URL del loader va a cambiar para dar paso a la ventana principal
              FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/AñadirCargo.fxml"));
              AnchorPane root = fxmlMain.load();
              AñadirCargoController perfil = fxmlMain.getController();

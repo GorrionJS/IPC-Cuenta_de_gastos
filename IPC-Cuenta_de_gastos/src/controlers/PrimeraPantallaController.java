@@ -41,6 +41,7 @@ public class PrimeraPantallaController implements Initializable {
     @FXML
     private AnchorPane sideScreen;
    
+    //cuenta que se crea solo una vez al crear la ventana principal y se va propagando a las demás clases
     private Acount miCuenta;
     
     public void setDisplay(String dir, AnchorPane pan) {
@@ -70,6 +71,7 @@ public class PrimeraPantallaController implements Initializable {
         }
     }
         
+    // metodo que crea la cuenta, se hace fuera del inicialice para evitar problemas con la creación del usuario y demás
     private void inicializaCuenta() throws AcountDAOException, IOException{
         try {
             miCuenta= Acount.getInstance();
@@ -87,6 +89,8 @@ public class PrimeraPantallaController implements Initializable {
         FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Register.fxml"));
              AnchorPane login = log.load();
              RegisterController register = log.getController();
+             
+             // el metodo init ayuda a propagar el this the esta clase, es la que guarda la cuenta logeada para no realizar comprobaciones en cada ventana
              register.init(this);
              screen.getChildren().setAll(login);
     }
@@ -98,15 +102,16 @@ public class PrimeraPantallaController implements Initializable {
              FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Log_In.fxml"));
              AnchorPane login = log.load();
              LogInController loge = log.getController();
+             // el init está en todas las ventanas del anchorPane
              loge.init(this);
             screen.getChildren().setAll(login);
     }
     
-    
+    //metodo que ayuda a obtener la cuenta de la ventana principal
     public Acount getAcount(){
         return miCuenta;
     }
-    
+    //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
     public AnchorPane getAnchorPane(){
         return screen;
     }
