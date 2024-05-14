@@ -14,3 +14,5 @@ IPC-Cuenta_de_gastos/nbproject/private/private.xml
 IPC-Cuenta_de_gastos/build/built-jar.properties
 IPC-Cuenta_de_gastos/build/built-jar.properties
 IPC-Cuenta_de_gastos/nbproject/private/private.xml
+*.properties
+/IPC-Cuenta_de_gastos/nbproject/private

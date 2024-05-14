@@ -54,7 +54,7 @@ public class PrimeraPantallaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String dir = "/fxmls/Novedades";
         try {
-            VBox newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
+            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
             screen.getChildren().setAll(newFXML);
         } catch (IOException ex) {
             System.err.println("Error al acceder a las novedades. Error " + ex); }
