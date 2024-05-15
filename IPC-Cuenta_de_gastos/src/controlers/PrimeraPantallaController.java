@@ -127,6 +127,8 @@ public class PrimeraPantallaController implements Initializable {
     public AnchorPane getAnchorPane(){
         return screen;
     }
-    
+    public BorderPane getBorderPane(){
+        return borderPANE;
+    }
     public Acount getAcount() { return cuenta; }
 }
