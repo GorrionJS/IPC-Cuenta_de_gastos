@@ -6,15 +6,31 @@ package controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
+
 
 /**
  * FXML Controller class
  *
  * @author Usuario
  */
-public class AñadirCargoController implements Initializable {
 
+
+
+
+
+
+
+
+
+/*
+    todavia falta implementar los datos y demás
+*/
+public class AñadirCargoController implements Initializable {
+     private PrimeraPantallaController principal;
     /**
      * Initializes the controller class.
      */
@@ -22,5 +38,14 @@ public class AñadirCargoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void init(PrimeraPantallaController first){
+        principal = first;
+        
+    }
+
+    @FXML
+    private void addScannImage(ActionEvent event) {
+    }
     
 }

@@ -123,11 +123,10 @@ public class PrimeraPantallaController implements Initializable {
         } catch (IOException ex) {
             System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
     }
-    
+    //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
     public AnchorPane getAnchorPane(){
         return screen;
     }
     
     public Acount getAcount() { return cuenta; }
-    
 }
