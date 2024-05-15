@@ -36,9 +36,7 @@ public class PrimeraPantallaController implements Initializable {
     private Button login_button;
     @FXML
     private Button singup_button;
-    @FXML
     private AnchorPane screen;
-    @FXML
     private AnchorPane sideScreen;
    
     //cuenta que se crea solo una vez al crear la ventana principal y se va propagando a las demás clases
@@ -46,11 +44,16 @@ public class PrimeraPantallaController implements Initializable {
     //el controler del FAQ será la que nos ayude con la navegación en el programa, se activa cuando se logea el usuario
     //es un parametro al que se podrá acceder en las demás clases con el método getRightPane
     private FAQController controlFAQ;
+    @FXML
+    private VBox border;
+    @FXML
+    private VBox derechaPane;
     
     public void setDisplay(String dir, AnchorPane pan) {
         try {
-            AnchorPane newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
+            VBox newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
             pan.getChildren().setAll(newFXML);
+            
         } catch (IOException ex) {
             System.err.println("Error al acceder a las novedades. Error " + ex); }
     }
@@ -62,11 +65,14 @@ public class PrimeraPantallaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setDisplay("/fxmls/Novedades", screen);
+        //setDisplay("/fxmls/Novedades", screen);
         //setDisplay("/fxmls/FAQ", sideScreen);
         
-        //como necesitamos darle valor al parametro del sideScreen, lo centramos con el siguiente método 
-        //pero como todavia no se ha logeado entonces se mantienen desactivadas las opciones del cliente
+        
+        // los siguientes metodos abilitan la parte centro y derecha del programa,
+        // ******novedadesRediensionable habilita la parte de las novedades
+        // ******desactivar habilita la parte de las funciones pero no se puede acceder hasta que el usuario se logea
+        novedadesRedimensionable();
         desactivar();
         
         
@@ -94,13 +100,13 @@ public class PrimeraPantallaController implements Initializable {
     private void signup(ActionEvent event) throws IOException {
         // Direccion del FXML asociado al registro
         //setDisplay("/fxmls/Register", screen);
-            FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Register.fxml"));
-             AnchorPane login = log.load();
-             RegisterController register = log.getController();
+             FXMLLoader cargadorReg= new FXMLLoader(getClass().getResource("/fxmls/register.fxml"));
+             VBox reg = cargadorReg.load();
+             RegisterController register = cargadorReg.getController();
              
              // el metodo init ayuda a propagar el this the esta clase, es la que guarda la cuenta logeada para no realizar comprobaciones en cada ventana
              register.init(this);
-             screen.getChildren().setAll(login);
+             borderPANE.setCenter(reg);
     }
     
 
@@ -108,34 +114,35 @@ public class PrimeraPantallaController implements Initializable {
     private void login(MouseEvent event) throws IOException {
              
              FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Log_In.fxml"));
-             AnchorPane login = log.load();
+             VBox login = log.load();
              LogInController loge = log.getController();
              // el init está en todas las ventanas del anchorPane
              loge.init(this);
-             screen.getChildren().setAll(login);
+             borderPANE.setCenter(login);
     }
     
     //metodo que ayuda a obtener la cuenta de la ventana principal
     public Acount getAcount(){
         return miCuenta;
     }
-    //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
-    public AnchorPane getAnchorPane(){
-        return screen;
+    //metodo que permite abrir un FXML en el centro, con el respectivo setCenter(VBOX)
+    public BorderPane getBorderPane(){
+        return borderPANE;
     }
     
     //metodo que desabilita los botones hasta que el usuario se logee
     private void desactivar() {
         try{
-        AnchorPane root;
+        VBox root;
         FXMLLoader fxmlFAQ = new FXMLLoader(getClass().getResource("/fxmls/FAQ.fxml"));
         
         root = fxmlFAQ.load();      
         controlFAQ =fxmlFAQ.getController();
         controlFAQ.init(this);
         controlFAQ.desactivar(true);
-        sideScreen.getChildren().setAll(root);}catch( IOException e){
-            System.err.println("Error al acceder a las novedades. Error " + e);
+        borderPANE.setRight(root);
+        }catch( IOException e){
+            System.err.println("Error al acceder a la ventana de opciones. Error " + e);
         }
         
     }
@@ -144,5 +151,17 @@ public class PrimeraPantallaController implements Initializable {
     // lo usa el login también para volver a activar las funciones una vez el usuario se ha logeado
     public FAQController getRightPaneController(){
         return controlFAQ;
+    }
+    
+    //método que abre la ventana de novedades de forma redimensionable
+    private void novedadesRedimensionable() {
+        try{
+        VBox root;
+        FXMLLoader fxmlNov = new FXMLLoader(getClass().getResource("/fxmls/Novedades.fxml"));
+        root= fxmlNov.load();
+        borderPANE.setCenter(root);}
+        catch(IOException e){
+            System.err.println("Error al acceder a la ventana de novedades. Error " + e);
+        }
     }
 }

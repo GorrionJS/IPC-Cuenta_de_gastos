@@ -21,7 +21,7 @@ public class JavaFXMLApplication extends Application {
     private static final int MIN_HEIGHT = 516;
        
     // Nombre de la ruta del archivo FXML
-    private final String archivo = "/fxmls/MarcoVacio_Ini";
+    private final String archivo = "/fxmls/Pnt_Ini_Nov";
     
     private static Scene scene;
     

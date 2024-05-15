@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -70,11 +71,11 @@ public class FAQController implements Initializable {
        
         FXMLLoader fxmlAdd = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
         
-        AnchorPane es = fxmlAdd.load();      
+        VBox es = fxmlAdd.load();      
         AñadirCargoController controlAdd =fxmlAdd.getController();
         controlAdd.init(principal);
         
-        principal.getAnchorPane().getChildren().setAll(es);
+        principal.getBorderPane().setCenter(es);
     }
 
     @FXML
@@ -85,11 +86,11 @@ public class FAQController implements Initializable {
     private void verGastosMethod(ActionEvent event) throws IOException {
         FXMLLoader fxmlVer = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         
-        AnchorPane es = fxmlVer.load();      
+        VBox es = fxmlVer.load();      
         MisGastosController controlVer =fxmlVer.getController();
         controlVer.init(principal);
         
-        principal.getAnchorPane().getChildren().setAll(es);
+        principal.getBorderPane().setCenter(es);
     }
 
     @FXML
@@ -109,8 +110,8 @@ public class FAQController implements Initializable {
     private void cerrarSesionMethod(ActionEvent event) throws IOException {
         boolean finish =principal.getAcount().logOutUser();
         FXMLLoader cerrar= new FXMLLoader(getClass().getResource("/fxmls/Novedades.fxml"));
-        AnchorPane close = cerrar.load();
-        principal.getAnchorPane().getChildren().setAll(close);
+        VBox close = cerrar.load();
+        principal.getBorderPane().setCenter(close);
         principal.getRightPaneController().desactivar(true);
     }
     
