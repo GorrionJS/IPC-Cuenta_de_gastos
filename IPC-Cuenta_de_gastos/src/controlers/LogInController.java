@@ -6,27 +6,17 @@ package controlers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import model.Acount;
 import model.AcountDAOException;
 
 // TREMENDA MODIFICACION PARA PUBLICAR LA RAMA
@@ -36,48 +26,34 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class LogInController implements Initializable {
-    
+
+    @FXML
+    private TextField userText;
     @FXML
     private Text wrongUserText;
     @FXML
+    private TextField paswordText;
+    @FXML
     private Text wrongPassText;
-    @FXML
-    private AnchorPane main;
-    @FXML
-    private TextField inputNick;
-    @FXML
-    private PasswordField inputPass;
-    @FXML
-    private Button acceptButton;
     
-    private Acount cuenta;
     
-    private Parent controller;
+    // ventana principal, aqui almacenamos el controller del principal, util en cada clase del anchorPane
+    private PrimeraPantallaController principal;
 
-    private BooleanProperty validNick;
-    
-    private BooleanProperty validPass;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        validNick = new SimpleBooleanProperty();
-        validPass = new SimpleBooleanProperty();
-        
-        validNick.setValue(Boolean.FALSE);
-        validPass.setValue(Boolean.FALSE);
-        
         wrongPassText.setVisible(false);
         wrongUserText.setVisible(false);
-        
-        inputNick.focusedProperty().addListener((obj, oldV, newV) -> { if(!newV) {evaluateNick();} });
-        
-        acceptButton.disableProperty().bind(validNick.not());
-        
-        
     }    
+    
+    // método presente en todos los controlers
+    public void init( PrimeraPantallaController princ){
+        principal = princ;
+    }
 
     @FXML
     private void cancelarM(MouseEvent event) {
@@ -87,59 +63,26 @@ public class LogInController implements Initializable {
 
     @FXML
     private void aceptarM(MouseEvent event) throws AcountDAOException, IOException {
+        String log =userText.getText();
+        String con =paswordText.getText();
         
-    }
-    
-    public void setAccount(Acount c) { cuenta = c; }
-
-    @FXML
-    private void cancel(ActionEvent event) {
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
-        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
-        ok, no);
-        
-        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
-        
-        Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ok) { 
-                inputNick.clear();
-                inputPass.clear();
-            }
-    }
-
-    @FXML
-    private void acceptar(ActionEvent event) throws IOException, AcountDAOException {
-        String log = inputNick.getText();
-        String con = inputPass.getText();
-        
-        if(cuenta.logInUserByCredentials(log, con)){
-
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Main_Profile.fxml"));
-            Parent root = fxmlMain.load();
-            
-            Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
-           
-            Stage stage = (Stage) main.getScene().getWindow();
-            Stage newStage = new Stage();
-            
-            newStage.setScene(scene);
-            stage.close();
-            newStage.show();
-        } else {
-            wrongPassText.setText("Contraseña incorrecta");
+        if(principal.getAcount().logInUserByCredentials(log, con) ){
+              
+              userText.setText("correcto");
+              wrongUserText.setVisible(false);
+              paswordText.setText("correcto");
+              wrongPassText.setVisible(false);
+              
+              
+              // ACTIVA LAS FUNCIONES UNA VEZ COMPROBADO QUE ES UN USUARIO VALIDO
+              principal.getRightPaneController().desactivar(false);
+                 
+            }else{
+            userText.setText("incorrecto");
+            wrongUserText.setVisible(true);
+            paswordText.setText("incorrecto");
             wrongPassText.setVisible(true);
         }
     }
     
-    private void evaluateNick() {
-        if(cuenta != null && cuenta.existsLogin(inputNick.getText())) { 
-            wrongUserText.setVisible(false);
-            validNick.setValue(Boolean.TRUE);
-        }
-        else { 
-            wrongUserText.setVisible(true);
-            validNick.setValue(Boolean.FALSE);
-        }
-    }
 }
