@@ -73,7 +73,7 @@
          </BorderPane.margin></AnchorPane>
    </center>
    <right>
-      <AnchorPane fx:id="sideScreen" minHeight="400.0" minWidth="280.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="sideScreen" maxHeight="1.7976931348623157E308" minHeight="400.0" minWidth="280.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
