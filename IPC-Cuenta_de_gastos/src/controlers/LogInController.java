@@ -49,7 +49,7 @@ public class LogInController implements Initializable {
         wrongUserText.setVisible(false);
     }    
     
-    
+    // método presente en todos los controlers
     public void init( PrimeraPantallaController princ){
         principal = princ;
     }
@@ -72,13 +72,10 @@ public class LogInController implements Initializable {
               paswordText.setText("correcto");
               wrongPassText.setVisible(false);
               
-             // en principio el URL del loader va a cambiar para dar paso a la ventana principal
-             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/AñadirCargo.fxml"));
-             AnchorPane root = fxmlMain.load();
-             AñadirCargoController perfil = fxmlMain.getController();
-             perfil.init(principal);
-             principal.getAnchorPane().getChildren().setAll(root);
-//          
+              
+              // ACTIVA LAS FUNCIONES UNA VEZ COMPROBADO QUE ES UN USUARIO VALIDO
+              principal.getRightPaneController().desactivar(false);
+                 
             }else{
             userText.setText("incorrecto");
             wrongUserText.setVisible(true);

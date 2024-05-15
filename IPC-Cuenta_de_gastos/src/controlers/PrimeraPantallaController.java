@@ -43,6 +43,9 @@ public class PrimeraPantallaController implements Initializable {
    
     //cuenta que se crea solo una vez al crear la ventana principal y se va propagando a las demás clases
     private Acount miCuenta;
+    //el controler del FAQ será la que nos ayude con la navegación en el programa, se activa cuando se logea el usuario
+    //es un parametro al que se podrá acceder en las demás clases con el método getRightPane
+    private FAQController controlFAQ;
     
     public void setDisplay(String dir, AnchorPane pan) {
         try {
@@ -60,7 +63,12 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setDisplay("/fxmls/Novedades", screen);
-        setDisplay("/fxmls/FAQ", sideScreen);
+        //setDisplay("/fxmls/FAQ", sideScreen);
+        
+        //como necesitamos darle valor al parametro del sideScreen, lo centramos con el siguiente método 
+        //pero como todavia no se ha logeado entonces se mantienen desactivadas las opciones del cliente
+        desactivar();
+        
         
         try {
             inicializaCuenta();
@@ -86,7 +94,7 @@ public class PrimeraPantallaController implements Initializable {
     private void signup(ActionEvent event) throws IOException {
         // Direccion del FXML asociado al registro
         //setDisplay("/fxmls/Register", screen);
-        FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Register.fxml"));
+            FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Register.fxml"));
              AnchorPane login = log.load();
              RegisterController register = log.getController();
              
@@ -104,7 +112,7 @@ public class PrimeraPantallaController implements Initializable {
              LogInController loge = log.getController();
              // el init está en todas las ventanas del anchorPane
              loge.init(this);
-            screen.getChildren().setAll(login);
+             screen.getChildren().setAll(login);
     }
     
     //metodo que ayuda a obtener la cuenta de la ventana principal
@@ -114,5 +122,27 @@ public class PrimeraPantallaController implements Initializable {
     //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
     public AnchorPane getAnchorPane(){
         return screen;
+    }
+    
+    //metodo que desabilita los botones hasta que el usuario se logee
+    private void desactivar() {
+        try{
+        AnchorPane root;
+        FXMLLoader fxmlFAQ = new FXMLLoader(getClass().getResource("/fxmls/FAQ.fxml"));
+        
+        root = fxmlFAQ.load();      
+        controlFAQ =fxmlFAQ.getController();
+        controlFAQ.init(this);
+        controlFAQ.desactivar(true);
+        sideScreen.getChildren().setAll(root);}catch( IOException e){
+            System.err.println("Error al acceder a las novedades. Error " + e);
+        }
+        
+    }
+    
+    //devuelve el controller de la clase que controla las funciones del programa
+    // lo usa el login también para volver a activar las funciones una vez el usuario se ha logeado
+    public FAQController getRightPaneController(){
+        return controlFAQ;
     }
 }

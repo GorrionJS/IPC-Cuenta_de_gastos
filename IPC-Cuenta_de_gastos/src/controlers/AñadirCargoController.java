@@ -6,6 +6,8 @@ package controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 
@@ -15,6 +17,18 @@ import javafx.fxml.Initializable;
  *
  * @author Usuario
  */
+
+
+
+
+
+
+
+
+
+/*
+    todavia falta implementar los datos y demás
+*/
 public class AñadirCargoController implements Initializable {
      private PrimeraPantallaController principal;
     /**
@@ -28,6 +42,10 @@ public class AñadirCargoController implements Initializable {
     public void init(PrimeraPantallaController first){
         principal = first;
         
+    }
+
+    @FXML
+    private void addScannImage(ActionEvent event) {
     }
     
 }
