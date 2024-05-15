@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="border" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.NovedadesController">
+<AnchorPane minHeight="400.0" minWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane VBox.vgrow="ALWAYS">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox fx:id="border" alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefHeight="400.0" prefWidth="345.0" stylesheets="@../styles/estilo1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" styleClass="test1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
@@ -38,8 +26,11 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #C4C4C4;" styleClass="test2" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test2">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
@@ -55,8 +46,11 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" styleClass="test1" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
@@ -72,8 +66,11 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #C4C4C4;" styleClass="test2" GridPane.rowIndex="3">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test2">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
@@ -89,8 +86,11 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: gray;" styleClass="test1" GridPane.rowIndex="4">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="test1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                      <font>
@@ -106,8 +106,11 @@
                      </VBox.margin>
                   </Text>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </VBox>
          </children>
-      </GridPane>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

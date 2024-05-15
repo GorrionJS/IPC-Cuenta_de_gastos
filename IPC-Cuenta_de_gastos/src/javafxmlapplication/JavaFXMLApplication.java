@@ -15,17 +15,17 @@ import javafx.stage.Stage;
 public class JavaFXMLApplication extends Application {
 
     // Minimo de redimension de la pantalla (X)
-    private static final int MIN_WIDTH = 640;
+    public static final int MIN_WIDTH = 640;
     // Minimo de redimension de la pantalla (Y) 
     // Actualmente 480 + 32 (VGA standard + title bar Windows 11 (32)) + 4 (Ajuste)
-    private static final int MIN_HEIGHT = 516;
+    public static final int MIN_HEIGHT = 516;
        
     // Nombre de la ruta del archivo FXML
-    private final String archivo = "/fxmls/Pnt_Ini_Nov";
+    private final String archivo = "/fxmls/MarcoVacio_Ini";
     
     private static Scene scene;
     
-    public static void setRoot(Parent root) { scene.setRoot(root); }
+    // public static void setRoot(Parent root) { scene.setRoot(root); }
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -56,10 +56,8 @@ public class JavaFXMLApplication extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
-        
+        launch(args);       
     }
-
 
     
 }

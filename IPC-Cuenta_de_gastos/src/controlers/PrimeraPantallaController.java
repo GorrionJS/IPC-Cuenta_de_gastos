@@ -4,8 +4,6 @@
  */
 package controlers;
 
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,13 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -38,27 +33,33 @@ public class PrimeraPantallaController implements Initializable {
     private Button login_button;
     @FXML
     private Button singup_button;
+    @FXML
     private AnchorPane screen;
+    @FXML
     private AnchorPane sideScreen;
-   
-    //cuenta que se crea solo una vez al crear la ventana principal y se va propagando a las demás clases
-    private Acount miCuenta;
-    //el controler del FAQ será la que nos ayude con la navegación en el programa, se activa cuando se logea el usuario
-    //es un parametro al que se podrá acceder en las demás clases con el método getRightPane
-    private FAQController controlFAQ;
-    @FXML
-    private VBox border;
-    @FXML
-    private VBox derechaPane;
+
+    private Acount cuenta;
     
-    public void setDisplay(String dir, AnchorPane pan) {
+    private FXMLLoader setDisplay(String dir, AnchorPane pan) {
+        FXMLLoader newFXML = null;
         try {
-            VBox newFXML = FXMLLoader.load((getClass().getResource(dir + ".fxml")));
-            pan.getChildren().setAll(newFXML);
-            
+            newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            resizable(pan);
+            AnchorPane pane = newFXML.load();
+            resizable(pane);
+            pan.getChildren().setAll(pane);
         } catch (IOException ex) {
-            System.err.println("Error al acceder a las novedades. Error " + ex); }
+            System.err.println("Error al acceder a " + dir + " . Error " + ex); }
+        finally { return newFXML;}
     }
+    
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 0.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 0.0);
+    }
+    
 
     /**
      * Initializes the controller class.
@@ -67,103 +68,65 @@ public class PrimeraPantallaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //setDisplay("/fxmls/Novedades", screen);
-        //setDisplay("/fxmls/FAQ", sideScreen);
-        
-        
-        // los siguientes metodos abilitan la parte centro y derecha del programa,
-        // ******novedadesRediensionable habilita la parte de las novedades
-        // ******desactivar habilita la parte de las funciones pero no se puede acceder hasta que el usuario se logea
-        novedadesRedimensionable();
-        desactivar();
-        
+        resizable(screen); resizable(sideScreen);
+        setDisplay("/fxmls/FAQ", sideScreen);
+        setDisplay("/fxmls/Novedades", screen);
         
         try {
-            inicializaCuenta();
+            cuenta = Acount.getInstance();
         } catch (AcountDAOException ex) {
             Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
         
-    // metodo que crea la cuenta, se hace fuera del inicialice para evitar problemas con la creación del usuario y demás
-    private void inicializaCuenta() throws AcountDAOException, IOException{
-        try {
-            miCuenta= Acount.getInstance();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
+    
 
     @FXML
     private void signup(ActionEvent event) throws IOException {
         // Direccion del FXML asociado al registro
-        //setDisplay("/fxmls/Register", screen);
-             FXMLLoader cargadorReg= new FXMLLoader(getClass().getResource("/fxmls/register.fxml"));
-             VBox reg = cargadorReg.load();
-             RegisterController register = cargadorReg.getController();
-             
-             // el metodo init ayuda a propagar el this the esta clase, es la que guarda la cuenta logeada para no realizar comprobaciones en cada ventana
-             register.init(this);
-             borderPANE.setCenter(reg);
+        String dir = "/fxmls/Register";
+        try {
+            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            AnchorPane newW = newFXML.load();
+            resizable(newW);
+            screen.getChildren().setAll(newW);
+
+            RegisterController controller = newFXML.getController();
+            controller.setAcount(cuenta);
+            
+            singup_button.setDisable(true);
+            login_button.setDisable(false);
+
+        } catch (IOException ex) {
+            System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
     }
+        
     
 
     @FXML
     private void login(MouseEvent event) throws IOException {
-             
-             FXMLLoader log= new FXMLLoader(getClass().getResource("/fxmls/Log_In.fxml"));
-             VBox login = log.load();
-             LogInController loge = log.getController();
-             // el init está en todas las ventanas del anchorPane
-             loge.init(this);
-             borderPANE.setCenter(login);
+        String dir = "/fxmls/Log_In";
+        try {
+            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            AnchorPane newW = newFXML.load();
+            resizable(newW);
+            screen.getChildren().setAll(newW);
+
+            LogInController controller = newFXML.getController();
+            controller.setAccount(cuenta);
+            
+            singup_button.setDisable(false);
+            login_button.setDisable(true);
+
+        } catch (IOException ex) {
+            System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
+    }
+    //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
+    public AnchorPane getAnchorPane(){
+        return screen;
     }
     
-    //metodo que ayuda a obtener la cuenta de la ventana principal
-    public Acount getAcount(){
-        return miCuenta;
-    }
-    //metodo que permite abrir un FXML en el centro, con el respectivo setCenter(VBOX)
-    public BorderPane getBorderPane(){
-        return borderPANE;
-    }
-    
-    //metodo que desabilita los botones hasta que el usuario se logee
-    private void desactivar() {
-        try{
-        VBox root;
-        FXMLLoader fxmlFAQ = new FXMLLoader(getClass().getResource("/fxmls/FAQ.fxml"));
-        
-        root = fxmlFAQ.load();      
-        controlFAQ =fxmlFAQ.getController();
-        controlFAQ.init(this);
-        controlFAQ.desactivar(true);
-        borderPANE.setRight(root);
-        }catch( IOException e){
-            System.err.println("Error al acceder a la ventana de opciones. Error " + e);
-        }
-        
-    }
-    
-    //devuelve el controller de la clase que controla las funciones del programa
-    // lo usa el login también para volver a activar las funciones una vez el usuario se ha logeado
-    public FAQController getRightPaneController(){
-        return controlFAQ;
-    }
-    
-    //método que abre la ventana de novedades de forma redimensionable
-    private void novedadesRedimensionable() {
-        try{
-        VBox root;
-        FXMLLoader fxmlNov = new FXMLLoader(getClass().getResource("/fxmls/Novedades.fxml"));
-        root= fxmlNov.load();
-        borderPANE.setCenter(root);}
-        catch(IOException e){
-            System.err.println("Error al acceder a la ventana de novedades. Error " + e);
-        }
-    }
+    public Acount getAcount() { return cuenta; }
 }
