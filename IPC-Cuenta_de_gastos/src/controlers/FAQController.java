@@ -76,5 +76,42 @@ public class FAQController implements Initializable {
         
         principal.getAnchorPane().getChildren().setAll(es);
     }
+
+    @FXML
+    private void inicioMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void verGastosMethod(ActionEvent event) throws IOException {
+        FXMLLoader fxmlVer = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
+        
+        AnchorPane es = fxmlVer.load();      
+        MisGastosController controlVer =fxmlVer.getController();
+        controlVer.init(principal);
+        
+        principal.getAnchorPane().getChildren().setAll(es);
+    }
+
+    @FXML
+    private void exportarMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void miPerfilMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void ayudaMethod(ActionEvent event) {
+    }
+
+    
+    @FXML
+    private void cerrarSesionMethod(ActionEvent event) throws IOException {
+        boolean finish =principal.getAcount().logOutUser();
+        FXMLLoader cerrar= new FXMLLoader(getClass().getResource("/fxmls/Novedades.fxml"));
+        AnchorPane close = cerrar.load();
+        principal.getAnchorPane().getChildren().setAll(close);
+        principal.getRightPaneController().desactivar(true);
+    }
     
 }

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="406.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.FAQController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="287.0">
@@ -34,13 +33,13 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <Button fx:id="BtnInicio" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Inicio" GridPane.columnIndex="1" />
+                  <Button fx:id="BtnInicio" mnemonicParsing="false" onAction="#inicioMethod" prefHeight="60.0" prefWidth="215.0" text="Inicio" GridPane.columnIndex="1" />
                   <Button fx:id="btnAddGasto" mnemonicParsing="false" onAction="#addGastoMethod" prefHeight="60.0" prefWidth="215.0" text="Añadir Gasto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="btnVerGasto" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Ver Gastos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="btnExportar" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Exportar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="btnPerfil" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Mi Perfil" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Button fx:id="btnAyuda" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Ayuda" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button fx:id="btnCerrarSesion" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Cerrar sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2">
+                  <Button fx:id="btnVerGasto" mnemonicParsing="false" onAction="#verGastosMethod" prefHeight="60.0" prefWidth="215.0" text="Ver Gastos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="btnExportar" mnemonicParsing="false" onAction="#exportarMethod" prefHeight="60.0" prefWidth="215.0" text="Exportar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="btnPerfil" mnemonicParsing="false" onAction="#miPerfilMethod" prefHeight="60.0" prefWidth="215.0" text="Mi Perfil" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="btnAyuda" mnemonicParsing="false" onAction="#ayudaMethod" prefHeight="60.0" prefWidth="215.0" text="Ayuda" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesionMethod" prefHeight="60.0" prefWidth="215.0" text="Cerrar sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
