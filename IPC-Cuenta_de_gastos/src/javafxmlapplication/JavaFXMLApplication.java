@@ -17,15 +17,20 @@ public class JavaFXMLApplication extends Application {
     // Minimo de redimension de la pantalla (X)
     private static final int MIN_WIDTH = 640;
     // Minimo de redimension de la pantalla (Y) 
-    private static final int MIN_HEIGHT = 480;
+    // Actualmente 480 + 32 (VGA standard + title bar Windows 11 (32)) + 4 (Ajuste)
+    private static final int MIN_HEIGHT = 516;
        
     // Nombre de la ruta del archivo FXML
-    private final String archivo = "/fxmls/BaseInicial_BETA";
+    private final String archivo = "/fxmls/MarcoVacio_Ini";
+    
+    private static Scene scene;
+    
+    public static void setRoot(Parent root) { scene.setRoot(root); }
     
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Establecido minimo posible de redimension de pantalla (ACTUALMENTE VGA)
+        // Establecido minimo posible de redimension de pantalla (ACTUALMENTE VGA
         stage.setMinWidth(MIN_WIDTH);
         stage.setMinHeight(MIN_HEIGHT);
         
@@ -35,7 +40,7 @@ public class JavaFXMLApplication extends Application {
         Parent root = loader.load();
 
         // Creación de la escena con el nodo raiz del grafo de escena
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
 
         // Asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage

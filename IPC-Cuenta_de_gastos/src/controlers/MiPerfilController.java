@@ -2,29 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package javafxmlapplication;
+package controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
  *
- * 
+ * @author Usuario
  */
-public class BaseInicial_BETAController implements Initializable {
+public class MiPerfilController implements Initializable {
 
     @FXML
-    // Boton de Iniciar Sesion
-    private Button login_button;
+    private BorderPane borderPANE;
     @FXML
-    // Boton de Registrarse
-    private Button singup_button;
+    private AnchorPane screen;
+    @FXML
+    private Button log_out;
 
+    private PrimeraPantallaController principal;
     /**
      * Initializes the controller class.
      */
@@ -32,13 +34,8 @@ public class BaseInicial_BETAController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void login(ActionEvent event) {
-    }
-
-    @FXML
-    private void signup(ActionEvent event) {
-    }
     
+    public void init (PrimeraPantallaController prin){
+        principal = prin;
+    }
 }
