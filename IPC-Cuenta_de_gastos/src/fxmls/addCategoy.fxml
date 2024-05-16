@@ -28,7 +28,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="nombreTextField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                        <TextField fx:id="categoryName" prefWidth="150.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>
@@ -46,7 +46,7 @@
                               <Insets left="15.0" right="3.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="apellidosTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="descriptionCategory" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin>

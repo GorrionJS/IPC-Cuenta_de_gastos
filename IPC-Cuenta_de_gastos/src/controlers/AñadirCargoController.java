@@ -17,14 +17,18 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
@@ -33,6 +37,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
@@ -81,6 +86,10 @@ public class AñadirCargoController implements Initializable {
     @FXML
     private Button butonAddCat;
     
+    private ObservableList<Category> categorias = null;
+    
+    
+    
     
     /**
      * Initializes the controller class.
@@ -89,8 +98,8 @@ public class AñadirCargoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // Define el patrón para solo permitir números
-        Pattern patronDouble = Pattern.compile("\\d*");
-        Pattern patronInt = Pattern.compile("\\d*|\\d+\\.\\d*");
+        Pattern patronInt = Pattern.compile("\\d*");
+        Pattern patronDouble = Pattern.compile("\\d*|\\d+\\.\\d*");
         // Crea un TextFormatter con un filtro basado en el patrón
         TextFormatter<String> formatoD = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
             if (patronDouble.matcher(change.getControlNewText()).matches()) {
@@ -108,14 +117,41 @@ public class AñadirCargoController implements Initializable {
         });
         cargoCoste.setTextFormatter(formatoD);
         cargoUnidades.setTextFormatter(formatoI);
+        
+        
     }    
     
     
-    public void init(PrimeraPantallaController first) throws AcountDAOException{
+    public void init(PrimeraPantallaController princ) throws AcountDAOException{
         
-        principal = first;
+        principal = princ;
         
-        desplefableListaCaategorias.getItems().addAll(principal.getAcount().getUserCategories());
+        inicializaCategorias();
+        
+    }
+    public void inicializaCategorias() {
+               
+         try {
+             categorias = FXCollections.observableList(principal.getAcount().getUserCategories());
+         } catch (AcountDAOException ex) {
+             Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         
+        desplefableListaCaategorias.setItems(categorias);
+        desplefableListaCaategorias.setConverter(new StringConverter<Category>(){
+
+             @Override
+             public String toString(Category t) {
+                return t.getName();
+             }
+
+             @Override
+             public Category fromString(String string) {
+                 return null;
+             }
+
+        });
         
     }
 
@@ -148,25 +184,23 @@ public class AñadirCargoController implements Initializable {
     }
     
     @FXML
-    private void cancelarMethod(ActionEvent event) {
+    private void cancelarMethod(ActionEvent event) throws AcountDAOException {
+        System.out.println(principal.getAcount().getUserCategories().size());//get(2).getName());
     }
 
     @FXML
-    private void aceptarMethod(ActionEvent event) {
+    private void aceptarMethod(ActionEvent event) throws AcountDAOException {
         
         String name = cargoNombre.getText();
         String description = cargoDescripcion.getText();
-        
+        Double cost = Double.parseDouble(cargoCoste.getText());
         int unidades = Integer.parseInt(cargoUnidades.getText());
-//        //Category categoria = principal.getAcount().registerCategory("name", "description");
-//        if(){
-//            
-//        }else{
-//            
-//        }
-//        
-//        principal.getAcount().registerCharge(name, description, coste, unidades, picture, LocalDate.MAX, category);
-//    }
+        Category categoria = desplefableListaCaategorias.getValue();
+        
+        if(principal.getAcount().registerCharge(name, description, cost, unidades, picture, LocalDate.MAX, categoria)){
+            System.out.println("se ha registrado");
+        }
+
     }
 
     
@@ -182,14 +216,27 @@ public class AñadirCargoController implements Initializable {
     }
 
     @FXML
-    private void addCategoryMethod(ActionEvent event) {
+    private void addCategoryMethod(ActionEvent event) throws AcountDAOException {
             try {
             
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxmls/addCategoy.fxml"));
-                Stage stage = loader.load();
+                
+                Stage stage =loader.load();
+                AddCategoryController addCat = loader.getController();
                 stage.setTitle("Vista añadir Categoría");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
+                if(addCat.isPressed()){
+                    String name = addCat.getNomCat();
+                    String description = addCat.getDescCat();
+                    principal.getAcount().registerCategory(name, description);
+                    inicializaCategorias();
+                }
+                
+                
+                
+                
+                
             } catch (IOException ex) {
             Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
             }

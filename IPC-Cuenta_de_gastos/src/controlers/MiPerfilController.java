@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import model.AcountDAOException;
 
 /**
  * FXML Controller class
@@ -54,9 +55,11 @@ public class MiPerfilController implements Initializable {
     }
 
     @FXML
-    private void addGastoMethod(ActionEvent event) throws IOException {
+    private void addGastoMethod(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
         AnchorPane root = addGasto.load();
+        AñadirCargoController control = addGasto.getController();
+        control.init(principal);
         borderPANE.setCenter(root);
     }
 
@@ -64,6 +67,8 @@ public class MiPerfilController implements Initializable {
     private void verGastoMethod(ActionEvent event) throws IOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         AnchorPane root = verGasto.load();
+        MisGastosController control = verGasto.getController();
+        control.init(principal);
         borderPANE.setCenter(root);
     }
 
