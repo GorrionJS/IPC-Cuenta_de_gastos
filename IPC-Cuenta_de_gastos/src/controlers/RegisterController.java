@@ -125,15 +125,34 @@ public class RegisterController implements Initializable {
         bottonAcceptar.disableProperty().bind(validPass.not().or(validEmail.not().or(eqPass.not().or(validNick.not()))));
         
         /*
-        *****************************************************
-        *****************************************************
+         *******************
+         *******************
         esto es una prueba para que el textfield solo acepte el formato algo@gmail.com
+         *******************
+         *******************
         */
-            
-           
-            
+            Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
+
+        // Añade un ChangeListener para detectar pérdida de foco
+        inputEmail.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                // Si el TextField pierde el foco (newValue es false)
+                if (!newValue) {
+                    String text = inputEmail.getText();
+                    if (!text.isEmpty() && !emailPattern.matcher(text).matches()) {
+                        //System.out.println("Email inválido");
+                        String errS = "El correo introducido no es valido";
+                        textModification(errorEmail, errS, ERR);
+                    }
+                }
+            }
+        });
+    
         
     }
+    
+
     
     
     
