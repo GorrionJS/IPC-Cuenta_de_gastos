@@ -2,7 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -85,12 +88,12 @@
                   <Insets bottom="20.0" left="50.0" right="10.0" />
                </GridPane.margin>
                <children>
-                  <Button mnemonicParsing="false" text="Cancelar">
+                  <Button mnemonicParsing="false" onAction="#cancelarMethod" text="Cancelar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="6">
@@ -129,19 +132,20 @@
             <Text fill="#f20000" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Text fill="#e80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button mnemonicParsing="false" onAction="#addScannImage" text="Insertar Scaner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <TextField fx:id="cargoID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="cargoNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="cargoDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="cargoUnidades" onKeyTyped="#comprobarInt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="cargoCoste" accessibleText="double" onKeyTyped="#comprobarDouble" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button fx:id="cargoImagen" mnemonicParsing="false" onAction="#addScannImage" text="Insertar Scaner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <DatePicker fx:id="cargoFecha" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ImageView fx:id="tesstImagen" fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+            <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="existentes" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="butonAddCat" mnemonicParsing="false" onAction="#addCategoryMethod" prefHeight="19.0" prefWidth="80.0" text="Nueva" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

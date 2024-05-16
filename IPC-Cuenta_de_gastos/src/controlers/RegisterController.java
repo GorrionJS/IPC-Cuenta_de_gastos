@@ -330,9 +330,9 @@ public class RegisterController implements Initializable {
     No se que es esto
     
     Stage getStage() { return stage; }
-    
+    */
     public void init(PrimeraPantallaController princ){
         principal = princ;
     }
-    */
+    
 }

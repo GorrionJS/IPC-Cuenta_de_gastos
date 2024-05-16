@@ -56,6 +56,8 @@ public class LogInController implements Initializable {
     private BooleanProperty validNick;
     
     private BooleanProperty validPass;
+    
+    private PrimeraPantallaController principal;
     /**
      * Initializes the controller class.
      */
@@ -116,6 +118,8 @@ public class LogInController implements Initializable {
 
             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Main_Profile.fxml"));
             Parent root = fxmlMain.load();
+            MiPerfilController ventanaCuenta = fxmlMain.getController();
+            ventanaCuenta.init(principal);
             
             Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
            
@@ -140,5 +144,9 @@ public class LogInController implements Initializable {
             wrongUserText.setVisible(true);
             validNick.setValue(Boolean.FALSE);
         }
+    }
+    
+    public void init(PrimeraPantallaController princ){
+        principal = princ;
     }
 }

@@ -4,11 +4,16 @@
  */
 package controlers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -27,15 +32,56 @@ public class MiPerfilController implements Initializable {
     private Button log_out;
 
     private PrimeraPantallaController principal;
+    @FXML
+    private Label nomUsuarioText;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
     
     public void init (PrimeraPantallaController prin){
         principal = prin;
+        String nombre = principal.getAcount().getLoggedUser().getName();
+        nomUsuarioText.setText(nombre);
+    }
+
+    @FXML
+    private void inicioMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void addGastoMethod(ActionEvent event) throws IOException {
+        FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
+        AnchorPane root = addGasto.load();
+        borderPANE.setCenter(root);
+    }
+
+    @FXML
+    private void verGastoMethod(ActionEvent event) throws IOException {
+        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
+        AnchorPane root = verGasto.load();
+        borderPANE.setCenter(root);
+    }
+
+    @FXML
+    private void exportarMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void ayudaMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void miPerfilMethod(ActionEvent event) {
+    }
+
+    @FXML
+    private void cerrarCesiónMethod(ActionEvent event) {
+        //boolean out = principal.getAcount().logOutUser();
+        
     }
 }

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -39,6 +40,8 @@ public class PrimeraPantallaController implements Initializable {
     private AnchorPane sideScreen;
 
     private Acount cuenta;
+    
+    
     
     private FXMLLoader setDisplay(String dir, AnchorPane pan) {
         FXMLLoader newFXML = null;
@@ -90,6 +93,8 @@ public class PrimeraPantallaController implements Initializable {
         try {
             FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
             AnchorPane newW = newFXML.load();
+            RegisterController reg = newFXML.getController();
+            reg.init(this);
             resizable(newW);
             screen.getChildren().setAll(newW);
 
@@ -115,6 +120,7 @@ public class PrimeraPantallaController implements Initializable {
             screen.getChildren().setAll(newW);
 
             LogInController controller = newFXML.getController();
+            controller.init(this);
             controller.setAccount(cuenta);
             
             singup_button.setDisable(false);
@@ -129,4 +135,6 @@ public class PrimeraPantallaController implements Initializable {
     }
     
     public Acount getAcount() { return cuenta; }
+    
+    
 }

@@ -5,6 +5,7 @@
  */
 package javafxmlapplication;
 
+import controlers.PrimeraPantallaController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,6 +39,7 @@ public class JavaFXMLApplication extends Application {
         FXMLLoader loader= new  FXMLLoader(getClass().getResource(archivo + ".fxml"));
 
         Parent root = loader.load();
+        
 
         // Creación de la escena con el nodo raiz del grafo de escena
         scene = new Scene(root);

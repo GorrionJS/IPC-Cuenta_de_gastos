@@ -36,11 +36,11 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="287.0" spacing="20.0">
                            <children>
-                              <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../OneDrive%20-%20UPV/UNIVERSIDAD/CV/cvFoto.jpg" />
+                                    <Image url="@../images/Usuario.jpeg" />
                                  </image></ImageView>
-                              <Label text="Nombre_de_usuario" />
+                              <Label fx:id="nomUsuarioText" text="Nombre_de_usuario" />
                            </children>
                            <HBox.margin>
                               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -99,22 +99,22 @@
                      <image>
                         <Image url="@../images/Usuario.jpeg" />
                      </image></ImageView>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Inicio" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#inicioMethod" prefHeight="60.0" prefWidth="215.0" text="Inicio" GridPane.columnIndex="1" />
                   
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Añadir Gasto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#addGastoMethod" prefHeight="60.0" prefWidth="215.0" text="Añadir Gasto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Ver Gastos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#verGastoMethod" prefHeight="60.0" prefWidth="215.0" text="Ver Gastos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Exportar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#exportarMethod" prefHeight="60.0" prefWidth="215.0" text="Exportar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Ayuda" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" onAction="#ayudaMethod" prefHeight="60.0" prefWidth="215.0" text="Ayuda" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Mi Perfil" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#miPerfilMethod" prefHeight="60.0" prefWidth="215.0" text="Mi Perfil" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets top="10.0" />
@@ -123,7 +123,7 @@
                         <Image url="@../images/Sin%20título.jpeg" />
                      </image>
                   </ImageView>
-                  <Button fx:id="log_out" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" text="Cerrar sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2">
+                  <Button fx:id="log_out" mnemonicParsing="false" onAction="#cerrarCesiónMethod" prefHeight="60.0" prefWidth="215.0" text="Cerrar sesión" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets top="10.0" />
                      </GridPane.margin>
