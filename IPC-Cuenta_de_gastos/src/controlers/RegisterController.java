@@ -6,19 +6,16 @@ package controlers;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -27,11 +24,10 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -82,8 +78,6 @@ public class RegisterController implements Initializable {
     
     private Stage stage;
     
-    private PrimeraPantallaController principal;
-    
     private Image picture;
     
     private BooleanProperty validEmail;
@@ -96,11 +90,16 @@ public class RegisterController implements Initializable {
     
     private Acount compte;
     
+    private PrimeraPantallaController principal;
+    
     /**
      * Initializes the controller class.
      */
     
     public void initialize(URL url, ResourceBundle rb) {
+        
+        String errS = "La contraseña tiene que ser de entre 4 y 15 caracteres.";
+        textModification(errorPass, errS, GOOD);
         
         // properties
         validEmail = new SimpleBooleanProperty();
@@ -115,49 +114,24 @@ public class RegisterController implements Initializable {
         
         // Listeners
         inputNick.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { evaluateNick(); }});
-        inputPass.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { evaluatePass("Las contraseña no se ajusta \n a los valores indicados"); }});
+        inputPass.focusedProperty().addListener((object, oldV, newV) -> { 
+            if(!newV) { evaluatePass("La contraseña no se ajusta \n a los valores indicados"); }});
         inputPass1.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { equalsPass(); }});
         inputEmail.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { evaluateEmail(); }});
+        
+        inputNombre.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputApellido.requestFocus(); }});
+        inputApellido.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputNick.requestFocus(); }});
+        inputNick.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputPass.requestFocus(); }});
+        inputPass.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputPass1.requestFocus(); }});
+        inputPass1.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputEmail.requestFocus(); }});
+        inputEmail.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputNombre.requestFocus(); }});
         
         // Escondemos el ImagenView
         testImagen.setVisible(false);
         // Binding
         bottonAcceptar.disableProperty().bind(validPass.not().or(validEmail.not().or(eqPass.not().or(validNick.not()))));
         
-        /*
-         *******************
-         *******************
-        esto es una prueba para que el textfield solo acepte el formato algo@gmail.com
-         *******************
-         *******************
-        */
-            Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
-
-        // Añade un ChangeListener para detectar pérdida de foco
-        inputEmail.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                // Si el TextField pierde el foco (newValue es false)
-                if (!newValue) {
-                    String text = inputEmail.getText();
-                    if (!text.isEmpty() && !emailPattern.matcher(text).matches()) {
-                        //System.out.println("Email inválido");
-                        String errS = "El correo introducido no es valido";
-                        textModification(errorEmail, errS, ERR);
-                    }
-                }
-            }
-        });
-    
-        
     }
-    
-
-    
-    
-    
-    
-    
         /*************************************************************************
      *          BOTON SUBIR IMAGEN
      */
@@ -195,7 +169,7 @@ public class RegisterController implements Initializable {
      *          BOTON CANCELAR
      */
 
-    // MEtodo a cambiar (de momento funciona)
+    // Metodo a cambiar (de momento funciona)
     @FXML
     private void cancelar(ActionEvent event) throws IOException {
         ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
@@ -217,6 +191,7 @@ public class RegisterController implements Initializable {
                 picture = null;
                 pictureUpload.setVisible(true);
                 textClear(); 
+                principal.clear();
             }
     }
     
@@ -254,10 +229,12 @@ public class RegisterController implements Initializable {
 
     private void evaluateNick() { 
          String desiredNick = inputNick.getText();
-        if(desiredNick.equals("")) { // Completar con el acceso a la base de datos
+         // Comprovacion de si el nick existe en la BD
+        if(compte.existsLogin(desiredNick)) {
             String errS = "El nombre de usuario \n ya se encuentra en uso";
             textModification(errorNick, errS, ERR);
         } else { 
+            if(desiredNick.equals("")) { return ; }
             String errS = "El nombre de usuario es valido";
             textModification(errorNick, errS, GOOD);
             validNick.setValue(Boolean.TRUE);
@@ -269,15 +246,17 @@ public class RegisterController implements Initializable {
     private void evaluateEmail() {
         // Se evalua si el email esta en el formato correcto
         String email = inputEmail.getText();
-        if(!email.contains("@") || email.equals("")) { // No contiene @ o esta en la BD
-            String errS = "El correo introducido no es valido";
-            textModification(errorEmail, errS, ERR);
-            
-
-        }else {
+        // Validacion acorde al estandard RFC 5322
+        // sacado de https://www.baeldung.com/java-email-validation-regex
+        String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        Pattern pat = Pattern.compile(regex);
+        if(pat.matcher(email).matches()) { 
             String errS = "El correo introducido es valido";
             textModification(errorEmail, errS, GOOD);
             validEmail.setValue(Boolean.TRUE);
+        }else {
+            String errS = "El correo introducido no es valido";
+            textModification(errorEmail, errS, ERR);
         }
     }
     
@@ -287,7 +266,7 @@ public class RegisterController implements Initializable {
     private void evaluatePass(String error) {
         String pass = inputPass.getText();
         // Se busca una contraseña de entre 4 y 15 caracteres
-        if(pass.length() < 3 && pass.length() > 16) {
+        if(pass.length() < 3 || pass.length() > 16) {
             String errS = error;
             textModification(errorPass, errS, ERR);
         } else {
@@ -299,11 +278,6 @@ public class RegisterController implements Initializable {
     /******************************************************************** 
      * AVISO DE PERMITIDOS A LA HORA DE INTRODUCIR UNA CONTRASEÑA **/
 
-    private void inform(MouseEvent event) {
-        String errS = "La contraseña tiene que ser de entre 4 y 15 caracteres.";
-        textModification(errorPass, errS, GOOD);
-    }
-
     /*************************************************************************** 
      * EVALUACION DE LAS CONTRASEÑAS **/
     private void equalsPass() {
@@ -311,11 +285,11 @@ public class RegisterController implements Initializable {
         String pass = inputPass.getText();
         if(pass != null && pass.equals(pass2)) {
             eqPass.setValue(Boolean.TRUE);
+            errorPass1.setDisable(true);
         } else {
-            String errS = "Las contraseñas no coinciden " + pass + " " + pass2 ;
+            String errS = "Las contraseñas no coinciden";
             textModification(errorPass1, errS, ERR);
         }
-        
     }
     
     /**********************************************************************+
@@ -365,14 +339,8 @@ public class RegisterController implements Initializable {
     Acount getAccount() { return compte; }
     
     void setAcount(Acount c) { compte = c; }
-
-    /*
-    No se que es esto
     
-    Stage getStage() { return stage; }
-    */
     public void init(PrimeraPantallaController princ){
-        principal = princ;
-    }
-    
+         principal = princ;
+    } 
 }

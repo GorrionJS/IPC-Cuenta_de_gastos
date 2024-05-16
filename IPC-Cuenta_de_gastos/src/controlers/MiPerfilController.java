@@ -47,7 +47,7 @@ public class MiPerfilController implements Initializable {
     public void init (PrimeraPantallaController prin){
         principal = prin;
         String nombre = principal.getAcount().getLoggedUser().getName();
-        nomUsuarioText.setText(nombre);
+        // Error en esto nomUsuarioText.setText(nombre);
     }
 
     @FXML

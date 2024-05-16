@@ -22,7 +22,7 @@ public class JavaFXMLApplication extends Application {
     public static final int MIN_HEIGHT = 516;
        
     // Nombre de la ruta del archivo FXML
-    private final String archivo = "/fxmls/MarcoVacio_Ini";
+    private final String archivo = "/fxmls/Marco_Vacio_Inicial";
     
     private static Scene scene;
     
@@ -50,7 +50,7 @@ public class JavaFXMLApplication extends Application {
         stage.setScene(scene);
 
         // Modificado para que cambie el titulo de arriba (antes ponia proyecto inicial)
-        stage.setTitle("IPC-ENTREGA");
+        stage.setTitle("THE TOOL");
         stage.show();
     }
 
