@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Acount;
@@ -118,17 +119,11 @@ public class LogInController implements Initializable {
             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
             Parent root = fxmlMain.load();
             
-            MiPerfilController ventanaCuenta = fxmlMain.getController();
-            ventanaCuenta.init(principal);
+            MiPerfilController controller = fxmlMain.getController();
+            controller.init(principal, cuenta);
             
-            Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
-           
-            Stage stage = (Stage) main.getScene().getWindow();
-            Stage newStage = new Stage();
-            
-            newStage.setScene(scene);
-            stage.close();
-            newStage.show();
+            BorderPane p = principal.getGrid();
+            p.getChildren().setAll(root);
             
         } else {
             wrongPassText.setText("Contraseña incorrecta");

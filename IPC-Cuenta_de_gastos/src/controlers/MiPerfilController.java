@@ -14,8 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import model.Acount;
 import model.AcountDAOException;
 
 /**
@@ -29,32 +31,43 @@ public class MiPerfilController implements Initializable {
     private BorderPane borderPANE;
     @FXML
     private AnchorPane screen;
-    @FXML
-    private Button log_out;
 
     private PrimeraPantallaController principal;
     @FXML
-    private Label nomUsuarioText;
+    private ImageView userProfile;
+    @FXML
+    private Label userName;
+    @FXML
+    private Button inicioButton;
+    @FXML
+    private Button profileButton;
+    @FXML
+    private Button gastosButton;
+    @FXML
+    private Button exportarButton;
+    @FXML
+    private Button signOutButton;
+    
+    private Acount cuenta;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
         
     }    
     
-    public void init (PrimeraPantallaController prin){
+    public void init (PrimeraPantallaController prin, Acount a){
         principal = prin;
-        String nombre = principal.getAcount().getLoggedUser().getName();
+        cuenta = a;
+        userName.setText(cuenta.getLoggedUser().getNickName());
+        userProfile.setImage(cuenta.getLoggedUser().getImage());
         // Error en esto nomUsuarioText.setText(nombre);
     }
 
-    @FXML
-    private void inicioMethod(ActionEvent event) {
-    }
 
-    @FXML
     private void addGastoMethod(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
         AnchorPane root = addGasto.load();
@@ -63,7 +76,6 @@ public class MiPerfilController implements Initializable {
         borderPANE.setCenter(root);
     }
 
-    @FXML
     private void verGastoMethod(ActionEvent event) throws IOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         AnchorPane root = verGasto.load();
@@ -73,20 +85,24 @@ public class MiPerfilController implements Initializable {
     }
 
     @FXML
-    private void exportarMethod(ActionEvent event) {
+    private void inicio(ActionEvent event) {
     }
 
     @FXML
-    private void ayudaMethod(ActionEvent event) {
+    private void miPerfil(ActionEvent event) {
     }
 
     @FXML
-    private void miPerfilMethod(ActionEvent event) {
+    private void gastos(ActionEvent event) {
     }
 
     @FXML
-    private void cerrarCesiónMethod(ActionEvent event) {
+    private void exportar(ActionEvent event) {
         //boolean out = principal.getAcount().logOutUser();
         
+    }
+
+    @FXML
+    private void signOut(ActionEvent event) {
     }
 }

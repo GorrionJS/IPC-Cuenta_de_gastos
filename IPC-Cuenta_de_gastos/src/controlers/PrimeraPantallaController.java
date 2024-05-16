@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -140,4 +141,6 @@ public class PrimeraPantallaController implements Initializable {
     
     // Devuelve la cuenta creada en register
     public Acount getAcount() { return cuenta; }
+    
+    public BorderPane getGrid() {return borderPANE; }
 }
