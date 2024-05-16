@@ -1,4 +1,5 @@
-IPC-Cuenta_de_gastos/nbproject
+IPC-Cuenta_de_gastos/nbproject/*
+IPC-Cuenta_de_gastos/build/*
+IPC-Cuenta_de_gastos/dist/*
 IPC-Cuenta_de_gastos/build
-IPC-Cuenta_de_gastos/dist/
-IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/build
+IPC-Cuenta_de_gastos/lib/*
