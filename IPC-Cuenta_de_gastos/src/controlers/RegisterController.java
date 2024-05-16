@@ -12,8 +12,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +27,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -118,7 +123,21 @@ public class RegisterController implements Initializable {
         testImagen.setVisible(false);
         // Binding
         bottonAcceptar.disableProperty().bind(validPass.not().or(validEmail.not().or(eqPass.not().or(validNick.not()))));
+        
+        /*
+        *****************************************************
+        *****************************************************
+        esto es una prueba para que el textfield solo acepte el formato algo@gmail.com
+        */
+            
+           
+            
+        
     }
+    
+    
+    
+    
     
         /*************************************************************************
      *          BOTON SUBIR IMAGEN
@@ -234,6 +253,8 @@ public class RegisterController implements Initializable {
         if(!email.contains("@") || email.equals("")) { // No contiene @ o esta en la BD
             String errS = "El correo introducido no es valido";
             textModification(errorEmail, errS, ERR);
+            
+
         }else {
             String errS = "El correo introducido es valido";
             textModification(errorEmail, errS, GOOD);
