@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafxmlapplication.JavaFXMLApplication;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -73,16 +72,20 @@ public class PrimeraPantallaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         resizable(screen); resizable(sideScreen);
         setDisplay("/fxmls/FAQ", sideScreen);
-        setDisplay("/fxmls/Novedades", screen);
+        clear();
         
         try {
             cuenta = Acount.getInstance();
-        } catch (AcountDAOException ex) {
-            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void clear() { 
+        setDisplay("/fxmls/Novedades", screen);
+        singup_button.setDisable(false);
+        login_button.setDisable(false);
     }
     
 
@@ -94,25 +97,28 @@ public class PrimeraPantallaController implements Initializable {
             FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
             AnchorPane newW = newFXML.load();
             RegisterController reg = newFXML.getController();
-            reg.init(this);
             resizable(newW);
             screen.getChildren().setAll(newW);
 
             RegisterController controller = newFXML.getController();
+            controller.init(this);
             controller.setAcount(cuenta);
             
             singup_button.setDisable(true);
             login_button.setDisable(false);
 
         } catch (IOException ex) {
-            System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
+            System.err.println("Error al acceder a la ventana de registro. Error " + ex); 
+        } catch (IllegalStateException ex) {
+            System.err.println("Tete eres tonto y no has puest obien el archivo");
+        }
     }
         
     
 
     @FXML
     private void login(MouseEvent event) throws IOException {
-        String dir = "/fxmls/Log_In";
+        String dir = "/fxmls/LogIn";
         try {
             FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
             AnchorPane newW = newFXML.load();
@@ -129,12 +135,9 @@ public class PrimeraPantallaController implements Initializable {
         } catch (IOException ex) {
             System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
     }
-    //metodo que permite abrir la ventana en el anchorPane, ya que necesitamos obtener el controller de cada FXML
-    public AnchorPane getAnchorPane(){
-        return screen;
-    }
+ 
+    public AnchorPane getAnchorPane(){ return screen; }
     
+    // Devuelve la cuenta creada en register
     public Acount getAcount() { return cuenta; }
-    
-    
 }

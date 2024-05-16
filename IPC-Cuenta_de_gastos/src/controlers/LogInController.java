@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -22,6 +24,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -50,8 +53,6 @@ public class LogInController implements Initializable {
     private Button acceptButton;
     
     private Acount cuenta;
-    
-    private Parent controller;
 
     private BooleanProperty validNick;
     
@@ -62,7 +63,7 @@ public class LogInController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
         // TODO
         validNick = new SimpleBooleanProperty();
         validPass = new SimpleBooleanProperty();
@@ -74,20 +75,17 @@ public class LogInController implements Initializable {
         wrongUserText.setVisible(false);
         
         inputNick.focusedProperty().addListener((obj, oldV, newV) -> { if(!newV) {evaluateNick();} });
+        inputNick.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)) {inputPass.requestFocus(); }});
+        inputPass.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)) try {
+            acceptar(null);
+        } catch (IOException ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, null, ex);
+        } });
         
         acceptButton.disableProperty().bind(validNick.not());
         
-        
-    }    
-
-    @FXML
-    private void cancelarM(MouseEvent event) {
-        
-        
-    }
-
-    @FXML
-    private void aceptarM(MouseEvent event) throws AcountDAOException, IOException {
         
     }
     
@@ -106,6 +104,7 @@ public class LogInController implements Initializable {
             if (result.isPresent() && result.get() == ok) { 
                 inputNick.clear();
                 inputPass.clear();
+                principal.clear();
             }
     }
 
@@ -116,8 +115,9 @@ public class LogInController implements Initializable {
         
         if(cuenta.logInUserByCredentials(log, con)){
 
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Main_Profile.fxml"));
+            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
             Parent root = fxmlMain.load();
+            
             MiPerfilController ventanaCuenta = fxmlMain.getController();
             ventanaCuenta.init(principal);
             
@@ -129,6 +129,7 @@ public class LogInController implements Initializable {
             newStage.setScene(scene);
             stage.close();
             newStage.show();
+            
         } else {
             wrongPassText.setText("Contraseña incorrecta");
             wrongPassText.setVisible(true);
@@ -148,5 +149,18 @@ public class LogInController implements Initializable {
     
     public void init(PrimeraPantallaController princ){
         principal = princ;
+    }
+
+    @FXML
+    private void cancelarM(MouseEvent event) {
+    }
+
+    @FXML
+    private void aceptarM(MouseEvent event) {
+    }
+
+    @FXML
+    private void atras(ActionEvent event) {
+        
     }
 }
