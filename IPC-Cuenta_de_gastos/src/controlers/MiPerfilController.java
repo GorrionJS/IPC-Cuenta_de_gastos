@@ -77,11 +77,7 @@ public class MiPerfilController implements Initializable {
     }
 
     private void verGastoMethod(ActionEvent event) throws IOException {
-        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
-        AnchorPane root = verGasto.load();
-        MisGastosController control = verGasto.getController();
-        control.init(principal);
-        borderPANE.setCenter(root);
+        
     }
 
     @FXML
@@ -93,7 +89,14 @@ public class MiPerfilController implements Initializable {
     }
 
     @FXML
-    private void gastos(ActionEvent event) {
+    private void gastos(ActionEvent event) throws IOException, AcountDAOException {
+        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
+        AnchorPane root = verGasto.load();
+        MisGastosController control = verGasto.getController();
+        control.init(principal);
+        control.initMiperfil(this);
+        
+        borderPANE.setCenter(root);
     }
 
     @FXML
@@ -104,5 +107,9 @@ public class MiPerfilController implements Initializable {
 
     @FXML
     private void signOut(ActionEvent event) {
+    }
+    
+    public BorderPane getBorderPaneMiPerfilController(){
+        return borderPANE;
     }
 }

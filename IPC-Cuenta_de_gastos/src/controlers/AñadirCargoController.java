@@ -34,6 +34,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -63,6 +64,7 @@ import model.Charge;
 */
 public class AñadirCargoController implements Initializable {
      private PrimeraPantallaController principal;
+     private MiPerfilController principalLoged;
     @FXML
     private TextField cargoID;
     @FXML
@@ -125,10 +127,15 @@ public class AñadirCargoController implements Initializable {
     public void init(PrimeraPantallaController princ) throws AcountDAOException{
         
         principal = princ;
-        
         inicializaCategorias();
-        
     }
+    public void initMiperfil(MiPerfilController princ){
+        principalLoged = princ;
+    }
+    
+    
+    
+    
     public void inicializaCategorias() {
                
          try {
@@ -184,8 +191,14 @@ public class AñadirCargoController implements Initializable {
     }
     
     @FXML
-    private void cancelarMethod(ActionEvent event) throws AcountDAOException {
+    private void cancelarMethod(ActionEvent event) throws AcountDAOException, IOException {
         System.out.println(principal.getAcount().getUserCategories().size());//get(2).getName());
+        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
+        AnchorPane root = verGasto.load();
+        MisGastosController control = verGasto.getController();
+        control.init(principal);
+        control.initMiperfil(principalLoged);
+        principalLoged.getBorderPaneMiPerfilController().setCenter(root);
     }
 
     @FXML
