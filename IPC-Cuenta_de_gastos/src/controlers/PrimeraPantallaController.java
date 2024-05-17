@@ -27,6 +27,12 @@ import model.AcountDAOException;
  * @author joanb
  */
 public class PrimeraPantallaController implements Initializable {
+    private final boolean BYPASS = true;
+    private final String NOVEDADES = "/fxmls/Novedades";
+    private final String FAQ = "/fxmls/FAQ";
+    private final String LOGIN = "/fxmls/LogIn";
+    private final String SINGUP = "/fxmls/Register";
+            
 
     @FXML
     private BorderPane borderPANE;
@@ -41,7 +47,9 @@ public class PrimeraPantallaController implements Initializable {
 
     private Acount cuenta;
     
-    
+    private void byPass() {
+        
+    }
     
     private FXMLLoader setDisplay(String dir, AnchorPane pan) {
         FXMLLoader newFXML = null;
@@ -72,7 +80,7 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         resizable(screen); resizable(sideScreen);
-        setDisplay("/fxmls/FAQ", sideScreen);
+        setDisplay(FAQ, sideScreen);
         clear();
         
         try {
@@ -84,18 +92,17 @@ public class PrimeraPantallaController implements Initializable {
     }
     
     public void clear() { 
-        setDisplay("/fxmls/Novedades", screen);
+        setDisplay(NOVEDADES, screen);
         singup_button.setDisable(false);
         login_button.setDisable(false);
     }
     
 
     @FXML
-    private void signup(ActionEvent event) throws IOException {
+    private void signup(ActionEvent event) throws IOException, AcountDAOException {
         // Direccion del FXML asociado al registro
-        String dir = "/fxmls/Register";
         try {
-            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(SINGUP + ".fxml"));
             AnchorPane newW = newFXML.load();
             RegisterController reg = newFXML.getController();
             resizable(newW);
@@ -104,6 +111,7 @@ public class PrimeraPantallaController implements Initializable {
             RegisterController controller = newFXML.getController();
             controller.init(this);
             controller.setAcount(cuenta);
+            if(BYPASS) { controller.byPass(); }
             
             singup_button.setDisable(true);
             login_button.setDisable(false);
@@ -118,10 +126,9 @@ public class PrimeraPantallaController implements Initializable {
     
 
     @FXML
-    private void login(MouseEvent event) throws IOException {
-        String dir = "/fxmls/LogIn";
+    private void login(MouseEvent event) throws IOException, AcountDAOException {
         try {
-            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(LOGIN + ".fxml"));
             AnchorPane newW = newFXML.load();
             resizable(newW);
             screen.getChildren().setAll(newW);
@@ -129,6 +136,7 @@ public class PrimeraPantallaController implements Initializable {
             LogInController controller = newFXML.getController();
             controller.init(this);
             controller.setAccount(cuenta);
+            if(BYPASS) { controller.byPass(); }
             
             singup_button.setDisable(false);
             login_button.setDisable(true);
@@ -143,4 +151,6 @@ public class PrimeraPantallaController implements Initializable {
     public Acount getAcount() { return cuenta; }
     
     public BorderPane getGrid() {return borderPANE; }
+    
+    public void setAcount(Acount c) { cuenta = c; }
 }

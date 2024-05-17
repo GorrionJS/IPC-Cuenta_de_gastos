@@ -17,19 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -144,6 +137,12 @@ public class LogInController implements Initializable {
     
     public void init(PrimeraPantallaController princ){
         principal = princ;
+    }
+    
+    public void byPass() throws IOException, AcountDAOException { 
+        inputNick.setText("admin");
+        inputPass.setText("admin");
+        acceptar(new ActionEvent());
     }
 
     @FXML

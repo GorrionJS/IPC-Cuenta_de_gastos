@@ -106,7 +106,17 @@ public class MiPerfilController implements Initializable {
     }
 
     @FXML
-    private void signOut(ActionEvent event) {
+    private void signOut(ActionEvent event) throws IOException {
+        String dir = "/fxmls/Marco_Vacio_Inicial";
+        FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+        Parent root = fxmlMain.load();
+            
+        PrimeraPantallaController controller = fxmlMain.getController();
+        cuenta.logOutUser();
+        controller.setAcount(cuenta);
+            
+        BorderPane p = principal.getGrid();
+        p.getChildren().setAll(root);
     }
     
     public BorderPane getBorderPaneMiPerfilController(){

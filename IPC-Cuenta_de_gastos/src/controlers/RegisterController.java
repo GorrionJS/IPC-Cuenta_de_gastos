@@ -15,16 +15,9 @@ import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -124,7 +117,7 @@ public class RegisterController implements Initializable {
         inputNick.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputPass.requestFocus(); }});
         inputPass.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputPass1.requestFocus(); }});
         inputPass1.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputEmail.requestFocus(); }});
-        inputEmail.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ inputNombre.requestFocus(); }});
+        inputEmail.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)){ bottonAcceptar.requestFocus(); }});
         
         // Escondemos el ImagenView
         testImagen.setVisible(false);
@@ -163,6 +156,7 @@ public class RegisterController implements Initializable {
             picture = new Image(new FileInputStream(file));
             setImage(picture, testImagen, pictureUpload);
         }
+        
     }
     
         /*************************************************************************
@@ -209,7 +203,7 @@ public class RegisterController implements Initializable {
         ok, no);
         
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ok) { 
+        if (result.isPresent() && result.get() == ok && evaluate()) { 
  
             boolean registered = compte.registerUser(inputNombre.getText(), inputApellido.getText(), inputEmail.getText(), inputNick.getText()
                 , inputPass.getText(), picture, LocalDate.now());
@@ -343,4 +337,20 @@ public class RegisterController implements Initializable {
     public void init(PrimeraPantallaController princ){
          principal = princ;
     } 
+    
+    public void byPass() throws AcountDAOException, IOException {
+        inputNombre.setText("admin");
+        inputApellido.setText("admin");
+        inputNick.setText("admin");
+        inputPass.setText("admin");
+        inputPass1.setText("admin");
+        inputEmail.setText("admin@admin.admin");
+        acceptar(new ActionEvent());
+    }
+    
+    private boolean evaluate() throws AcountDAOException, IOException{
+        evaluateEmail(); evaluateNick(); evaluatePass("3"); equalsPass();
+        boolean result = validEmail.get() && validPass.get() && validNick.get() && eqPass.get();
+        return result;
+    }
 }
