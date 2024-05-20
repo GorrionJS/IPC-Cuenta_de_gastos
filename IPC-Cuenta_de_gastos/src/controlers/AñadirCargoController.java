@@ -66,8 +66,6 @@ public class AñadirCargoController implements Initializable {
      private PrimeraPantallaController principal;
      private MiPerfilController principalLoged;
     @FXML
-    private TextField cargoID;
-    @FXML
     private TextField cargoNombre;
     @FXML
     private TextField cargoDescripcion;
@@ -209,9 +207,16 @@ public class AñadirCargoController implements Initializable {
         Double cost = Double.parseDouble(cargoCoste.getText());
         int unidades = Integer.parseInt(cargoUnidades.getText());
         Category categoria = desplefableListaCaategorias.getValue();
-        
-        if(principal.getAcount().registerCharge(name, description, cost, unidades, picture, LocalDate.MAX, categoria)){
+        LocalDate dayBuy = cargoFecha.getValue();
+        //LocalDate.MAX
+        if(principal.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
             System.out.println("se ha registrado");
+            cargoNombre.setText("");
+            cargoDescripcion.setText("");
+            cargoCoste.setText("");
+            cargoUnidades.setText("");
+            cargoFecha.setValue(null);
+            desplefableListaCaategorias.setValue(null);
         }
 
     }
@@ -245,16 +250,13 @@ public class AñadirCargoController implements Initializable {
                     principal.getAcount().registerCategory(name, description);
                     inicializaCategorias();
                 }
-                
-                
-                
-                
-                
+               
             } catch (IOException ex) {
             Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
 
+    
     @FXML
     private void comprobarInt(KeyEvent event) {
         }
