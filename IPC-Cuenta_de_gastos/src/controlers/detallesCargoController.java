@@ -127,7 +127,7 @@ public class detallesCargoController implements Initializable {
         detailCoste.setEditable(c);
         detailUnidad.setEditable(c);
         butonAddCat.setVisible(c);
-        titulosso.setText("Editar Cargo");
+        if(c) titulosso.setText("Editar Cargo");
        
     }
     
