@@ -11,12 +11,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
@@ -35,23 +42,73 @@ public class MisGastosController implements Initializable {
     private MiPerfilController principalLoged;
     private ObservableList<Category> categorias = null;
     private ObservableList<Charge> cargos = null;
-    @FXML
-    private ListView<Charge> misGastosLista;
+    
+    
     @FXML
     private ComboBox<Category> misCategorias;
+    @FXML
+    private TableView<Charge> tabla;
+    @FXML
+    private TableColumn<Charge, String> nombrelList;
+    @FXML
+    private TableColumn<Charge, String> fechaList;
+    @FXML
+    private TableColumn<Charge, Double> costoList;
+    @FXML
+    private TableColumn<Charge, Void> acciones;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        nombrelList.setCellValueFactory(new PropertyValueFactory<>("name"));
+        fechaList.setCellValueFactory(new PropertyValueFactory<>("date"));
+        costoList.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        costoList.setCellFactory(column -> new TableCell<Charge,Double>(){
+                    @Override
+                    protected void updateItem(Double item, boolean empty){
+                        super.updateItem(item, empty);
+                        if(empty || item ==null){
+                            setText(null);
+                        }else{
+                            setText("€ " + String.format("%.2f",item));
+                        }
+                    }
+                }
+        );
+        acciones.setCellFactory(param-> new TableCell<Charge, Void>(){
+            private final ComboBox<String> combo = new ComboBox<>();
+            
+            {
+                combo.setValue("🔶");
+                combo.getItems().addAll("Ver Detalles", "Editar", "Eliminar");
+                combo.setOnAction(event->{
+                    String elegido = combo.getSelectionModel().getSelectedItem();
+                    Charge gasto = getTableView().getItems().get(getIndex());
+                    manejarAccion(elegido, gasto);
+                });
+                
+            }
+            @Override
+            protected void updateItem(Void item,boolean empty){
+                super.updateItem(item, empty);
+                if(empty){
+                    setGraphic(null);
+                }else{
+                    setGraphic(combo);
+                }
+            }
         
+        });
+        
+        tabla.getColumns().setAll(nombrelList,fechaList,costoList, acciones);
     }    
+       
     public void init(PrimeraPantallaController princ) throws AcountDAOException{
         principal = princ;
-        inicializaCategorias();
         inicializarCargos();
-       
+        selectCategories();  
     }
     public void initMiperfil(MiPerfilController princ){
         principalLoged = princ;
@@ -74,7 +131,7 @@ public class MisGastosController implements Initializable {
                    } catch (AcountDAOException ex) {
                        System.out.println("error al cargar categorias");
                    }
-                   misCategorias.getItems().addAll(categorias);
+                   misCategorias.setItems(categorias);
 
                     misCategorias.setConverter(new StringConverter<Category>(){
                     @Override
@@ -99,22 +156,84 @@ public class MisGastosController implements Initializable {
                    } catch (AcountDAOException ex) {
                        System.out.println("error al cargar cargos");
                    }
-            misGastosLista.setItems(cargos);
-            misGastosLista.setCellFactory(lv -> new TextFieldListCell<>(new StringConverter<Charge>() {
-            @Override
-            public String toString(Charge c) {
-                if(c==null){
-                    return "";
+            
+            tabla.setItems(cargos);
+        }
+        
+        public void selectCategories(){
+            FilteredList<Charge> cargoSelected = new FilteredList<>(cargos, p ->true);
+            tabla.setItems(cargoSelected);
+            inicializaCategorias();
+            misCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal)->{
+                if(newVal != null){
+                   
+                    cargoSelected.setPredicate(carGO -> carGO.getCategory().getName().equals(newVal.getName()));
+                 
+                }else{
+                     cargoSelected.setPredicate(p->true);
                 }
-                return c.getName() + "***" +c.getCost() +"$";
-            }
-
-                @Override
-                public Charge fromString(String string) {
-                return null;                }
-
-        }));
+                tabla.refresh();
+            });
         }
 
-    
+    private void manejarAccion (String eleg, Charge gast){
+        switch(eleg){
+            case "Ver Detalles":
+                detail(gast);
+                break;
+            case "Editar":
+                edit(gast, true);
+                break;
+            case "Eliminar":
+                remove(gast);
+                break;
+            default:
+            break;
+        }
+    }
+    private void remove(Charge c){
+        try {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setHeaderText("Estas seguro de salir?");
+            alerta.showAndWait();
+            if(principal.getAcount().removeCharge(c)){
+                System.out.println("si se pudo eliminar");
+                inicializarCargos();
+                
+            }
+        } catch (AcountDAOException ex) {
+            System.out.println("no se pudo eliminar");
+        }
+    }
+    private void detail (Charge c){
+        FXMLLoader detalle = new FXMLLoader(getClass().getResource("/fxmls/gastoDetalles.fxml"));
+        AnchorPane root;
+        try {
+            root = detalle.load();
+            detallesCargoController control = detalle.getController();
+            control.init(principal);
+            control.initMiperfil(principalLoged);
+            control.pasaCargo(c);
+            principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            
+        } catch (IOException ex) {
+            System.out.println("no se pudo cargar detalles");
+        } 
+        
+    }
+    private void edit(Charge c, boolean b){
+        FXMLLoader editar = new FXMLLoader(getClass().getResource("/fxmls/gastoDetalles.fxml"));
+        AnchorPane root;
+        try {
+            root = editar.load();
+            detallesCargoController control = editar.getController();
+            control.init(principal);
+            control.editable(b);
+            control.pasaCargo(c);
+            control.initMiperfil(principalLoged);
+            principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+        } catch (IOException ex) {
+            System.out.println("no se pudo cargar detalles");
+        } 
+    }
 }
