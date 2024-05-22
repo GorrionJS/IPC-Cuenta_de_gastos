@@ -22,7 +22,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -34,9 +33,9 @@ import model.AcountDAOException;
 public class LogInController implements Initializable {
     
     @FXML
-    private Text wrongUserText;
+    private Label wrongUserText;
     @FXML
-    private Text wrongPassText;
+    private Label wrongPassText;
     @FXML
     private AnchorPane main;
     @FXML

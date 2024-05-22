@@ -91,10 +91,10 @@ public class ExportController implements Initializable {
                     pj.pageDialog(aset);
                     
                     if (pj.printDialog(aset)) {
-                        DocPrintJob job = services[].createPrintJob();
+                    //    DocPrintJob job = services[].createPrintJob();
                     // Step 4: Update the settings made by the user in the dialogs.
                     // Step 5: Pass the final settings into the print request.
-                        job.print(myDoc, aset);
+                    //    job.print(myDoc, aset);
                     }
                 } catch (PrinterException pe) {
                     System.err.println(pe);

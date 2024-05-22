@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -12,14 +13,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.RegisterController">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefWidth="345.0" stylesheets="@../styles/register.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefWidth="345.0" stylesheets="@../styles/estilo1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="80.0" percentWidth="25.0" prefWidth="80.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" percentWidth="40.0" prefWidth="145.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="0.0" percentWidth="30.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" percentWidth="35.0" prefWidth="145.0" />
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="100.0" percentWidth="35.0" prefWidth="120.0" />
             <ColumnConstraints />
          </columnConstraints>
@@ -41,17 +41,17 @@
             <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Registrarse" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <Label styleClass="title" text="Registrarse" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin>
-            </Text>
+            </Label>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" textAlignment="RIGHT" />
+                  <Label text="Nombre" textAlignment="RIGHT" wrapText="true" />
                </children>
                <padding>
                   <Insets right="5.0" />
@@ -59,7 +59,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido" textAlignment="RIGHT" />
+                  <Label text="Apellido" textAlignment="RIGHT" wrapText="true" />
                </children>
                <padding>
                   <Insets right="5.0" />
@@ -67,7 +67,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario" textAlignment="RIGHT" wrappingWidth="60.0" HBox.hgrow="ALWAYS" />
+                  <Label text="Nombre de usuario" textAlignment="RIGHT" wrapText="true" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets right="5.0" />
@@ -78,7 +78,7 @@
                         <Insets right="5.0" />
                      </padding>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" textAlignment="RIGHT" wrappingWidth="60.0" />
+                        <Label text="Contraseña" textAlignment="RIGHT" wrapText="true" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.rowIndex="9">
@@ -86,15 +86,15 @@
                         <Insets right="5.0" />
                      </padding>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repita la contraseña" textAlignment="RIGHT" wrappingWidth="60.0">
+                        <Label text="Repita la contraseña" textAlignment="RIGHT" wrapText="true">
                      <HBox.margin>
                         <Insets />
-                     </HBox.margin></Text>
+                     </HBox.margin></Label>
                      </children>
                   </HBox>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo electrónico" textAlignment="RIGHT" wrappingWidth="75.0" />
+                  <Label text="Correo electrónico" textAlignment="RIGHT" wrapText="true" />
                </children>
                <padding>
                   <Insets right="5.0" />
@@ -102,7 +102,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="13" GridPane.valignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen de perfil" textAlignment="RIGHT" wrappingWidth="50.0" />
+                  <Label text="Imagen de perfil" textAlignment="RIGHT" wrapText="true" />
                </children>
                <padding>
                   <Insets right="5.0" />
@@ -138,23 +138,23 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="pictureUpload" maxWidth="1.7976931348623157E308" minWidth="117.0" mnemonicParsing="false" onAction="#uploadPicture" text="Subir foto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.valignment="CENTER">
+            <Button fx:id="pictureUpload" maxWidth="1.7976931348623157E308" minWidth="100.0" mnemonicParsing="false" onAction="#uploadPicture" styleClass="uploadButton" text="Subir foto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Button>
             <ImageView fx:id="testImagen" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+            <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.rowSpan="2">
                <children>
-                  <Text fx:id="errorNick" strokeType="OUTSIDE" strokeWidth="100.0" styleClass="error" text="Text" visible="false" />
+                  <Label fx:id="errorNick" text="Label" visible="false" wrapText="true" />
                </children>
                <padding>
                   <Insets left="5" />
                </padding>
             </HBox>
-                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="7" GridPane.rowSpan="2">
                      <children>
-                        <Text fx:id="errorPass" strokeType="OUTSIDE" strokeWidth="100.0" styleClass="error" text="Text" visible="false" />
+                        <Label fx:id="errorPass" text="Label" visible="false" wrapText="true" />
                      </children>
                      <padding>
                         <Insets left="5" />
@@ -162,7 +162,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9">
                      <children>
-                        <Text fx:id="errorPass1" strokeType="OUTSIDE" strokeWidth="80.0" styleClass="error" text="Text" visible="false" />
+                        <Label fx:id="errorPass1" text="Label" visible="false" wrapText="true" />
                      </children>
                      <padding>
                         <Insets left="5" />
@@ -173,7 +173,7 @@
                   </HBox>
             <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11">
                <children>
-                  <Text fx:id="errorEmail" strokeType="OUTSIDE" strokeWidth="80.0" visible="false" wrappingWidth="100.0" />
+                  <Label fx:id="errorEmail" visible="false" wrapText="true" />
                </children>
                <padding>
                   <Insets left="5" />
@@ -181,7 +181,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="60" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13">
                <children>
-                  <Text fx:id="errorImagem" strokeType="OUTSIDE" strokeWidth="80.0" styleClass="error" text="Text" visible="false" />
+                  <Label fx:id="errorImagem" text="Label" visible="false" wrapText="true" />
                </children>
                <padding>
                   <Insets left="5" />
@@ -189,8 +189,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="14">
                <children>
+                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" styleClass="invertedButton" text="Acceptar" textFill="WHITE" />
                   <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" style="-fx-background-color: #00647C;" text="Acceptar" textFill="WHITE" />
                </children>
                <GridPane.margin>
                   <Insets left="50.0" />
