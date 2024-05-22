@@ -56,10 +56,7 @@ public class RegisterController implements Initializable {
     private PasswordField inputPass;
     @FXML
     private PasswordField inputPass1;
-    @FXML
-    private Text errorPass;
-    @FXML
-    private Text errorPass1;
+    
     @FXML
     private TextField inputApellido;
     @FXML
@@ -84,6 +81,10 @@ public class RegisterController implements Initializable {
     private Acount compte;
     
     private PrimeraPantallaController principal;
+    @FXML
+    private Text errorPass;
+    @FXML
+    private Text errorPass1;
     
     /**
      * Initializes the controller class.
@@ -91,8 +92,8 @@ public class RegisterController implements Initializable {
     
     public void initialize(URL url, ResourceBundle rb) {
         
-        String errS = "La contraseña tiene que ser de entre 4 y 15 caracteres.";
-        textModification(errorPass, errS, GOOD);
+        String errS = "La contraseña tiene\nque  ser de entre 4 y\n15 caracteres.";
+        textModification(errorPass, errS, Color.BLACK);
         
         // properties
         validEmail = new SimpleBooleanProperty();
@@ -155,7 +156,7 @@ public class RegisterController implements Initializable {
             // Transformacion del File a la clase Image
             picture = new Image(new FileInputStream(file));
             setImage(picture, testImagen, pictureUpload);
-        }
+        } else { this.textModification(errorImagem, "La imagen seleccionada \n no es valida", ERR); }
         
     }
     
