@@ -9,3 +9,63 @@
 .title {
     font-size: 24px;
 }
+
+.button{
+    -fx-background-color: red;
+    -fx-text-fill: white; 
+}
+.button:hover {
+    -fx-background-color: #D1D1D1; 
+}
+
+.button.selected {
+    -fx-background-color: black; 
+}
+
+.anchor-pane{
+    -fx-background-color:gray
+}
+
+
+/* Eliminar el fondo de las filas horizontales */
+.table-row-cell {
+    -fx-background-color: red;
+}
+
+/* Establecer las líneas horizontales entre los datos */
+.table-view .table-row-cell {
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: white; /* Color del borde */
+}
+
+/* Establecer las líneas verticales entre los datos */
+.table-view .table-row-cell:odd {
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: transparent; /* Color del borde */
+}
+
+.table-view .table-row-cell:last-child {
+    -fx-border-width: 0 0 1 0; /* Solo borde inferior */
+    -fx-border-color: gray; /* Color del borde */
+}
+
+/* Establecer las líneas verticales entre columnas */
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 0 1 0 0; /* Solo bordes a la izquierda */
+    -fx-border-color: gray; /* Color del borde */
+}
+/*prueba*/
+.table-view .table-cell{
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: red;
+}
+
+/* Eliminar las líneas de separación en las esquinas */
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+/* Establecer el color de fondo de la tabla */
+.table-view {
+    -fx-background-color: transparent; /* Color de fondo */
+}

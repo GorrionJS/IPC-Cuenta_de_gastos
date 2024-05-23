@@ -22,6 +22,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import model.Acount;
 import model.AcountDAOException;
@@ -107,16 +110,25 @@ public class LogInController implements Initializable {
         String log = inputNick.getText();
         String con = inputPass.getText();
         
-        if(cuenta.logInUserByCredentials(log, con)){
+        if(principal.getAcount().logInUserByCredentials(log, con)){
 
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
-            Parent root = fxmlMain.load();
+            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/opcionesDerechaLogin.fxml"));
+            AnchorPane root = fxmlMain.load();
+            OpcionesDerechaLoginController controller = fxmlMain.getController();
+            controller.init(principal, principal.getAcount());
             
-            MiPerfilController controller = fxmlMain.getController();
-            controller.init(principal, cuenta);
+            FXMLLoader fxmlNick = new FXMLLoader(getClass().getResource("/fxmls/imageNick.fxml"));
+            HBox root1 = fxmlNick.load();
+            imageNickController controlNick = fxmlNick.getController();
+            controlNick.init(principal);
+            
+            
+            
             
             BorderPane p = principal.getGrid();
-            p.getChildren().setAll(root);
+            p.setRight(root);
+            GridPane nick = principal.getImageNick();
+            nick.add(root1, 2, 0);
             
         } else {
             wrongPassText.setText("Contraseña incorrecta");
@@ -153,8 +165,4 @@ public class LogInController implements Initializable {
     private void aceptarM(MouseEvent event) {
     }
 
-    @FXML
-    private void atras(ActionEvent event) {
-        
-    }
 }

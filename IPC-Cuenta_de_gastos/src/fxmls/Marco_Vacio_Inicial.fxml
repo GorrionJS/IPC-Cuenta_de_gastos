@@ -17,7 +17,7 @@
    <top>
       <HBox prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="50.0" minWidth="320.0" prefHeight="250.0" prefWidth="720.0" HBox.hgrow="ALWAYS">
+            <GridPane fx:id="gridPaneArriba" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="50.0" minWidth="320.0" prefHeight="250.0" prefWidth="720.0" HBox.hgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
@@ -27,7 +27,7 @@
                 <RowConstraints maxHeight="200.0" minHeight="50.0" prefHeight="75.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" GridPane.columnIndex="2">
+                  <HBox fx:id="userImageNick" alignment="CENTER" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" GridPane.columnIndex="2">
                      <children>
                         <Button fx:id="login_button" mnemonicParsing="false" onMousePressed="#login" prefHeight="30.0" prefWidth="90.0" text="Iniciar Sesion">
                            <HBox.margin>

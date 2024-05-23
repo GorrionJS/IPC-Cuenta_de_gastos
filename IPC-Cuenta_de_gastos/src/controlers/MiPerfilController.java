@@ -27,26 +27,11 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
 
-    @FXML
     private BorderPane borderPANE;
-    @FXML
-    private AnchorPane screen;
 
     private PrimeraPantallaController principal;
-    @FXML
     private ImageView userProfile;
-    @FXML
     private Label userName;
-    @FXML
-    private Button inicioButton;
-    @FXML
-    private Button profileButton;
-    @FXML
-    private Button gastosButton;
-    @FXML
-    private Button exportarButton;
-    @FXML
-    private Button signOutButton;
     
     private Acount cuenta;
     /**
@@ -80,15 +65,7 @@ public class MiPerfilController implements Initializable {
         
     }
 
-    @FXML
-    private void inicio(ActionEvent event) {
-    }
 
-    @FXML
-    private void miPerfil(ActionEvent event) {
-    }
-
-    @FXML
     private void gastos(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         AnchorPane root = verGasto.load();
@@ -99,13 +76,7 @@ public class MiPerfilController implements Initializable {
         borderPANE.setCenter(root);
     }
 
-    @FXML
-    private void exportar(ActionEvent event) {
-        //boolean out = principal.getAcount().logOutUser();
-        
-    }
 
-    @FXML
     private void signOut(ActionEvent event) throws IOException {
         String dir = "/fxmls/Marco_Vacio_Inicial";
         FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(dir + ".fxml"));

@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -46,6 +47,10 @@ public class PrimeraPantallaController implements Initializable {
     private AnchorPane sideScreen;
 
     private Acount cuenta;
+    @FXML
+    private HBox userImageNick;
+    @FXML
+    private GridPane gridPaneArriba;
     
     private void byPass() {
         
@@ -153,4 +158,10 @@ public class PrimeraPantallaController implements Initializable {
     public BorderPane getGrid() {return borderPANE; }
     
     public void setAcount(Acount c) { cuenta = c; }
+    
+    public GridPane getImageNick(){
+        return gridPaneArriba;
+    }
+    
+    
 }
