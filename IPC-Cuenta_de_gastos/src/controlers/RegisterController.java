@@ -35,8 +35,8 @@ import model.AcountDAOException;
  */
 public class RegisterController implements Initializable {
     
-    private static final Color ERR = Color.RED;
-    private static final Color GOOD = Color.GREEN;
+    private static final Color ERR = Color.rgb(32, 223, 236);
+    private static final Color GOOD = Color.rgb(240, 240, 240);
 
     @FXML
     private TextField inputNombre;
@@ -45,21 +45,18 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField inputEmail;
     @FXML
-    private Text errorImagem;
+    private Label errorImagem;
     @FXML
-    private Text errorEmail;
+    private Label errorEmail;
     @FXML
-    private Text errorNick;
+    private Label errorNick;
     @FXML
-    private Text errorNombre;
+    private Label errorNombre;
     @FXML
     private PasswordField inputPass;
     @FXML
     private PasswordField inputPass1;
-    @FXML
-    private Text errorPass;
-    @FXML
-    private Text errorPass1;
+    
     @FXML
     private TextField inputApellido;
     @FXML
@@ -84,6 +81,10 @@ public class RegisterController implements Initializable {
     private Acount compte;
     
     private PrimeraPantallaController principal;
+    @FXML
+    private Label errorPass;
+    @FXML
+    private Label errorPass1;
     
     /**
      * Initializes the controller class.
@@ -91,8 +92,8 @@ public class RegisterController implements Initializable {
     
     public void initialize(URL url, ResourceBundle rb) {
         
-        String errS = "La contraseña tiene que ser de entre 4 y 15 caracteres.";
-        textModification(errorPass, errS, GOOD);
+        String errS = "La contraseña tiene que  ser de entre 4 y 15 caracteres.";
+        textModification(errorPass, errS, Color.BLACK);
         
         // properties
         validEmail = new SimpleBooleanProperty();
@@ -108,7 +109,7 @@ public class RegisterController implements Initializable {
         // Listeners
         inputNick.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { evaluateNick(); }});
         inputPass.focusedProperty().addListener((object, oldV, newV) -> { 
-            if(!newV) { evaluatePass("La contraseña no se ajusta \n a los valores indicados"); }});
+            if(!newV) { evaluatePass("La contraseña no se ajusta a los valores indicados"); }});
         inputPass1.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { equalsPass(); }});
         inputEmail.focusedProperty().addListener((object, oldV, newV) -> { if(!newV) { evaluateEmail(); }});
         
@@ -155,7 +156,7 @@ public class RegisterController implements Initializable {
             // Transformacion del File a la clase Image
             picture = new Image(new FileInputStream(file));
             setImage(picture, testImagen, pictureUpload);
-        }
+        } else { this.textModification(errorImagem, "La imagen seleccionada no es valida", ERR); }
         
     }
     
@@ -225,7 +226,7 @@ public class RegisterController implements Initializable {
          String desiredNick = inputNick.getText();
          // Comprovacion de si el nick existe en la BD
         if(compte.existsLogin(desiredNick)) {
-            String errS = "El nombre de usuario \n ya se encuentra en uso";
+            String errS = "El nombre de usuario ya se encuentra en uso";
             textModification(errorNick, errS, ERR);
         } else { 
             if(desiredNick.equals("")) { return ; }
@@ -300,13 +301,13 @@ public class RegisterController implements Initializable {
     
     /** Metodo para modificar el texto de error
      *
-     * @param Text t : El texto que queremos modificar (en nuestro caso error...)
+     * @param Label t : El texto que queremos modificar (en nuestro caso error...)
      * @param String s : El texto que queremos mostrar en t
      * @param Color c : El colot que queremos en el texto t
      */
   
-    private void textModification(Text t, String s, Color c) {
-        t.setFill(c);
+    private void textModification(Label t, String s, Color c) {
+        t.setTextFill(c);
         t.setText(s);
         t.setVisible(true);
     }
@@ -316,7 +317,6 @@ public class RegisterController implements Initializable {
         errorEmail.setVisible(false);
         errorImagem.setVisible(false);
         errorNick.setVisible(false);
-        errorNombre.setVisible(false);
         errorPass.setVisible(false);
         errorPass1.setVisible(false);
     }
