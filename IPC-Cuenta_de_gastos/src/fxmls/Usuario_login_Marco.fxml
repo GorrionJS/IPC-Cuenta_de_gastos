@@ -72,7 +72,7 @@
             <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button graphicTextGap="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ayuda" GridPane.rowIndex="4">
+            <Button fx:id="ayudaButton" graphicTextGap="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ayudaButtonPresionado" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ayuda" GridPane.rowIndex="4">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
