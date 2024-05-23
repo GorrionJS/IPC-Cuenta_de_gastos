@@ -217,7 +217,10 @@ public class AñadirCargoController implements Initializable {
 
              @Override
              public String toString(Category t) {
-                return t.getName();
+                if(t==null){
+                            return "";
+                        }
+                        return t.getName();
              }
 
              @Override
@@ -265,6 +268,7 @@ public class AñadirCargoController implements Initializable {
         MisGastosController control = verGasto.getController();
         control.initMiperfil(principalLoged, cuenta, screen);
         //principal.getGrid().setCenter(root);
+        resizable(root);
         screen.getChildren().setAll(root);
     }
 
@@ -332,5 +336,10 @@ public class AñadirCargoController implements Initializable {
     @FXML
     private void comprobarInt(KeyEvent event) {
         }
-    
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 1.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 1.0);
+    }
 }

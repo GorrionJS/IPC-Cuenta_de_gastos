@@ -251,13 +251,12 @@ public class MisGastosController implements Initializable {
             control.initMiPerfil(principalLoged,cuenta, screen);
             control.editable(b);
             control.pasaCargo(c);
-            //control.initMiperfil(principalLoged);
-            //principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            
             resizable(root);
-            //principal.getAnchorPane().getChildren().setAll(root);
+            
             screen.getChildren().setAll(root);
         } catch (IOException ex) {
-            System.out.println("no se pudo cargar detalles");
+            System.out.println("no se pudo cargar detalles"+ ex);
         } 
     }
     

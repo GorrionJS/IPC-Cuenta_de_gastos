@@ -113,7 +113,7 @@ public class MiPerfilController implements Initializable {
         
         MisGastosController control = verGasto.getController();
         control.initMiperfil(this, cuenta, screen);
-        
+        resizable(root);
         screen.getChildren().setAll(root);
         
         reEnable();
@@ -131,7 +131,7 @@ public class MiPerfilController implements Initializable {
         AnchorPane root = fxml.load();
         ExportController controller = fxml.getController();
         controller.init(cuenta, this);
-        
+        resizable(root);
         screen.getChildren().setAll(root);
         
         reEnable();
@@ -185,6 +185,12 @@ public class MiPerfilController implements Initializable {
         cuenta = p;
     }
     public Acount getAcount() { return cuenta; }
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 1.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 1.0);
+    }
     
     
     

@@ -95,7 +95,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
+                  <Button fx:id="aceptarBD" mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="6">
