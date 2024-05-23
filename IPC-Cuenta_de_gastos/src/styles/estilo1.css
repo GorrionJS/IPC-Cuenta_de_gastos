@@ -6,6 +6,8 @@
 #signOut {
     -fx-background-color:#E7473C;
     -fx-text-fill:#F0F0F0;
+    -fx-font-weight: bolder;
+    -fx-font-size: 16px;
 }
 
 .title {
