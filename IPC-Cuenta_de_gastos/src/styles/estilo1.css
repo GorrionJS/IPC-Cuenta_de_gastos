@@ -1,9 +1,9 @@
 
-.test1 {
-    -fx-background-color: rgb(21, 255, 0);
-}
-.test2 {
-    -fx-background-color: rgb(255, 0, 0);
+#signOut {
+    -fx-background-color:#E7473C;
+    -fx-text-fill:#F0F0F0;
+    -fx-font-weight: bolder;
+    -fx-font-size: 16px;
 }
 
 .title {
