@@ -60,10 +60,10 @@ public class MiPerfilController implements Initializable {
     }    
     
     public void init (PrimeraPantallaController prin, Acount a){
-        principal = prin;
-        cuenta = a;
-        userName.setText(cuenta.getLoggedUser().getNickName());
-        userProfile.setImage(cuenta.getLoggedUser().getImage());
+        this.principal = prin;
+        this.cuenta = a;
+        this.userName.setText(cuenta.getLoggedUser().getNickName());
+        this.userProfile.setImage(cuenta.getLoggedUser().getImage());
         // Error en esto nomUsuarioText.setText(nombre);
     }
 
