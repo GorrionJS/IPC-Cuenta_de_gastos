@@ -7,6 +7,8 @@ package controlers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,8 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class MiPerfilController implements Initializable {
+    
+
 
     @FXML
     private BorderPane borderPANE;
@@ -38,26 +42,18 @@ public class MiPerfilController implements Initializable {
     @FXML
     private Label userName;
     @FXML
-    private Button inicioButton;
-    @FXML
-    private Button profileButton;
-    @FXML
-    private Button gastosButton;
-    @FXML
-    private Button exportarButton;
-    @FXML
-    private Button signOutButton;
+    private AnchorPane sideScreen;
     
     private Acount cuenta;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        
     }    
+<<<<<<< HEAD
     
     public void init (PrimeraPantallaController prin, Acount a){
         this.principal = prin;
@@ -77,49 +73,26 @@ public class MiPerfilController implements Initializable {
     }
 
     private void verGastoMethod(ActionEvent event) throws IOException {
+=======
+    // METODO DE INICIALIZACION
+    public void init (PrimeraPantallaController prin, Acount a) throws IOException{
+        principal = prin;
+        cuenta = a;
+        userName.setText(cuenta.getLoggedUser().getNickName());
+        userProfile.setImage(cuenta.getLoggedUser().getImage());
+>>>>>>> main
         
-    }
-
-    @FXML
-    private void inicio(ActionEvent event) {
-    }
-
-    @FXML
-    private void miPerfil(ActionEvent event) {
-    }
-
-    @FXML
-    private void gastos(ActionEvent event) throws IOException, AcountDAOException {
-        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
-        AnchorPane root = verGasto.load();
-        MisGastosController control = verGasto.getController();
-        control.init(principal);
-        control.initMiperfil(this);
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxmls/BotonesIniciadaSesion.fxml"));
+        AnchorPane pane = fxml.load();
         
-        borderPANE.setCenter(root);
-    }
-
-    @FXML
-    private void exportar(ActionEvent event) {
-        //boolean out = principal.getAcount().logOutUser();
-        
-    }
-
-    @FXML
-    private void signOut(ActionEvent event) throws IOException {
-        String dir = "/fxmls/Marco_Vacio_Inicial";
-        FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(dir + ".fxml"));
-        Parent root = fxmlMain.load();
+        SideMenuController controller = fxml.getController();
+        controller.init(this, sideScreen, screen, cuenta);
             
-        PrimeraPantallaController controller = fxmlMain.getController();
-        cuenta.logOutUser();
-        controller.setAcount(cuenta);
-            
-        BorderPane p = principal.getGrid();
-        p.getChildren().setAll(root);
+        sideScreen.getChildren().setAll(pane);
     }
     
-    public BorderPane getBorderPaneMiPerfilController(){
-        return borderPANE;
-    }
+    public Acount getAcount() { return cuenta; }
+    
+    
+    
 }

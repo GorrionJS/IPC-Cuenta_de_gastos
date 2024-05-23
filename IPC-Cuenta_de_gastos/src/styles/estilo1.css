@@ -9,3 +9,167 @@
 .title {
     font-size: 24px;
 }
+
+.button{
+    -fx-background-color: red;
+    -fx-text-fill: white; 
+}
+.button:hover {
+    -fx-background-color: #D1D1D1; 
+}
+
+.button.selected {
+    -fx-background-color: black; 
+}
+
+.anchor-pane{
+    -fx-background-color:gray
+}
+
+
+/* Eliminar el fondo de las filas horizontales */
+.table-row-cell {
+    -fx-background-color: red;
+}
+
+/* Establecer las líneas horizontales entre los datos */
+.table-view .table-row-cell {
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: white; /* Color del borde */
+}
+
+/* Establecer las líneas verticales entre los datos */
+.table-view .table-row-cell:odd {
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: transparent; /* Color del borde */
+}
+
+.table-view .table-row-cell:last-child {
+    -fx-border-width: 0 0 1 0; /* Solo borde inferior */
+    -fx-border-color: gray; /* Color del borde */
+}
+
+/* Establecer las líneas verticales entre columnas */
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 0 1 0 0; /* Solo bordes a la izquierda */
+    -fx-border-color: gray; /* Color del borde */
+}
+/*prueba*/
+.table-view .table-cell{
+    -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
+    -fx-border-color: red;
+}
+
+/* Eliminar las líneas de separación en las esquinas */
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+/* Establecer el color de fondo de la tabla */
+.table-view {
+    -fx-background-color: transparent; /* Color de fondo */
+}
+
+.label {
+    -fx-text-fill:#F0F0F0;
+}
+
+#signOut {
+    -fx-background-color:#E7473C;
+    -fx-text-fill:#F0F0F0;
+    -fx-font-weight: bolder;
+    -fx-font-size: 16px;
+}
+
+.title {
+    -FX-font-size: 24px;
+    -fx-text-fill: #E7473C;
+    -fx-font-weight: bolder;
+}
+
+.specialBox{
+    -fx-background-color: #E7473C;
+    -fx-border-width: 0px 0px 0px 2px;
+    -fx-border-color:black;
+    -fx-font-weight:bold;
+    -fx-font-size:16px;
+   
+}
+
+.button {
+    -fx-background-color: #F0F0F0;
+    -fx-text-fill: #E7473C;
+}
+
+.invertedButton {
+    -fx-background-color: #18b8c3;
+    -fx-text-fill: #F0F0F0;
+    -fx-font-weight: bolder;
+}
+
+.specialButton {
+    -fx-font-weight: bolder;
+    -fx-font-style: italic;
+    -fx-font-size: 12px;
+}
+
+.specialButton:disabled {
+    -fx-background-color: rgb(32, 223, 236);
+    -fx-text-fill: rgb(240, 240, 240);
+    -fx-font-weight: bolder;
+    -fx-font-style: italic;
+}
+
+.uploadButton {
+    -fx-border-width: 1px;
+    -fx-font-weight: bolder;
+}
+
+#screen {
+    -fx-background-color: #E7473C;
+    -fx-border-width: 0px 2px 0px 0px;
+    -fx-border-color:black;
+    
+}
+
+#top {
+    -fx-border-width: 3px;
+    -fx-border-color: black;
+}
+
+.newsLabel { 
+    -fx-text-fill:#F0F0F0;
+}
+.newsTitle{ 
+    -fx-font-weight:bolder;
+    -fx-text-fill:#F0F0F0;
+}
+
+.subTitle{
+    -fx-font-weight:bolder;
+    -fx-text-fill:#E7473C;
+}
+
+.textfild{
+    -fx-highlight-fill:#E7473C;
+    -fx-color-focus:#18b8c3;
+    -fx-background-color:#F0F0F0;
+}
+
+.menuButton {
+    -fx-background-color:#F0F0F0;
+    -fx-font-weight: bold;
+    -fx-font-size:16px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: black;
+}
+
+.menuButton:disabled {
+    -fx-background-color:#18b8c3;
+}
+
+.root {
+    -fx-background-color: #F0F0F0;
+    -fx-text-fill: #F0F0F0;
+    
+}

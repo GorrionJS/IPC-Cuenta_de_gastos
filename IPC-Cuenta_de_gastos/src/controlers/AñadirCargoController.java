@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +37,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -64,7 +67,7 @@ import model.Charge;
 */
 public class AñadirCargoController implements Initializable {
      private PrimeraPantallaController principal;
-     private MiPerfilController principalLoged;
+    // private MiPerfilController principalLoged;
     @FXML
     private TextField cargoNombre;
     @FXML
@@ -87,7 +90,21 @@ public class AñadirCargoController implements Initializable {
     private Button butonAddCat;
     
     private ObservableList<Category> categorias = null;
-    
+    @FXML
+    private Text wrong1;
+    @FXML
+    private Text wrong2;
+    @FXML
+    private Text wrong3;
+    @FXML
+    private Text wrong4;
+    @FXML
+    private Text wrong5;
+    @FXML
+    private Text wrong6;
+    private boolean compruebaSelectedCategory ;
+    @FXML
+    private Button aceptarAddCargoB;
     
     
     
@@ -97,6 +114,7 @@ public class AñadirCargoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        aceptarAddCargoB.setDisable(true);
         // Define el patrón para solo permitir números
         Pattern patronInt = Pattern.compile("\\d*");
         Pattern patronDouble = Pattern.compile("\\d*|\\d+\\.\\d*");
@@ -118,8 +136,49 @@ public class AñadirCargoController implements Initializable {
         cargoCoste.setTextFormatter(formatoD);
         cargoUnidades.setTextFormatter(formatoI);
         
+        cargoNombre.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong1.setVisible(false);}});
+        
+        cargoDescripcion.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong2.setVisible(false);}});
+        
+        cargoCoste.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong3.setVisible(false);}});
+        
+        cargoUnidades.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong4.setVisible(false);}});
+        
+        cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue==null){wrong1.setVisible(true);}else{wrong5.setVisible(false);}});
+        
+        tesstImagen.imageProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue==null){wrong1.setVisible(true);}else{wrong6.setVisible(false);}});
+        
+        desplefableListaCaategorias.valueProperty().addListener(
+                new ChangeListener<Category>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Category> ov, Category t, Category t1) {
+                        if(t1== null){
+                            desplefableListaCaategorias.setStyle("-fx-border-color: #FF5100; -fx-border-width: 2px;");
+                            compruebaSelectedCategory= false;
+                        }else{
+                            desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
+                            compruebaSelectedCategory=true;
+                            aceptarAddCargoB.setDisable(false);
+                        }
+                    }
+                    
+                }
+            
+        
+        
+        
+        );
+        
         
     }    
+    
+            
     
     
     public void init(PrimeraPantallaController princ) throws AcountDAOException{
@@ -127,11 +186,14 @@ public class AñadirCargoController implements Initializable {
         principal = princ;
         inicializaCategorias();
     }
-    public void initMiperfil(MiPerfilController princ){
-        principalLoged = princ;
+    
+    
+    private boolean comprueba(){
+        if(wrong1.isVisible()&& wrong2.isVisible()&& wrong3.isVisible()&&
+           wrong4.isVisible()&& wrong5.isVisible()&& wrong6.isVisible() && compruebaSelectedCategory)
+        {return false;}
+        return true;
     }
-    
-    
     
     
     public void inicializaCategorias() {
@@ -195,8 +257,7 @@ public class AñadirCargoController implements Initializable {
         AnchorPane root = verGasto.load();
         MisGastosController control = verGasto.getController();
         control.init(principal);
-        control.initMiperfil(principalLoged);
-        principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+        principal.getGrid().setCenter(root);
     }
 
     @FXML
@@ -209,7 +270,8 @@ public class AñadirCargoController implements Initializable {
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
         //LocalDate.MAX
-        if(principal.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+        
+        if(comprueba() && principal.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
             System.out.println("se ha registrado");
             cargoNombre.setText("");
             cargoDescripcion.setText("");
@@ -217,6 +279,8 @@ public class AñadirCargoController implements Initializable {
             cargoUnidades.setText("");
             cargoFecha.setValue(null);
             desplefableListaCaategorias.setValue(null);
+        }else{
+            System.out.println("faltan campos por rellenar");
         }
 
     }

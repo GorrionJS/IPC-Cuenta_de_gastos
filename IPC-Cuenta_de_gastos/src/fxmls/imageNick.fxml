@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="hboxi" alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" spacing="20.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.imageNickController">
+   <children>
+      <ImageView fx:id="userProfile" fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Usuario.jpeg" />
+         </image></ImageView>
+      <VBox fx:id="vboxi" alignment="CENTER" prefHeight="75.0" prefWidth="197.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="191.0">
+               <children>
+                  <Label fx:id="userName" text=" Nick ✔ " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="16.36" radius="11.77" width="32.72" />
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" style="-fx-background-color: white;" />
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <opaqueInsets>
+            <Insets right="10.0" />
+         </opaqueInsets>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="10.0" right="10.0" />
+   </padding>
+</HBox>

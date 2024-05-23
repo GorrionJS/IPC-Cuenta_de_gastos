@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,63 +10,54 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="borderPANE" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.MiPerfilController">
+   <center>
+      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></AnchorPane>
+   </center>
    <top>
-      <HBox prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox id="top" prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="50.0" minWidth="320.0" prefHeight="250.0" prefWidth="720.0" HBox.hgrow="ALWAYS">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" />
+            <GridPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="50.0" minWidth="320.0" prefHeight="250.0" prefWidth="720.0" HBox.hgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
-                <ColumnConstraints hgrow="SOMETIMES" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="200.0" minHeight="50.0" prefHeight="75.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="200.0" minHeight="50.0" prefHeight="75.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" GridPane.columnIndex="2">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="287.0" spacing="20.0">
-                           <children>
-                              <ImageView fx:id="userProfile" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="userName" text="Label" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </HBox.margin>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <ImageView fitHeight="75.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <ImageView fitHeight="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <image>
                         <Image url="@../images/Sin%20título.jpeg" />
                      </image>
                   </ImageView>
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LA MIKIHERRAMIENTA">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
+                        <Label id="title" styleClass="title" text="LA MIKIHERRAMIENTA" />
+                     </children>
+                  </HBox>
+                  <HBox id=" " alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="287.0" spacing="20.0" styleClass="specialBox" GridPane.columnIndex="2">
+                     <children>
+                        <ImageView fx:id="userProfile" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="profileImagen">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="userName" text="Label" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
          </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
       </HBox>
    </top>
    <right>
+<<<<<<< HEAD
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="287.0" BorderPane.alignment="TOP_CENTER">
          <BorderPane.margin>
             <Insets />
@@ -155,11 +145,8 @@
             </VBox>
          </children>
       </VBox>
+=======
+      <AnchorPane fx:id="sideScreen" minWidth="287.0" prefWidth="287.0" BorderPane.alignment="CENTER" />
+>>>>>>> main
    </right>
-   <center>
-      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin></AnchorPane>
-   </center>
 </BorderPane>

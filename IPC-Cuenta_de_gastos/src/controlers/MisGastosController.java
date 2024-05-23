@@ -114,14 +114,23 @@ public class MisGastosController implements Initializable {
         principalLoged = princ;
     }
 
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 0.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 0.0);
+    }
+    
     @FXML
     private void addMethod(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
         AnchorPane root = addGasto.load();
+        resizable(root);
         AñadirCargoController control = addGasto.getController();
         control.init(principal);
-        control.initMiperfil(principalLoged);
-        principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+       // principal.getGrid().getChildren().setAll(root);
+        principal.getAnchorPane().getChildren().setAll(root);
+        //principal.getGrid().setCenter(root);
     }
     
         public void inicializaCategorias() {
@@ -132,7 +141,7 @@ public class MisGastosController implements Initializable {
                        System.out.println("error al cargar categorias");
                    }
                    misCategorias.setItems(categorias);
-
+                   
                     misCategorias.setConverter(new StringConverter<Category>(){
                     @Override
                     public String toString(Category t) {
@@ -212,9 +221,11 @@ public class MisGastosController implements Initializable {
             root = detalle.load();
             detallesCargoController control = detalle.getController();
             control.init(principal);
-            control.initMiperfil(principalLoged);
+            //control.initMiperfil(principalLoged);
             control.pasaCargo(c);
-            principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            //principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            resizable(root);
+            principal.getAnchorPane().getChildren().setAll(root);
             
         } catch (IOException ex) {
             System.out.println("no se pudo cargar detalles");
@@ -230,10 +241,13 @@ public class MisGastosController implements Initializable {
             control.init(principal);
             control.editable(b);
             control.pasaCargo(c);
-            control.initMiperfil(principalLoged);
-            principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            //control.initMiperfil(principalLoged);
+            //principalLoged.getBorderPaneMiPerfilController().setCenter(root);
+            resizable(root);
+            principal.getAnchorPane().getChildren().setAll(root);
         } catch (IOException ex) {
             System.out.println("no se pudo cargar detalles");
         } 
     }
+    
 }

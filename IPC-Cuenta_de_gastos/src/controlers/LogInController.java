@@ -22,7 +22,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -32,11 +31,12 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class LogInController implements Initializable {
+    private static final String NEXT = "/fxmls/Usuario_login_Marco";
     
     @FXML
-    private Text wrongUserText;
+    private Label wrongUserText;
     @FXML
-    private Text wrongPassText;
+    private Label wrongPassText;
     @FXML
     private AnchorPane main;
     @FXML
@@ -118,6 +118,19 @@ public class LogInController implements Initializable {
             BorderPane p = principal.getGrid();
             p.getChildren().setAll(root);
             
+/*
+            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(NEXT + ".fxml"));
+            Parent root = fxmlMain.load();
+            
+            Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
+           
+            Stage stage = (Stage) main.getScene().getWindow();
+            Stage newStage = new Stage();
+            
+            newStage.setScene(scene);
+            stage.close();
+            newStage.show();
+            */
         } else {
             wrongPassText.setText("Contraseña incorrecta");
             wrongPassText.setVisible(true);

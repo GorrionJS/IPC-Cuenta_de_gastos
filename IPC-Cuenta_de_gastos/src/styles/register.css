@@ -1,3 +1,9 @@
-.error {
-    -fx-fill: white;
+
+.title {
+    -fx-text-weight: bold;
+    -fx-text-size: 24px;
+}
+
+.button {
+    -fx-background-color: pink;
 }
