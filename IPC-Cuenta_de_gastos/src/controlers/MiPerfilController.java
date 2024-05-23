@@ -26,14 +26,22 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class MiPerfilController implements Initializable {
+    
 
+
+    @FXML
     private BorderPane borderPANE;
+    @FXML
+    private AnchorPane screen;
 
     private PrimeraPantallaController principal;
+    @FXML
     private ImageView userProfile;
+    @FXML
     private Label userName;
     
     private Acount cuenta;
+    
     /**
      * Initializes the controller class.
      */
@@ -43,54 +51,14 @@ public class MiPerfilController implements Initializable {
         
         
     }    
-    
+    // METODO DE INICIALIZACION
     public void init (PrimeraPantallaController prin, Acount a){
         principal = prin;
         cuenta = a;
         userName.setText(cuenta.getLoggedUser().getNickName());
         userProfile.setImage(cuenta.getLoggedUser().getImage());
-        // Error en esto nomUsuarioText.setText(nombre);
-    }
-
-
-    private void addGastoMethod(ActionEvent event) throws IOException, AcountDAOException {
-        FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
-        AnchorPane root = addGasto.load();
-        AñadirCargoController control = addGasto.getController();
-        control.init(principal);
-        borderPANE.setCenter(root);
-    }
-
-    private void verGastoMethod(ActionEvent event) throws IOException {
-        
-    }
-
-
-    private void gastos(ActionEvent event) throws IOException, AcountDAOException {
-        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
-        AnchorPane root = verGasto.load();
-        MisGastosController control = verGasto.getController();
-        control.init(principal);
-        control.initMiperfil(this);
-        
-        borderPANE.setCenter(root);
-    }
-
-
-    private void signOut(ActionEvent event) throws IOException {
-        String dir = "/fxmls/Marco_Vacio_Inicial";
-        FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(dir + ".fxml"));
-        Parent root = fxmlMain.load();
-            
-        PrimeraPantallaController controller = fxmlMain.getController();
-        cuenta.logOutUser();
-        controller.setAcount(cuenta);
-            
-        BorderPane p = principal.getGrid();
-        p.getChildren().setAll(root);
     }
     
-    public BorderPane getBorderPaneMiPerfilController(){
-        return borderPANE;
-    }
+    public Acount getAcount() { return cuenta; }
+    
 }
