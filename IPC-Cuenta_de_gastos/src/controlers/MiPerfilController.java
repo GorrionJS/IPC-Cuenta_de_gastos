@@ -7,6 +7,8 @@ package controlers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +41,8 @@ public class MiPerfilController implements Initializable {
     private ImageView userProfile;
     @FXML
     private Label userName;
+    @FXML
+    private AnchorPane sideScreen;
     
     private Acount cuenta;
     
@@ -48,17 +52,25 @@ public class MiPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        
     }    
     // METODO DE INICIALIZACION
-    public void init (PrimeraPantallaController prin, Acount a){
+    public void init (PrimeraPantallaController prin, Acount a) throws IOException{
         principal = prin;
         cuenta = a;
         userName.setText(cuenta.getLoggedUser().getNickName());
         userProfile.setImage(cuenta.getLoggedUser().getImage());
+        
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxmls/BotonesIniciadaSesion.fxml"));
+        AnchorPane pane = fxml.load();
+        
+        SideMenuController controller = fxml.getController();
+        controller.init(this, sideScreen, screen, cuenta);
+            
+        sideScreen.getChildren().setAll(pane);
     }
     
     public Acount getAcount() { return cuenta; }
+    
+    
     
 }

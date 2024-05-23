@@ -56,4 +56,7 @@
          </children>
       </HBox>
    </top>
+   <right>
+      <AnchorPane fx:id="sideScreen" minWidth="287.0" prefWidth="287.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

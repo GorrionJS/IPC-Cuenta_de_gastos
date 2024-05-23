@@ -17,13 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -33,6 +31,7 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class LogInController implements Initializable {
+    private static final String NEXT = "/fxmls/Usuario_login_Marco";
     
     @FXML
     private Label wrongUserText;
@@ -109,7 +108,7 @@ public class LogInController implements Initializable {
         String con = inputPass.getText();
         
         if(cuenta.logInUserByCredentials(log, con)){
-/*
+
             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
             Parent root = fxmlMain.load();
             
@@ -118,8 +117,9 @@ public class LogInController implements Initializable {
             
             BorderPane p = principal.getGrid();
             p.getChildren().setAll(root);
-            */
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
+            
+/*
+            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(NEXT + ".fxml"));
             Parent root = fxmlMain.load();
             
             Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
@@ -130,7 +130,7 @@ public class LogInController implements Initializable {
             newStage.setScene(scene);
             stage.close();
             newStage.show();
-            
+            */
         } else {
             wrongPassText.setText("Contraseña incorrecta");
             wrongPassText.setVisible(true);

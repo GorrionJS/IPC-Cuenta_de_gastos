@@ -124,12 +124,10 @@ public class PrimeraPantallaController implements Initializable {
         } catch (IOException ex) {
             System.err.println("Error al acceder a la ventana de registro. Error " + ex); 
         } catch (IllegalStateException ex) {
-            System.err.println("Tete eres tonto y no has puest obien el archivo");
+            System.err.println("Tete eres tonto y no has puesto bien el archivo");
         }
     }
         
-    
-
     @FXML
     private void login(MouseEvent event) throws IOException, AcountDAOException {
         try {
@@ -147,7 +145,7 @@ public class PrimeraPantallaController implements Initializable {
             login_button.setDisable(true);
 
         } catch (IOException ex) {
-            System.err.println("Error al acceder a la ventana de registro. Error " + ex); }
+            System.err.println("Error al acceder a la ventana de login. Error " + ex); }
     }
  
     public AnchorPane getAnchorPane(){ return screen; }
