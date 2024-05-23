@@ -52,8 +52,7 @@ public class MiPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
-<<<<<<< HEAD
+    }
     
     public void init (PrimeraPantallaController prin, Acount a){
         this.principal = prin;
@@ -72,15 +71,13 @@ public class MiPerfilController implements Initializable {
         borderPANE.setCenter(root);
     }
 
-    private void verGastoMethod(ActionEvent event) throws IOException {
-=======
+    private void verGastoMethod(ActionEvent event) throws IOException {}
     // METODO DE INICIALIZACION
     public void init (PrimeraPantallaController prin, Acount a) throws IOException{
         principal = prin;
         cuenta = a;
         userName.setText(cuenta.getLoggedUser().getNickName());
         userProfile.setImage(cuenta.getLoggedUser().getImage());
->>>>>>> main
         
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("/fxmls/BotonesIniciadaSesion.fxml"));
         AnchorPane pane = fxml.load();
