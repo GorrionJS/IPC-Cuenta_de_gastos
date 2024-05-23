@@ -42,6 +42,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
@@ -66,8 +67,11 @@ import model.Charge;
     todavia falta implementar los datos y demás
 */
 public class AñadirCargoController implements Initializable {
-     private PrimeraPantallaController principal;
-    // private MiPerfilController principalLoged;
+    // private PrimeraPantallaController principal;
+     private MiPerfilController principalLoged;
+     private Acount cuenta;
+     private AnchorPane screen;
+     
     @FXML
     private TextField cargoNombre;
     @FXML
@@ -181,9 +185,12 @@ public class AñadirCargoController implements Initializable {
             
     
     
-    public void init(PrimeraPantallaController princ) throws AcountDAOException{
+    public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException{
         
-        principal = princ;
+        principalLoged = princ;
+        this.cuenta= cuenta;
+        this.screen= screen;
+             
         inicializaCategorias();
     }
     
@@ -199,7 +206,7 @@ public class AñadirCargoController implements Initializable {
     public void inicializaCategorias() {
                
          try {
-             categorias = FXCollections.observableList(principal.getAcount().getUserCategories());
+             categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
          } catch (AcountDAOException ex) {
              Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -252,12 +259,13 @@ public class AñadirCargoController implements Initializable {
     
     @FXML
     private void cancelarMethod(ActionEvent event) throws AcountDAOException, IOException {
-        System.out.println(principal.getAcount().getUserCategories().size());//get(2).getName());
+        System.out.println(principalLoged.getAcount().getUserCategories().size());//get(2).getName());
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         AnchorPane root = verGasto.load();
         MisGastosController control = verGasto.getController();
-        control.init(principal);
-        principal.getGrid().setCenter(root);
+        control.initMiperfil(principalLoged, cuenta, screen);
+        //principal.getGrid().setCenter(root);
+        screen.getChildren().setAll(root);
     }
 
     @FXML
@@ -271,7 +279,7 @@ public class AñadirCargoController implements Initializable {
         LocalDate dayBuy = cargoFecha.getValue();
         //LocalDate.MAX
         
-        if(comprueba() && principal.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+        if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
             System.out.println("se ha registrado");
             cargoNombre.setText("");
             cargoDescripcion.setText("");
@@ -311,7 +319,7 @@ public class AñadirCargoController implements Initializable {
                 if(addCat.isPressed()){
                     String name = addCat.getNomCat();
                     String description = addCat.getDescCat();
-                    principal.getAcount().registerCategory(name, description);
+                    principalLoged.getAcount().registerCategory(name, description);
                     inicializaCategorias();
                 }
                

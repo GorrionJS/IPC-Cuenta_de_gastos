@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
+import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
@@ -38,8 +39,11 @@ import model.Charge;
  */
 public class MisGastosController implements Initializable {
 
-    private PrimeraPantallaController principal;
+    //private PrimeraPantallaController principal;
     private MiPerfilController principalLoged;
+    private Acount cuenta;
+    private AnchorPane screen;
+    
     private ObservableList<Category> categorias = null;
     private ObservableList<Charge> cargos = null;
     
@@ -105,13 +109,17 @@ public class MisGastosController implements Initializable {
         tabla.getColumns().setAll(nombrelList,fechaList,costoList, acciones);
     }    
        
-    public void init(PrimeraPantallaController princ) throws AcountDAOException{
-        principal = princ;
+//    public void init(PrimeraPantallaController princ) throws AcountDAOException{
+//        principal = princ;
+//        inicializarCargos();
+//        selectCategories();  
+//    }
+    public void initMiperfil(MiPerfilController princ, Acount cuenta, AnchorPane screen){
+        principalLoged = princ;
+        this.cuenta = cuenta;
+        this.screen = screen;
         inicializarCargos();
         selectCategories();  
-    }
-    public void initMiperfil(MiPerfilController princ){
-        principalLoged = princ;
     }
 
     private void resizable(AnchorPane pan) {
@@ -127,16 +135,17 @@ public class MisGastosController implements Initializable {
         AnchorPane root = addGasto.load();
         resizable(root);
         AñadirCargoController control = addGasto.getController();
-        control.init(principal);
+        control.initMiPerfil(principalLoged, cuenta, screen);
        // principal.getGrid().getChildren().setAll(root);
-        principal.getAnchorPane().getChildren().setAll(root);
+        //principal.getAnchorPane().getChildren().setAll(root);
+        screen.getChildren().setAll(root);
         //principal.getGrid().setCenter(root);
     }
     
         public void inicializaCategorias() {
                
                 try {
-                    categorias = FXCollections.observableList(principal.getAcount().getUserCategories());
+                    categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
                    } catch (AcountDAOException ex) {
                        System.out.println("error al cargar categorias");
                    }
@@ -161,7 +170,7 @@ public class MisGastosController implements Initializable {
         
         private void inicializarCargos(){
             try {
-                    cargos = FXCollections.observableList(principal.getAcount().getUserCharges());
+                    cargos = FXCollections.observableList(principalLoged.getAcount().getUserCharges());
                    } catch (AcountDAOException ex) {
                        System.out.println("error al cargar cargos");
                    }
@@ -205,7 +214,7 @@ public class MisGastosController implements Initializable {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setHeaderText("Estas seguro de salir?");
             alerta.showAndWait();
-            if(principal.getAcount().removeCharge(c)){
+            if(principalLoged.getAcount().removeCharge(c)){
                 System.out.println("si se pudo eliminar");
                 inicializarCargos();
                 
@@ -220,12 +229,13 @@ public class MisGastosController implements Initializable {
         try {
             root = detalle.load();
             detallesCargoController control = detalle.getController();
-            control.init(principal);
+            control.initMiPerfil(principalLoged, cuenta, screen);
             //control.initMiperfil(principalLoged);
             control.pasaCargo(c);
             //principalLoged.getBorderPaneMiPerfilController().setCenter(root);
             resizable(root);
-            principal.getAnchorPane().getChildren().setAll(root);
+            //principal.getAnchorPane().getChildren().setAll(root);
+            screen.getChildren().setAll(root);
             
         } catch (IOException ex) {
             System.out.println("no se pudo cargar detalles");
@@ -238,13 +248,14 @@ public class MisGastosController implements Initializable {
         try {
             root = editar.load();
             detallesCargoController control = editar.getController();
-            control.init(principal);
+            control.initMiPerfil(principalLoged,cuenta, screen);
             control.editable(b);
             control.pasaCargo(c);
             //control.initMiperfil(principalLoged);
             //principalLoged.getBorderPaneMiPerfilController().setCenter(root);
             resizable(root);
-            principal.getAnchorPane().getChildren().setAll(root);
+            //principal.getAnchorPane().getChildren().setAll(root);
+            screen.getChildren().setAll(root);
         } catch (IOException ex) {
             System.out.println("no se pudo cargar detalles");
         } 

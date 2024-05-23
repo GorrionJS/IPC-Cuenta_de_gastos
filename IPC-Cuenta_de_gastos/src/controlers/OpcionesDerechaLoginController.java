@@ -86,7 +86,7 @@ public class OpcionesDerechaLoginController implements Initializable {
         AnchorPane root = verGasto.load();
         resizable(root);
         MisGastosController control = verGasto.getController();
-        control.init(principal);
+        //control.init(principal);
         principal.getAnchorPane().getChildren().setAll(root);
     }
 

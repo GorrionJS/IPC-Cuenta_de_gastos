@@ -17,7 +17,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import model.Acount;
 import model.Category;
 import model.Charge;
 
@@ -47,8 +49,10 @@ public class detallesCargoController implements Initializable {
     @FXML
     private DatePicker cargoFecha;
     
-    private PrimeraPantallaController principal;
+    //private PrimeraPantallaController principal;
     private MiPerfilController principalLoged;
+    private Acount cuenta;
+    private AnchorPane screen;
     
     private Charge cargo;
     @FXML
@@ -114,13 +118,13 @@ public class detallesCargoController implements Initializable {
     @FXML
     private void addCategoryMethod(ActionEvent event) {
     }
-    public void init(PrimeraPantallaController princ) {
-        principal = princ;
+    public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) {
+        principalLoged = princ;
+        this.cuenta= cuenta;
+        this.screen=screen;
         
     }
-    public void initMiperfil(MiPerfilController princ){
-        principalLoged = princ;
-    }
+    
     public void editable(boolean c){
         detailNom.setEditable(c);
         detailDesc.setEditable(c);

@@ -112,7 +112,7 @@ public class MiPerfilController implements Initializable {
         AnchorPane root = verGasto.load();
         
         MisGastosController control = verGasto.getController();
-        control.initMiperfil(this);
+        control.initMiperfil(this, cuenta, screen);
         
         screen.getChildren().setAll(root);
         
