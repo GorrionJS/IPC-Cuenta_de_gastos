@@ -114,7 +114,10 @@ public class detallesCargoController implements Initializable {
     @FXML
     private void addCategoryMethod(ActionEvent event) {
     }
-    
+    public void init(PrimeraPantallaController princ) {
+        principal = princ;
+        
+    }
     public void initMiperfil(MiPerfilController princ){
         principalLoged = princ;
     }

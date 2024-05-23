@@ -26,8 +26,6 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class MiPerfilController implements Initializable {
-    
-
 
     private BorderPane borderPANE;
 
@@ -45,7 +43,7 @@ public class MiPerfilController implements Initializable {
         
         
     }    
-    // METODO DE INICIALIZACION
+    
     public void init (PrimeraPantallaController prin, Acount a){
         principal = prin;
         cuenta = a;
