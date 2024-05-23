@@ -52,7 +52,26 @@ public class MiPerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
+    }
+    
+    public void init (PrimeraPantallaController prin, Acount a){
+        this.principal = prin;
+        this.cuenta = a;
+        this.userName.setText(cuenta.getLoggedUser().getNickName());
+        this.userProfile.setImage(cuenta.getLoggedUser().getImage());
+        // Error en esto nomUsuarioText.setText(nombre);
+    }
+
+
+    private void addGastoMethod(ActionEvent event) throws IOException, AcountDAOException {
+        FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
+        AnchorPane root = addGasto.load();
+        AñadirCargoController control = addGasto.getController();
+        control.init(principal);
+        borderPANE.setCenter(root);
+    }
+
+    private void verGastoMethod(ActionEvent event) throws IOException {}
     // METODO DE INICIALIZACION
     public void init (PrimeraPantallaController prin, Acount a) throws IOException{
         principal = prin;
