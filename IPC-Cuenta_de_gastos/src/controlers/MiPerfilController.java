@@ -31,10 +31,10 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
     
-    private static final String INICIO = "/fxmls/vacioPrincipal";
+    private static final String INICIO = "/fxmls/graficosPrincipal";
     private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
-    private static final String AYUDA = "/fxmls/";
+    private static final String AYUDA = "/fxmls/ayudaVentana";
     private static final String EXPORTAR = "/fxmls/Exportar";
     private static final String ANTERIOR = "/fxmls/Marco_Vacio_Inicial";
 
@@ -48,6 +48,7 @@ public class MiPerfilController implements Initializable {
     private ImageView userProfile;
     @FXML
     private Label userName;
+    
     private AnchorPane sideScreen;
     
     private Acount cuenta;
@@ -69,7 +70,19 @@ public class MiPerfilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
+        AnchorPane root;
+        try {
+            root = inicio.load();
+            GastosPrincipalController control = inicio.getController();
+            control.init(this);
+
+            screen.getChildren().setAll(root);
+            reEnable();
+            inicioButton.setDisable(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MiPerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void init (PrimeraPantallaController prin, Acount a) throws IOException{
@@ -89,10 +102,13 @@ public class MiPerfilController implements Initializable {
     private void inicio(ActionEvent event) throws IOException {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
         AnchorPane root = inicio.load();
+        
+        GastosPrincipalController control = inicio.getController();
+        control.init(this);
+        
         screen.getChildren().setAll(root);
         reEnable();
         inicioButton.setDisable(true);
-        
     }
     /**************************************************************************
      *                          BOTON PERFIL
@@ -103,12 +119,9 @@ public class MiPerfilController implements Initializable {
     private void miPerfil(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader miPerfil = new FXMLLoader(getClass().getResource(PERFIL + ".fxml"));
         AnchorPane root = miPerfil.load();
-        
         Mi_perfilUsuarioController control = miPerfil.getController();
         control.init(this);
-        
         screen.getChildren().setAll(root);
-        
         reEnable();
         profileButton.setDisable(true);
     }
@@ -122,12 +135,14 @@ public class MiPerfilController implements Initializable {
     private void gastos(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource(GASTOS + ".fxml"));
         AnchorPane root = verGasto.load();
-        
         MisGastosController control = verGasto.getController();
+<<<<<<< HEAD
         control.initMiperfil(this, cuenta, screen);
         resizable(root);
+=======
+        control.initMiperfil(this);
+>>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
         screen.getChildren().setAll(root);
-        
         reEnable();
         gastosButton.setDisable(true);
     }
@@ -150,14 +165,28 @@ public class MiPerfilController implements Initializable {
         exportarButton.setDisable(true);
     }
     
-        @FXML
-    private void ayudaButtonPresionado(ActionEvent event) {
+    /**************************************************************************
+     *                          BOTON AYUDA
+     *
+     */
+    @FXML
+    private void ayudaButtonPresionado(ActionEvent event) throws IOException {
+        FXMLLoader ayudaFxml = new FXMLLoader(getClass().getResource(AYUDA + ".fxml"));
+        AnchorPane root = ayudaFxml.load();
+        AyudaVentanaController controller = ayudaFxml.getController();
+        controller.init(this);
+        
+        screen.getChildren().setAll(root);
+        
+        reEnable();
+        ayudaButton.setDisable(true);
     }
     
     /**************************************************************************
      *                          BOTON CERRAR SESION
      *
      */
+    
 
     @FXML
     private void signOut(ActionEvent event) throws IOException {
@@ -196,6 +225,7 @@ public class MiPerfilController implements Initializable {
         profileButton.setDisable(false);
         gastosButton.setDisable(false);
         exportarButton.setDisable(false);
+        ayudaButton.setDisable(false);
     }
     
     public void setAcount(Acount p) {

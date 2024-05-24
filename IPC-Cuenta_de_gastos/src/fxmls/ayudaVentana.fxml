@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="345.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controlers.AyudaVentanaController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="titulo" text="Titulo" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label text="¿Cómo añado un gasto?" />
+                  <Label fx:id="texto_como_añadir_gasto" text="Añado gasto" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label text="¿Cómo puede ver todos mis gastos?" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
+                     <children>
+                        <Label fx:id="texto_ver_gastos" text="Si deseeas ver tus gastos" />
+                        <Label fx:id="texto_graficas" text="Otra forma de ver los gastos" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label text="¿Es posible exportar todo a un único documento?" />
+                  <Label fx:id="texto_exportar" text="Exportar" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

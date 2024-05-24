@@ -55,23 +55,21 @@ import model.Charge;
  * @author Usuario
  */
 
-
-
-
-
-
-
-
-
 /*
     todavia falta implementar los datos y demás
 */
 public class AñadirCargoController implements Initializable {
+<<<<<<< HEAD
     // private PrimeraPantallaController principal;
      private MiPerfilController principalLoged;
      private Acount cuenta;
      private AnchorPane screen;
      
+=======
+    private PrimeraPantallaController principal;
+    //private MiPerfilController principalLoged;
+    private Acount cuenta;
+>>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
     @FXML
     private TextField cargoNombre;
     @FXML
@@ -171,26 +169,24 @@ public class AñadirCargoController implements Initializable {
                             aceptarAddCargoB.setDisable(false);
                         }
                     }
-                    
                 }
-            
-        
-        
-        
         );
-        
-        
     }    
     
             
     
     
+<<<<<<< HEAD
     public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException{
         
         principalLoged = princ;
         this.cuenta= cuenta;
         this.screen= screen;
              
+=======
+    public void init(PrimeraPantallaController princ) throws AcountDAOException, IOException{
+        principal = princ;
+>>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
         inicializaCategorias();
     }
     
@@ -203,10 +199,15 @@ public class AñadirCargoController implements Initializable {
     }
     
     
-    public void inicializaCategorias() {
+    public void inicializaCategorias() throws IOException {
                
          try {
+<<<<<<< HEAD
              categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
+=======
+             cuenta = Acount.getInstance();
+             categorias = FXCollections.observableList(cuenta.getUserCategories());
+>>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
          } catch (AcountDAOException ex) {
              Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
          }

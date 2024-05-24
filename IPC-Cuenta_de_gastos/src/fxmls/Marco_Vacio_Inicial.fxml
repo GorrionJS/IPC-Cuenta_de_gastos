@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="borderPANE" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.PrimeraPantallaController">
    <top>
@@ -68,10 +69,11 @@
          </BorderPane.margin></AnchorPane>
    </center>
    <right>
-      <AnchorPane fx:id="sideScreen" maxHeight="1.7976931348623157E308" minHeight="400.0" minWidth="280.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </AnchorPane>
+      <VBox prefHeight="406.0" prefWidth="287.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="faq_piulsado" mnemonicParsing="false" text="FAQ" />
+            <Button fx:id="politicas_pulsadas" mnemonicParsing="false" text="Políticas" />
+         </children>
+      </VBox>
    </right>
 </BorderPane>

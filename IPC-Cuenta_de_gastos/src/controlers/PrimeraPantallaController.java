@@ -56,6 +56,27 @@ public class PrimeraPantallaController implements Initializable {
         
     }
     
+    
+
+    /**
+     * Initializes the controller class.
+     * @param url
+     * @param rb
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        resizable(screen); 
+        //resizable(sideScreen);
+        //setDisplay(FAQ, screen);
+        //clear();
+        
+        try {
+            cuenta = Acount.getInstance();
+        } catch (AcountDAOException | IOException ex) {
+            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     private FXMLLoader setDisplay(String dir, AnchorPane pan) {
         FXMLLoader newFXML = null;
         try {
@@ -76,25 +97,6 @@ public class PrimeraPantallaController implements Initializable {
         pan.setRightAnchor(pan, 1.0);
     }
     
-
-    /**
-     * Initializes the controller class.
-     * @param url
-     * @param rb
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        resizable(screen); resizable(sideScreen);
-        setDisplay(FAQ, sideScreen);
-        clear();
-        
-        try {
-            cuenta = Acount.getInstance();
-        } catch (AcountDAOException | IOException ex) {
-            Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
     
     public void clear() { 
         setDisplay(NOVEDADES, screen);
