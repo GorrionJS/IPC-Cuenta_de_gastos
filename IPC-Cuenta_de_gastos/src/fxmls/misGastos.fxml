@@ -53,7 +53,7 @@
                   <Insets left="20.0" right="10.0" />
                </padding>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#addMethod" prefHeight="50.0" prefWidth="83.0" style="-fx-background-color: #00647C;" text="añadir Gasto" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#addMethod" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E3E3E;" text="Registrar Gasto" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="50.0" right="20.0" />
                </GridPane.margin>

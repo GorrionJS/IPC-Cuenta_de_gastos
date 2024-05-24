@@ -10,9 +10,9 @@
    <children>
       <VBox fx:id="border" alignment="CENTER" layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefHeight="400.0" prefWidth="345.0" stylesheets="@../styles/estilo1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="newsTitle" text="Label">
+                  <Label styleClass="newsTitle">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -20,7 +20,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="newsLabel" text="Label">
+                  <Label styleClass="newsLabel" text="Nuestra aplicación está diseñada para ayudarte a gestionar tus finanzas de manera fácil y eficiente">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -30,9 +30,9 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="newsTitle" text="Label">
+                  <Label styleClass="newsTitle">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -40,7 +40,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="newsLabel" text="Label">
+                  <Label styleClass="newsLabel" text="Comienza añadiendo tus gastos diarios en la sección &quot;Registrar Gastos&quot;">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -50,9 +50,9 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="newsTitle" text="Label">
+                  <Label styleClass="newsTitle">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="newsLabel" text="Label">
+                  <Label styleClass="newsLabel" text="Puedes categorizar cada gasto para tener un mejor seguimiento y análisis de tus hábitos de consumo.">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -70,9 +70,9 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="newsTitle" text="Label">
+                  <Label styleClass="newsTitle">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -80,7 +80,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="newsLabel" text="Label">
+                  <Label styleClass="newsLabel" text="En la sección &quot;Mis Gastos&quot;, podrás visualizar todos tus registros y utilizar filtros para buscar gastos específicos por categorias.">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -90,9 +90,9 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="newsTitle" text="Label">
+                  <Label styleClass="newsTitle" text="Además, utiliza la sección &quot;Estadísticas&quot; para obtener gráficos y resúmenes que te ayudarán a entender mejor tus patrones de gasto y tomar decisiones informadas para mejorar tu salud financiera.">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="newsLabel" text="Label">
+                  <Label styleClass="newsLabel" text="¡Empieza ahora y toma el control de tus finanzas!">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>

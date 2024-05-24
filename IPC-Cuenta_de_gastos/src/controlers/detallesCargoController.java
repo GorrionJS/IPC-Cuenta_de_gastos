@@ -194,9 +194,8 @@ public class detallesCargoController implements Initializable {
         butonAddCat.setVisible(c);
         editableE= true;
         if(c) titulosso.setText("Editar Cargo");
-        //inicializaCategorias();
-        detailComprovation();
         
+        detailComprovation();
         aceptarBD.setDisable(true);
        
     }

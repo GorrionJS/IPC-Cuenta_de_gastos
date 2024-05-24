@@ -8,7 +8,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="subTitle" text="Label" />
+            <Label styleClass="subTitle" text="pfudbigz" />
             <Label styleClass="subTitle" text="Label" />
             <Label styleClass="subTitle" text="Label" />
             <Label styleClass="subTitle" text="Label" />
