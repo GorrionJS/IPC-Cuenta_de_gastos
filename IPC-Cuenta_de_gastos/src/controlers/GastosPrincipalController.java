@@ -102,6 +102,9 @@ public class GastosPrincipalController implements Initializable {
         
         // Obtenemos todos los cargos
         cargosTotales = cuenta.getUserCharges();
+        
+        // Tenemos que comprobar todos aquellos que sean de este mes y del día
+        
     }
     
     private void graficoMes() throws AcountDAOException {
