@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/PrimeraPantallaController.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/MiPerfilController.java</file>
@@ -11,5 +12,8 @@
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/LogInController.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/MisGastosController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
     </open-files>
 </project-private>

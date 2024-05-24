@@ -61,7 +61,7 @@ public class Mi_perfilUsuarioController implements Initializable {
      * ES CORRECTO O NO
      */
     private Acount cuenta;
-    private PrimeraPantallaController principal;
+    private MiPerfilController principal;
     @FXML
     private Label apellidos_usuario_label;
     @FXML
@@ -87,8 +87,8 @@ public class Mi_perfilUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        imagenOjoAbierto = new Image(getClass().getResource("images/ojo.png").toString());
-        imagenOjoCerrado = new Image(getClass().getResource("/images/visible.png").toString());
+        //imagenOjoAbierto = new Image(getClass().getResource("images/ojo.png").toString());
+        //imagenOjoCerrado = new Image(getClass().getResource("/images/visible.png").toString());
         
         try {
             cuenta = Acount.getInstance();
@@ -102,6 +102,7 @@ public class Mi_perfilUsuarioController implements Initializable {
         String nickname = cuenta.getLoggedUser().getNickName();
         String email = cuenta.getLoggedUser().getEmail();
         String password = cuenta.getLoggedUser().getPassword();
+        Image imagen = cuenta.getLoggedUser().getImage();
         
         // Printeamos la información del usuario por los campos de texto
         //campo_de_texto_del_nickname_NO_MODIFICAR.setText(nombre_usuario);
@@ -112,6 +113,7 @@ public class Mi_perfilUsuarioController implements Initializable {
         campo_de_texto_de_contraseña_visible.textProperty().bind(
                 campo_de_texto_de_la_contraseña.textProperty());
         campo_de_texto_del_nickname_NO_MODIFICAR.setText(nickname);
+        imagen_de_perfil_de_usuario.setImage(imagen);
         
         
         /* CAMPOS DÓNDE AÑADIMOS LISTENERS 
@@ -151,9 +153,8 @@ public class Mi_perfilUsuarioController implements Initializable {
     }    
 
     //public init(A)
-    public void init (PrimeraPantallaController prin, Acount usuario){
+    public void init (MiPerfilController prin) throws AcountDAOException {
         this.principal = prin;
-        this.cuenta = usuario;
     }
     
     @FXML
@@ -171,13 +172,14 @@ public class Mi_perfilUsuarioController implements Initializable {
         if (selectedFile != null) {
             Image imagen = new Image(selectedFile.toURI().toString());
             cuenta.getLoggedUser().setImage(imagen);
+            imagen_de_perfil_de_usuario.setImage(imagen);
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Cambios en el perfil");
+            alert.setHeaderText("Imagen de perfil cambiada.");
+            alert.setContentText("Su imagen de perfil ha sido cambiada exitosamente.");
+            alert.showAndWait();
         }
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Cambios en el perfil");
-        alert.setHeaderText("Imagen de perfil cambiada.");
-        alert.setContentText("Su imagen de perfil ha sido cambiada exitosamente.");
-        alert.showAndWait();
     }
 
     @FXML

@@ -31,8 +31,8 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
     
-    private static final String INICIO = "/fxmls/";
-    private static final String PERFIL = "/fxmls/";
+    private static final String INICIO = "/fxmls/vacioPrincipal";
+    private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
     private static final String AYUDA = "/fxmls/";
     private static final String EXPORTAR = "/fxmls/Exportar";
@@ -61,6 +61,8 @@ public class MiPerfilController implements Initializable {
     private Button gastosButton;
     @FXML
     private Button signOutButton;
+    @FXML
+    private Button ayudaButton;
     
     /**
      * Initializes the controller class.
@@ -79,14 +81,15 @@ public class MiPerfilController implements Initializable {
     
     
     /**************************************************************************
-     *                          BOTON INCIO
+     *                          BOTON INICIO
      *
      */
     
     @FXML
     private void inicio(ActionEvent event) throws IOException {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
-        AnchorPane pane = inicio.load();
+        AnchorPane root = inicio.load();
+        screen.getChildren().setAll(root);
         reEnable();
         inicioButton.setDisable(true);
         
@@ -97,8 +100,17 @@ public class MiPerfilController implements Initializable {
      */
 
     @FXML
-    private void miPerfil(ActionEvent event) {
-        FXMLLoader inicio = new FXMLLoader(getClass().getResource(PERFIL + ".fxml"));
+    private void miPerfil(ActionEvent event) throws IOException, AcountDAOException {
+        FXMLLoader miPerfil = new FXMLLoader(getClass().getResource(PERFIL + ".fxml"));
+        AnchorPane root = miPerfil.load();
+        
+        Mi_perfilUsuarioController control = miPerfil.getController();
+        control.init(this);
+        
+        screen.getChildren().setAll(root);
+        
+        reEnable();
+        profileButton.setDisable(true);
     }
 
     /**************************************************************************
@@ -136,6 +148,10 @@ public class MiPerfilController implements Initializable {
         
         reEnable();
         exportarButton.setDisable(true);
+    }
+    
+        @FXML
+    private void ayudaButtonPresionado(ActionEvent event) {
     }
     
     /**************************************************************************
@@ -177,6 +193,7 @@ public class MiPerfilController implements Initializable {
     
     private void reEnable() {
         inicioButton.setDisable(false);
+        profileButton.setDisable(false);
         gastosButton.setDisable(false);
         exportarButton.setDisable(false);
     }
@@ -191,7 +208,5 @@ public class MiPerfilController implements Initializable {
         pan.setLeftAnchor(pan, 0.0);
         pan.setRightAnchor(pan, 1.0);
     }
-    
-    
     
 }
