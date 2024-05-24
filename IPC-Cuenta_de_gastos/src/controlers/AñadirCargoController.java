@@ -42,6 +42,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
@@ -54,20 +55,13 @@ import model.Charge;
  * @author Usuario
  */
 
-
-
-
-
-
-
-
-
 /*
     todavia falta implementar los datos y demás
 */
 public class AñadirCargoController implements Initializable {
-     private PrimeraPantallaController principal;
-    // private MiPerfilController principalLoged;
+    private PrimeraPantallaController principal;
+    //private MiPerfilController principalLoged;
+    private Acount cuenta;
     @FXML
     private TextField cargoNombre;
     @FXML
@@ -167,22 +161,14 @@ public class AñadirCargoController implements Initializable {
                             aceptarAddCargoB.setDisable(false);
                         }
                     }
-                    
                 }
-            
-        
-        
-        
         );
-        
-        
     }    
     
             
     
     
-    public void init(PrimeraPantallaController princ) throws AcountDAOException{
-        
+    public void init(PrimeraPantallaController princ) throws AcountDAOException, IOException{
         principal = princ;
         inicializaCategorias();
     }
@@ -196,10 +182,11 @@ public class AñadirCargoController implements Initializable {
     }
     
     
-    public void inicializaCategorias() {
+    public void inicializaCategorias() throws IOException {
                
          try {
-             categorias = FXCollections.observableList(principal.getAcount().getUserCategories());
+             cuenta = Acount.getInstance();
+             categorias = FXCollections.observableList(cuenta.getUserCategories());
          } catch (AcountDAOException ex) {
              Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
          }

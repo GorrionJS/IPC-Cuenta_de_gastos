@@ -89,6 +89,10 @@ public class MiPerfilController implements Initializable {
     private void inicio(ActionEvent event) throws IOException {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
         AnchorPane root = inicio.load();
+        
+        GastosPrincipalController control = inicio.getController();
+        control.init(this);
+        
         screen.getChildren().setAll(root);
         reEnable();
         inicioButton.setDisable(true);
@@ -103,12 +107,9 @@ public class MiPerfilController implements Initializable {
     private void miPerfil(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader miPerfil = new FXMLLoader(getClass().getResource(PERFIL + ".fxml"));
         AnchorPane root = miPerfil.load();
-        
         Mi_perfilUsuarioController control = miPerfil.getController();
         control.init(this);
-        
         screen.getChildren().setAll(root);
-        
         reEnable();
         profileButton.setDisable(true);
     }
@@ -122,12 +123,9 @@ public class MiPerfilController implements Initializable {
     private void gastos(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource(GASTOS + ".fxml"));
         AnchorPane root = verGasto.load();
-        
         MisGastosController control = verGasto.getController();
         control.initMiperfil(this);
-        
         screen.getChildren().setAll(root);
-        
         reEnable();
         gastosButton.setDisable(true);
     }
