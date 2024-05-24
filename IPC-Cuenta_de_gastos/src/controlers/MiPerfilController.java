@@ -31,7 +31,7 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
     
-    private static final String INICIO = "/fxmls/vacioPrincipal";
+    private static final String INICIO = "/fxmls/graficosPrincipal";
     private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
     private static final String AYUDA = "/fxmls/";
