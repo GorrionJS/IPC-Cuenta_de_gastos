@@ -136,12 +136,9 @@ public class MiPerfilController implements Initializable {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource(GASTOS + ".fxml"));
         AnchorPane root = verGasto.load();
         MisGastosController control = verGasto.getController();
-<<<<<<< HEAD
-        control.initMiperfil(this, cuenta, screen);
+        //control.initMiperfil(this, cuenta, screen);
         resizable(root);
-=======
-        control.initMiperfil(this);
->>>>>>> Alfonso-trabajar-en-ventana-ya-logueados
+        control.init(this);
         screen.getChildren().setAll(root);
         reEnable();
         gastosButton.setDisable(true);
