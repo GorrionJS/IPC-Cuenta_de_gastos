@@ -138,7 +138,7 @@ public class MiPerfilController implements Initializable {
         MisGastosController control = verGasto.getController();
         //control.initMiperfil(this, cuenta, screen);
         resizable(root);
-        control.init(this);
+        control.initMiperfil(this, cuenta, screen);
         screen.getChildren().setAll(root);
         reEnable();
         gastosButton.setDisable(true);
