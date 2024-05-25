@@ -32,7 +32,7 @@ public class PrimeraPantallaController implements Initializable {
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
-    private final String SINGUP = "/fxmls/Register";
+    private final String SINGUP = "/fxmls/register";
             
 
     @FXML
@@ -66,9 +66,9 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         resizable(screen); 
-        resizable(sideScreen);
-        setDisplay(FAQ, sideScreen);
-        clear();
+        //resizable(sideScreen);
+        //setDisplay(FAQ, screen);
+        //clear();
         
         try {
             cuenta = Acount.getInstance();
@@ -91,12 +91,10 @@ public class PrimeraPantallaController implements Initializable {
     }
     
     private void resizable(AnchorPane pan) {
-        if (pan != null) {
-            AnchorPane.setBottomAnchor(pan, 0.0);
-            AnchorPane.setTopAnchor(pan, 1.0);
-            AnchorPane.setLeftAnchor(pan, 0.0);
-            AnchorPane.setRightAnchor(pan, 1.0);
-        }
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 1.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 1.0);
     }
     
     
@@ -137,11 +135,11 @@ public class PrimeraPantallaController implements Initializable {
         try {
             FXMLLoader newFXML = new FXMLLoader(getClass().getResource(LOGIN + ".fxml"));
             AnchorPane newW = newFXML.load();
+            LogInController controller = newFXML.getController();
             resizable(newW);
             screen.getChildren().setAll(newW);
 
-            LogInController controller = newFXML.getController();
-
+            
             controller.init(this);
             controller.setAccount(cuenta);
             if(BYPASS) { controller.byPass(); }
