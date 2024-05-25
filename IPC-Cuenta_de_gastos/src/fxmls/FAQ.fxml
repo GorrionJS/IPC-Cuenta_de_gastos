@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" minHeight="400.0" minWidth="280.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" minHeight="400.0" minWidth="280.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.FAQController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -22,14 +22,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox prefHeight="133.0" prefWidth="270.0" style="-fx-background-color: blue;">
+            <VBox prefHeight="133.0" prefWidth="270.0">
                <children>
                   <HBox prefHeight="20.0" prefWidth="200.0">
                      <padding>
                         <Insets bottom="3.0" />
                      </padding>
                      <children>
-                        <Button alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="200.0" text="¿En qué consiste nuestra aplicación?" />
+                        <Button fx:id="boton1" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" text="¿En qué consiste nuestra aplicación?" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -41,18 +41,15 @@
                      </VBox.margin>
                   </HBox>
                </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </VBox>
-            <VBox minWidth="280.0" prefHeight="94.0" style="-fx-background-color: blue;" GridPane.rowIndex="1">
+            <VBox minWidth="270.0" prefHeight="94.0" GridPane.rowIndex="1">
                <children>
                   <HBox prefHeight="20.0" prefWidth="280.0">
                      <children>
-                        <Button alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" text="Beneficios para Ti:" />
+                        <Button fx:id="boton2" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" text="Beneficios para Ti:" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -90,14 +87,14 @@
                   <Insets top="30.0" />
                </GridPane.margin>
             </VBox>
-            <VBox minWidth="280.0" prefHeight="200.0" style="-fx-background-color: blue;" GridPane.rowIndex="2">
+            <VBox minWidth="270.0" prefHeight="94.0" GridPane.rowIndex="2">
                <children>
                   <HBox minWidth="288.0" prefHeight="20.0" prefWidth="288.0">
                      <children>
-                        <Button alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="270.0" text="¿Por Qué Elegirnos?" />
+                        <Button fx:id="boton3" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="270.0" text="¿Por Qué Elegirnos?" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox minWidth="270.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nuestra aplicación no solo simplifica la gestión de tus finanzas, sino que también te ayuda a mejorar tus hábitos financieros y a alcanzar tus metas económicas. Desde estudiantes hasta empresarios, todos pueden beneficiarse de las poderosas herramientas que ofrecemos." textAlignment="JUSTIFY" wrappingWidth="239.0">
                            <HBox.margin>
@@ -107,9 +104,6 @@
                      </children>
                   </HBox>
                </children>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
             </VBox>
          </children>
          <padding>
