@@ -31,7 +31,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#boton_cambiar_foto" prefHeight="25.0" prefWidth="75.0" text="Change photo">
+                  <Button mnemonicParsing="false" onAction="#boton_cambiar_foto" prefHeight="25.0" prefWidth="75.0" text="Cambiar imagen">
                      <font>
                         <Font size="8.0" />
                      </font>
@@ -64,8 +64,8 @@
                   </ImageView>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.columnSpan="2">
                      <children>
-                        <Label fx:id="nombre_usuario_label" styleClass="title" stylesheets="@../styles/estilo1.css" text="ALFONSO J." />
-                        <Label fx:id="apellidos_usuario_label" styleClass="title" stylesheets="@../styles/estilo1.css" text="MUNUERA PARRA" />
+                        <Label fx:id="nombre_usuario_label" stylesheets="@../styles/estilo1.css" text="ALFONSO J." />
+                        <Label fx:id="apellidos_usuario_label" stylesheets="@../styles/estilo1.css" text="MUNUERA PARRA" />
                      </children>
                   </VBox>
                   <TextField fx:id="campo_de_texto_del_nickname_NO_MODIFICAR" disable="true" maxWidth="150.0" promptText="User name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -81,11 +81,11 @@
                   </ImageView>
                   <PasswordField fx:id="campo_de_texto_de_la_contraseña" disable="true" maxWidth="150.0" promptText="New password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="campo_de_texto_de_contraseña_visible" maxWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <PasswordField fx:id="campo_de_texto_del_email" disable="true" maxWidth="150.0" promptText="Correo electrónico" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="campo_de_texto_del_email" disable="true" maxWidth="150.0" promptText="Correo electrónico" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.columnIndex="2">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#boton_cambiar_nombre_de_usuario" prefHeight="25.0" text="Change my name" />
-                        <Button mnemonicParsing="false" onAction="#boton_cambiar_apellidos_de_usuario" text="Change my surname" />
+                        <Button mnemonicParsing="false" onAction="#boton_cambiar_nombre_de_usuario" prefHeight="25.0" text="Cambiar mi nombre" />
+                        <Button mnemonicParsing="false" onAction="#boton_cambiar_apellidos_de_usuario" text="Cambiar mis apellidos" />
                      </children></VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
@@ -141,7 +141,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#boton_cambiar_fecha_nacimiento">
+                        <Button mnemonicParsing="false" onAction="#boton_cambiar_fecha_nacimiento" visible="false">
                            <graphic>
                               <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -150,7 +150,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#boton_guardar_cambios_fecha">
+                        <Button mnemonicParsing="false" onAction="#boton_guardar_cambios_fecha" visible="false">
                            <graphic>
                               <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -160,7 +160,8 @@
                         </Button>
                      </children>
                   </HBox>
-                  <DatePicker fx:id="datePicker_fecha_de_nacimiento" disable="true" onAction="#miramos_fecha" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="datePicker_fecha_de_nacimiento" disable="true" editable="false" focusTraversable="false" onAction="#miramos_fecha" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="fechaRegistroLabel" disable="true" maxWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </children>

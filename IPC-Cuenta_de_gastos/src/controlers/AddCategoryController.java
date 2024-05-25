@@ -22,19 +22,17 @@ import model.AcountDAOException;
  */
 public class AddCategoryController implements Initializable {
 
+    private boolean pressed;
+    private String nC;
+    private String dC;
+    
     @FXML
     private Stage stage;
-    
-    
-    private boolean pressed;
     @FXML
     private TextField categoryName;
     @FXML
     private TextField descriptionCategory;
     
-    private String nC;
-    private String dC;
-
     /**
      * Initializes the controller class.
      */
@@ -43,17 +41,26 @@ public class AddCategoryController implements Initializable {
         // TODO
     }    
 
+    /**
+     * GETTERS
+     */
+    
     public boolean isPressed(){
-        return pressed;
+        return this.pressed;
     }
+    
     public String getNomCat(){
-        return nC;
+        return this.nC;
     }
+    
     public String getDescCat(){
-        return dC;
+        return this.dC;
     }
     
-    
+    /**
+     * BOTONES DE ACEPTAR Y CANCELAR
+     * @throws AcountDAOException 
+     */
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException {
         String nomC =categoryName.getText();

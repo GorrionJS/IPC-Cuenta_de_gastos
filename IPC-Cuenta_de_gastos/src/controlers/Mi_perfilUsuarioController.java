@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -48,7 +49,7 @@ public class Mi_perfilUsuarioController implements Initializable {
     @FXML
     private PasswordField campo_de_texto_de_la_contraseña;
     @FXML
-    private PasswordField campo_de_texto_del_email;
+    private TextField campo_de_texto_del_email;
     @FXML
     private ToggleButton boton_visualizar_contraseña;
     @FXML
@@ -79,6 +80,8 @@ public class Mi_perfilUsuarioController implements Initializable {
     private final StringProperty apellidosUsuario = new SimpleStringProperty();
     private final StringProperty emailUsuario = new SimpleStringProperty();
     private final StringProperty contraseñaUsuario = new SimpleStringProperty();
+    @FXML
+    private TextField fechaRegistroLabel;
     
     
     /**
@@ -115,6 +118,10 @@ public class Mi_perfilUsuarioController implements Initializable {
         campo_de_texto_del_nickname_NO_MODIFICAR.setText(nickname);
         imagen_de_perfil_de_usuario.setImage(imagen);
         
+        LocalDate fechaRegistro = cuenta.getLoggedUser().getRegisterDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = fechaRegistro.format(formatter);
+        fechaRegistroLabel.setText(formattedDate);
         
         /* CAMPOS DÓNDE AÑADIMOS LISTENERS 
         DEBE DE HABER UNO POR CADA BOTÓN
@@ -199,6 +206,8 @@ public class Mi_perfilUsuarioController implements Initializable {
             alert.setHeaderText("Nombre del usuario cambiado.");
             alert.setContentText("Su nombre ha sido cambiado exitosamente.");
             alert.showAndWait();
+            
+            nombre_usuario_label.setText(result.get());
         }
     }
     
@@ -219,8 +228,9 @@ public class Mi_perfilUsuarioController implements Initializable {
             alert.setHeaderText("Apellidos del usuario cambiados.");
             alert.setContentText("Sus apellidos han sido cambiados exitosamente.");
             alert.showAndWait();
+            
+            apellidos_usuario_label.setText(result.get());
         }
-        
     }
 
     @FXML
@@ -301,14 +311,13 @@ public class Mi_perfilUsuarioController implements Initializable {
     @FXML
     private void boton_guardar_cambios_fecha(ActionEvent event) {
         if (datePicker_fecha_de_nacimiento.getValue() != cuenta.getLoggedUser().getRegisterDate()) {
-            //cuenta.getLoggedUser().;
         }
     }
 
     @FXML
     private void miramos_fecha(ActionEvent event) {
         // Vamos a bloquear de aquí adelante
-        datePicker_fecha_de_nacimiento.setDayCellFactory((DatePicker picker) -> {
+        /*datePicker_fecha_de_nacimiento.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
                 @Override
                 public void updateItem(LocalDate date, boolean empty) {
@@ -317,7 +326,7 @@ public class Mi_perfilUsuarioController implements Initializable {
                     setDisable(empty || date.compareTo(today) < 0);
                 }
             };
-        });
+        });*/
     }
 
 }
