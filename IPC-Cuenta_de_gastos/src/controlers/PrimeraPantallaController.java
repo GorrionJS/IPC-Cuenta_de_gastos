@@ -35,13 +35,9 @@ public class PrimeraPantallaController implements Initializable {
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
-<<<<<<< HEAD
     private final String SINGUP = "/fxmls/register";
-=======
-    private final String SINGUP = "/fxmls/Register";
     
     private Acount cuenta;
->>>>>>> pruebas_jonathan
             
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
