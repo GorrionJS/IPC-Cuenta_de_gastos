@@ -53,6 +53,18 @@ public class detallesCargoController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
+    private static final String GASTOS = "/fxmls/misGastos";
+    
+    //private PrimeraPantallaController principal;
+    private MiPerfilController principalLoged;
+    private Acount cuenta;
+    private AnchorPane screen;
+    private boolean editableE;
+    private Charge cargo;
+    private Image picture;
+    private Stage stage;
+    private ObservableList<Category> categorias = null;
+    private boolean compruebaSelectedCategory ;
     
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -75,16 +87,6 @@ public class detallesCargoController implements Initializable {
     private ComboBox<Category> desplefableListaCaategorias;
     @FXML
     private DatePicker cargoFecha;
-    
-    //private PrimeraPantallaController principal;
-    private MiPerfilController principalLoged;
-    private Acount cuenta;
-    private AnchorPane screen;
-    private boolean editableE;
-    private Charge cargo;
-    private Image picture;
-    private Stage stage;
-    private ObservableList<Category> categorias = null;
     @FXML
     private Text titulosso;
     @FXML
@@ -101,9 +103,6 @@ public class detallesCargoController implements Initializable {
     private Text wrongDate;
     @FXML
     private Text wrongImage;
-    
-    private static final String GASTOS = "/fxmls/misGastos";
-    private boolean compruebaSelectedCategory ;
     @FXML
     private Button aceptarBD;
 
@@ -116,6 +115,7 @@ public class detallesCargoController implements Initializable {
         // Define el patrón para solo permitir números
         Pattern patronInt = Pattern.compile("\\d*");
         Pattern patronDouble = Pattern.compile("\\d*|\\d+\\.\\d*");
+        
         // Crea un TextFormatter con un filtro basado en el patrón
         TextFormatter<String> formatoD = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
             if (patronDouble.matcher(change.getControlNewText()).matches()) {
@@ -124,6 +124,7 @@ public class detallesCargoController implements Initializable {
                 return null;
             }
         });
+        
         TextFormatter<String> formatoI = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
             if (patronInt.matcher(change.getControlNewText()).matches()) {
                 return change;
@@ -131,6 +132,7 @@ public class detallesCargoController implements Initializable {
                 return null;
             }
         });
+        
         detailCoste.setTextFormatter(formatoD);
         detailUnidad.setTextFormatter(formatoI);
         editable(false);
@@ -140,9 +142,7 @@ public class detallesCargoController implements Initializable {
     }    
 
     @FXML
-    private void cancelarMethod(ActionEvent event) throws IOException {
-        vueltaAtras();
-    }
+    private void cancelarMethod(ActionEvent event) throws IOException { vueltaAtras(); }
 
     @FXML
     private void aceptarMethod(ActionEvent event) throws IOException {
@@ -161,20 +161,23 @@ public class detallesCargoController implements Initializable {
 
     @FXML
     private void addScannImage(ActionEvent event) throws FileNotFoundException {
-        
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Ver Imagenes");
+        
         // Modificacion de los archivos elegibles
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
         );
+        
         // Seleccion de la carpeta inicial donde estara el usuario
         String dir = "user.home"; //Default poned esto en el getProperty o no ira
         fileChooser.setInitialDirectory(new File(System.getProperty(dir)));
+        
         // Creacion de un file con el archivo seleccionado
         File file = fileChooser.showOpenDialog(stage);
+        
         if (file != null) { 
             // Transformacion del File a la clase Image
             picture = new Image(new FileInputStream(file));
@@ -183,10 +186,10 @@ public class detallesCargoController implements Initializable {
     }
 
     @FXML
-    private void addCategoryMethod(ActionEvent event) {
-    }
+    private void addCategoryMethod(ActionEvent event) {}
+    
     public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) {
-        principalLoged = princ;
+        this.principalLoged = princ;
         this.cuenta= cuenta;
         this.screen=screen;
         inicializaCategorias();
@@ -216,6 +219,7 @@ public class detallesCargoController implements Initializable {
         wrongUnity.setVisible(c);
         cancelButton.setVisible(c);
     }
+    
     public void pasaCargo(Charge cargo){
         this.cargo = cargo;
         detailNom.setText(cargo.getName());
@@ -223,12 +227,14 @@ public class detallesCargoController implements Initializable {
         detailCoste.setText(String.valueOf(cargo.getCost()));
         detailUnidad.setText(String.valueOf(cargo.getUnits()));
     }
+    
     private void resizable(AnchorPane pan) {
         pan.setBottomAnchor(pan, 0.0);
         pan.setTopAnchor(pan, 1.0);
         pan.setLeftAnchor(pan, 0.0);
         pan.setRightAnchor(pan, 1.0);
     }
+    
     private void detailComprovation(){
         detailNom.textProperty().addListener((observable,oldValue, newValue)->{
             if(newValue.isEmpty()){wrongNom.setVisible(true);}else{wrongNom.setVisible(false);}});
@@ -258,12 +264,11 @@ public class detallesCargoController implements Initializable {
                         }else{
                             desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
                             compruebaSelectedCategory=true;
-                            aceptarBD.setDisable(false);
-                            
+                            aceptarBD.setDisable(false);  
                         }
                     }
-                    
                 });
+        
         if(wrongNom.isVisible()&& wrongCost.isVisible()&& wrongDate.isVisible()&&
            wrongDesc.isVisible()&& wrongUnity.isVisible()&& wrongImage.isVisible() && compruebaSelectedCategory)
         {}else{
@@ -287,38 +292,35 @@ public class detallesCargoController implements Initializable {
         
         return true;
     }
+    
     private void setImage(Image p, ImageView t, Button b) {
         b.setVisible(false);
         t.setImage(p);
         t.setVisible(true);
     }
     
-    public void inicializaCategorias() {
-               
-         try {
-             categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
-         } catch (AcountDAOException ex) {
-             Logger.getLogger(detallesCargoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
+    public void inicializaCategorias() {     
+        try {
+            categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(detallesCargoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
          
         desplefableListaCaategorias.setItems(categorias);
         desplefableListaCaategorias.setConverter(new StringConverter<Category>(){
-
-             @Override
-             public String toString(Category t) {
-                if(t==null){
-                            return "";
-                        }
-                        return t.getName();
-             }
-
-             @Override
-             public Category fromString(String string) {
-                 return null;
-             }
-
-        });
-        
+            
+            @Override
+            public String toString(Category t) {
+               if(t==null){
+                   return "";
+               }
+               return t.getName();
+            }
+            
+            @Override
+            public Category fromString(String string) {
+                return null;
+            }
+        });   
     }
 }

@@ -17,12 +17,14 @@ import javafx.scene.control.Label;
  */
 public class AyudaVentanaController implements Initializable {
     
+    ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
+    private MiPerfilController principal;
     
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
     ///////////////////////////////////////////////////////
-    private MiPerfilController principal;
     @FXML
     private Label titulo;
     @FXML
@@ -37,7 +39,7 @@ public class AyudaVentanaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // INTRODUCIMOS TEXTOS
         titulo.setText("¿Necesitas ayuda?");
         
         texto_como_añadir_gasto.setText("Si quieres añadir un gasto, "
@@ -69,10 +71,9 @@ public class AyudaVentanaController implements Initializable {
                 + "2. Según las categorías que añadas."
                 + "3. Durante todo el año."
         );
-    }    
+    }
     
     public void init(MiPerfilController principal) {
         this.principal = principal;
     }
-    
 }

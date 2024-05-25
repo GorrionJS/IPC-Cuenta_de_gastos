@@ -90,6 +90,7 @@ public class GastosPrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Obtenemos la cuenta
         try {
             cuenta = Acount.getInstance();
         } catch (AcountDAOException ex) { 
@@ -98,6 +99,7 @@ public class GastosPrincipalController implements Initializable {
             Logger.getLogger(GastosPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        // Cargamos y lanzamos los graficos
         try {
             graficoDiaADia();
             graficoMes();
@@ -107,51 +109,16 @@ public class GastosPrincipalController implements Initializable {
         }
     }    
     
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
     public void init (MiPerfilController prin) throws IOException{
         this.principal = prin;
     }
     
-    private void categoriasGrafico() throws AcountDAOException{
-        categoriasUsuario = cuenta.getUserCategories();
-        cargosTotales = cuenta.getUserCharges();
-        tablaHash = new HashMap<>(categoriasUsuario.size());
-        
-        
-        for (int i = 0; i < cargosTotales.size(); i++) {
-            for (int j = 0; i < categoriasUsuario.size(); i++) {
-                // Vamos comprobando cada lista a ver si lo tenemos en X categoría
-                Charge cargoAct = cargosTotales.get(i);
-                Category categoriaCargo = cargoAct.getCategory();
-                String nombreCargo = categoriaCargo.getName();
-                
-                Category categoriaAct = categoriasUsuario.get(j);
-                String nombreCategoria = categoriaAct.getName();
-                
-                // Si pertenecen a la misma categoria, vamos a querer meterlos en la tablahash
-                if (nombreCategoria.equals(nombreCargo)){
-                    boolean hasKey = tablaHash.containsKey(nombreCategoria);
-                    // True (si está la clave), si no (la añadimos)
-                    if (hasKey) {
-                        Double costeTotal = tablaHash.get(nombreCategoria);
-                        costeTotal += cargoAct.getCost();
-                        tablaHash.put(nombreCategoria, costeTotal);
-                    }
-                    // La añadimos
-                    tablaHash.put(nombreCategoria, cargoAct.getCost());
-                }// Cerramos if
-            }// Cerramos for j
-        }// Cerramos for i
-        
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        
-        for (Map.Entry<String, Double> entry : tablaHash.entrySet()) {
-            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
-        }        
-        
-        bolaGrafico.getData().addAll(pieChartData);
-    }// Cerramos metodo
-    
-    
+    ///////////////////////////////////////////////////////
+    // LANZAMOS GRAFICO BARRAS (DIA A DIA)
+    ///////////////////////////////////////////////////////
     private void graficoDiaADia() throws AcountDAOException {
        // Crear una serie de datos
         XYChart.Series<String, Double> series = new XYChart.Series<>();
@@ -364,6 +331,52 @@ public class GastosPrincipalController implements Initializable {
         graficoBarras.getData().setAll(series);
     }
     
+    ///////////////////////////////////////////////////////
+    // LANZAMOS GRAFICO PIECHART
+    ///////////////////////////////////////////////////////
+    private void categoriasGrafico() throws AcountDAOException{
+        categoriasUsuario = cuenta.getUserCategories();
+        cargosTotales = cuenta.getUserCharges();
+        tablaHash = new HashMap<>(categoriasUsuario.size());
+        
+        
+        for (int i = 0; i < cargosTotales.size(); i++) {
+            for (int j = 0; i < categoriasUsuario.size(); i++) {
+                // Vamos comprobando cada lista a ver si lo tenemos en X categoría
+                Charge cargoAct = cargosTotales.get(i);
+                Category categoriaCargo = cargoAct.getCategory();
+                String nombreCargo = categoriaCargo.getName();
+                
+                Category categoriaAct = categoriasUsuario.get(j);
+                String nombreCategoria = categoriaAct.getName();
+                
+                // Si pertenecen a la misma categoria, vamos a querer meterlos en la tablahash
+                if (nombreCategoria.equals(nombreCargo)){
+                    boolean hasKey = tablaHash.containsKey(nombreCategoria);
+                    // True (si está la clave), si no (la añadimos)
+                    if (hasKey) {
+                        Double costeTotal = tablaHash.get(nombreCategoria);
+                        costeTotal += cargoAct.getCost();
+                        tablaHash.put(nombreCategoria, costeTotal);
+                    }
+                    // La añadimos
+                    tablaHash.put(nombreCategoria, cargoAct.getCost());
+                }// Cerramos if
+            }// Cerramos for j
+        }// Cerramos for i
+        
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        
+        for (Map.Entry<String, Double> entry : tablaHash.entrySet()) {
+            pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }        
+        
+        bolaGrafico.getData().addAll(pieChartData);
+    }// Cerramos metodo
+    
+    ///////////////////////////////////////////////////////
+    // LANZAMOS GRAFICO LINEAL (MES A MES)
+    ///////////////////////////////////////////////////////
     private void graficoMes() throws AcountDAOException {
         double eneroC = 0.0;
         double febreroC = 0.0;
@@ -451,5 +464,4 @@ public class GastosPrincipalController implements Initializable {
             
             graficoTotalPorMeses.getData().setAll(series);
     }
-    
 }

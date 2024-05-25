@@ -39,6 +39,15 @@ public class RegisterController implements Initializable {
     ///////////////////////////////////////////////////////
     private static final Color ERR = Color.rgb(32, 223, 236);
     private static final Color GOOD = Color.rgb(240, 240, 240);
+    
+    private Stage stage;
+    private Image picture;
+    private BooleanProperty validEmail;
+    private BooleanProperty validPass;
+    private BooleanProperty eqPass;
+    private BooleanProperty validNick;
+    private Acount compte;
+    private PrimeraPantallaController principal;
 
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -61,7 +70,6 @@ public class RegisterController implements Initializable {
     private PasswordField inputPass;
     @FXML
     private PasswordField inputPass1;
-    
     @FXML
     private TextField inputApellido;
     @FXML
@@ -69,23 +77,7 @@ public class RegisterController implements Initializable {
     @FXML
     private ImageView testImagen;
     @FXML
-    private Button bottonAcceptar; 
-    
-    private Stage stage;
-    
-    private Image picture;
-    
-    private BooleanProperty validEmail;
-    
-    private BooleanProperty validPass;
-    
-    private BooleanProperty eqPass;
-    
-    private BooleanProperty validNick;
-    
-    private Acount compte;
-    
-    private PrimeraPantallaController principal;
+    private Button bottonAcceptar;
     @FXML
     private Label errorPass;
     @FXML
@@ -162,7 +154,6 @@ public class RegisterController implements Initializable {
             picture = new Image(new FileInputStream(file));
             setImage(picture, testImagen, pictureUpload);
         } else { this.textModification(errorImagem, "La imagen seleccionada no es valida", ERR); }
-        
     }
     
         /*************************************************************************
@@ -254,7 +245,7 @@ public class RegisterController implements Initializable {
             String errS = "El correo introducido es valido";
             textModification(errorEmail, errS, GOOD);
             validEmail.setValue(Boolean.TRUE);
-        }else {
+        } else {
             String errS = "El correo introducido no es valido";
             textModification(errorEmail, errS, ERR);
         }
@@ -335,27 +326,30 @@ public class RegisterController implements Initializable {
         if(!(e == null || e.getText().equals(""))) e.clear();
     }
     
-    Acount getAccount() { return compte; }
+    public Acount getAccount() { return this.compte; }
     
-    void setAcount(Acount c) { compte = c; }
+    public void setAcount(Acount c) { this.compte = c; }
     
-    public void init(PrimeraPantallaController princ){
-         principal = princ;
-    } 
+    public void init(PrimeraPantallaController princ) { this.principal = princ; } 
     
     public void byPass() throws AcountDAOException, IOException {
-        inputNombre.setText("admin");
-        inputApellido.setText("admin");
-        inputNick.setText("admin");
-        inputPass.setText("admin");
-        inputPass1.setText("admin");
-        inputEmail.setText("admin@admin.admin");
+        this.inputNombre.setText("admin");
+        this.inputApellido.setText("admin");
+        this.inputNick.setText("admin");
+        this.inputPass.setText("admin");
+        this.inputPass1.setText("admin");
+        this.inputEmail.setText("admin@admin.admin");
         acceptar(new ActionEvent());
     }
     
     private boolean evaluate() throws AcountDAOException, IOException{
-        evaluateEmail(); evaluateNick(); evaluatePass("3"); equalsPass();
+        evaluateEmail(); 
+        evaluateNick(); 
+        evaluatePass("3"); 
+        equalsPass();
+        
         boolean result = validEmail.get() && validPass.get() && validNick.get() && eqPass.get();
+        
         return result;
     }
 }

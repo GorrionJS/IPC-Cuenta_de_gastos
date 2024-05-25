@@ -31,6 +31,9 @@ public class OpcionesDerechaLoginController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
+    private Button botonSeleccionado;
+    private PrimeraPantallaController principal;
+    private Acount cuenta;
     
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -46,26 +49,19 @@ public class OpcionesDerechaLoginController implements Initializable {
     @FXML
     private Button signOutButton;
     
-    private Button botonSeleccionado;
-    private PrimeraPantallaController principal;
-    private Acount cuenta;
     /**
      * Initializes the controller class.
      */
     
     
     public void init (PrimeraPantallaController prin, Acount a){
-        principal = prin;
-        cuenta = a;
-        //userName.setText(cuenta.getLoggedUser().getNickName());
-        //userProfile.setImage(cuenta.getLoggedUser().getImage());
-        // Error en esto nomUsuarioText.setText(nombre);
+        this.principal = prin;
+        this.cuenta = a;
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
     }    
     
     private void handleButtonPress(Button button) {
@@ -104,8 +100,6 @@ public class OpcionesDerechaLoginController implements Initializable {
 
     @FXML
     private void signOut(ActionEvent event) throws IOException {
-
-
             Window window = ((Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow());
             window.hide(); // Esto oculta la ventana actual
         
@@ -122,14 +116,12 @@ public class OpcionesDerechaLoginController implements Initializable {
             // Cerrar la ventana actual definitivamente
             window.hide();
             ((Stage) window).close();
-        
     }
+    
     private void resizable(AnchorPane pan) {
         pan.setBottomAnchor(pan, 0.0);
         pan.setTopAnchor(pan, 0.0);
         pan.setLeftAnchor(pan, 0.0);
         pan.setRightAnchor(pan, 0.0);
     }
-    
-
 }

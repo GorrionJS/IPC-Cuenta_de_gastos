@@ -37,6 +37,10 @@ public class LogInController implements Initializable {
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
     private static final String NEXT = "/fxmls/Usuario_login_Marco";
+    private Acount cuenta;
+    private BooleanProperty validNick;
+    private BooleanProperty validPass;
+    private PrimeraPantallaController principal;
     
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -54,19 +58,11 @@ public class LogInController implements Initializable {
     @FXML
     private Button acceptButton;
     
-    private Acount cuenta;
-
-    private BooleanProperty validNick;
-    
-    private BooleanProperty validPass;
-    
-    private PrimeraPantallaController principal;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        // TODO
         validNick = new SimpleBooleanProperty();
         validPass = new SimpleBooleanProperty();
         
@@ -78,6 +74,7 @@ public class LogInController implements Initializable {
         
         inputNick.focusedProperty().addListener((obj, oldV, newV) -> { if(!newV) {evaluateNick();} });
         inputNick.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)) {inputPass.requestFocus(); }});
+        
         inputPass.setOnKeyPressed(event -> { if(event.getCode().equals(KeyCode.ENTER)) try {
             acceptar(null);
         } catch (IOException ex) {
@@ -87,49 +84,48 @@ public class LogInController implements Initializable {
         } });
         
         acceptButton.disableProperty().bind(validNick.not());
-        
-        
     }
     
+    ///////////////////////////////////////////////////////
+    // INIT Y BYPASS
+    ///////////////////////////////////////////////////////
+    public void init(PrimeraPantallaController princ){
+        this.principal = princ;
+    }
+    
+    public void byPass() throws IOException, AcountDAOException { 
+        this.inputNick.setText("admin");
+        this.inputPass.setText("admin");
+        acceptar(new ActionEvent());
+    }
+    
+    ///////////////////////////////////////////////////////
+    // METODOS DE LA CUENTA
+    ///////////////////////////////////////////////////////
     public void setAccount(Acount c) { cuenta = c; }
-
-    @FXML
-    private void cancel(ActionEvent event) {
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
-        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
-        ok, no);
-        
-        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
-        
-        Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ok) { 
-                inputNick.clear();
-                inputPass.clear();
-                principal.clear();
-            }
+    
+    private void evaluateNick() {
+        if(cuenta != null && cuenta.existsLogin(inputNick.getText())) { 
+            wrongUserText.setVisible(false);
+            validNick.setValue(Boolean.TRUE);
+        }
+        else { 
+            wrongUserText.setVisible(true);
+            validNick.setValue(Boolean.FALSE);
+        }
     }
 
+    ///////////////////////////////////////////////////////
+    // METODOS DE LOS BOTONES ACEPTAR Y CANCELAR
+    ///////////////////////////////////////////////////////
     @FXML
     private void acceptar(ActionEvent event) throws IOException, AcountDAOException {
         String log = inputNick.getText();
         String con = inputPass.getText();
         
         if(cuenta.logInUserByCredentials(log, con)){
-/*
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource("/fxmls/Usuario_login_Marco.fxml"));
-            Parent root = fxmlMain.load();
-            
-            MiPerfilController controller = fxmlMain.getController();
-            controller.init(principal, cuenta);
-            
-            BorderPane p = principal.getGrid();
-            p.getChildren().setAll(root);
-            
-*/
             FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(NEXT + ".fxml"));
             Parent root = fxmlMain.load();
-            
             Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
             
             MiPerfilController controller = fxmlMain.getController();
@@ -147,33 +143,34 @@ public class LogInController implements Initializable {
         }
     }
     
-    private void evaluateNick() {
-        if(cuenta != null && cuenta.existsLogin(inputNick.getText())) { 
-            wrongUserText.setVisible(false);
-            validNick.setValue(Boolean.TRUE);
-        }
-        else { 
-            wrongUserText.setVisible(true);
-            validNick.setValue(Boolean.FALSE);
-        }
+    @FXML
+    private void cancel(ActionEvent event) {
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        
+        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
+        ok, no);
+        
+        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ok) { 
+                inputNick.clear();
+                inputPass.clear();
+                principal.clear();
+            }
     }
     
-    public void init(PrimeraPantallaController princ){
-        principal = princ;
-    }
+    ///////////////////////////////////////////////////////
+    // BOTONES
+    ///////////////////////////////////////////////////////
     
-    public void byPass() throws IOException, AcountDAOException { 
-        inputNick.setText("admin");
-        inputPass.setText("admin");
-        acceptar(new ActionEvent());
+    @FXML
+    private void aceptarM(MouseEvent event) {
     }
 
     @FXML
     private void cancelarM(MouseEvent event) {
-    }
-
-    @FXML
-    private void aceptarM(MouseEvent event) {
     }
 
     @FXML

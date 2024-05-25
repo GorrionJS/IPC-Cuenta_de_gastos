@@ -65,6 +65,7 @@ public class MisGastosController implements Initializable {
     private TableColumn<Charge, Double> costoList;
     @FXML
     private TableColumn<Charge, Void> acciones;
+    
     /**
      * Initializes the controller class.
      */
@@ -88,7 +89,6 @@ public class MisGastosController implements Initializable {
         );
         acciones.setCellFactory(param-> new TableCell<Charge, Void>(){
             private final ComboBox<String> combo = new ComboBox<>();
-            
             {
                 combo.setValue("🔶");
                 combo.getItems().addAll("Ver Detalles", "Editar", "Eliminar");
@@ -97,7 +97,6 @@ public class MisGastosController implements Initializable {
                     Charge gasto = getTableView().getItems().get(getIndex());
                     manejarAccion(elegido, gasto);
                 });
-                
             }
             @Override
             protected void updateItem(Void item,boolean empty){
@@ -108,7 +107,6 @@ public class MisGastosController implements Initializable {
                     setGraphic(combo);
                 }
             }
-        
         });
         
         tabla.getColumns().setAll(nombrelList,fechaList,costoList, acciones);
@@ -119,6 +117,10 @@ public class MisGastosController implements Initializable {
 //        inicializarCargos();
 //        selectCategories();  
 //    }
+    
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
     public void initMiperfil(MiPerfilController princ, Acount cuenta, AnchorPane screen){
         principalLoged = princ;
         this.cuenta = cuenta;
@@ -127,6 +129,9 @@ public class MisGastosController implements Initializable {
         selectCategories();  
     }
 
+    ///////////////////////////////////////////////////////
+    // RESIZE
+    ///////////////////////////////////////////////////////
     private void resizable(AnchorPane pan) {
         pan.setBottomAnchor(pan, 0.0);
         pan.setTopAnchor(pan, 0.0);
@@ -134,6 +139,9 @@ public class MisGastosController implements Initializable {
         pan.setRightAnchor(pan, 0.0);
     }
     
+    ///////////////////////////////////////////////////////
+    // METODOS
+    ///////////////////////////////////////////////////////
     @FXML
     private void addMethod(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader addGasto = new FXMLLoader(getClass().getResource("/fxmls/añadirCargo.fxml"));
@@ -147,57 +155,53 @@ public class MisGastosController implements Initializable {
         //principal.getGrid().setCenter(root);
     }
     
-        public void inicializaCategorias() {
-               
-                try {
-                    categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
-                   } catch (AcountDAOException ex) {
-                       System.out.println("error al cargar categorias");
-                   }
-                   misCategorias.setItems(categorias);
-                   
-                    misCategorias.setConverter(new StringConverter<Category>(){
-                    @Override
-                    public String toString(Category t) {
-                        if(t==null){
-                            return "";
-                        }
-                        return t.getName();
-                    }
-
-                    @Override
-                    public Category fromString(String string) {
-                        return null;
-                    }
-                });
-
-        }
-        
-        private void inicializarCargos(){
-            try {
-                    cargos = FXCollections.observableList(principalLoged.getAcount().getUserCharges());
-                   } catch (AcountDAOException ex) {
-                       System.out.println("error al cargar cargos");
-                   }
-            
-            tabla.setItems(cargos);
-        }
-        
-        public void selectCategories(){
-            FilteredList<Charge> cargoSelected = new FilteredList<>(cargos, p ->true);
-            tabla.setItems(cargoSelected);
-            inicializaCategorias();
-            misCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal)->{
-                if(newVal != null){
-                   
-                    cargoSelected.setPredicate(carGO -> carGO.getCategory().getName().equals(newVal.getName()));
-                 
-                }else{
-                     cargoSelected.setPredicate(p->true);
+    public void inicializaCategorias() {        
+        try {
+            categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
+           } catch (AcountDAOException ex) {
+               System.out.println("error al cargar categorias");
+           }
+           misCategorias.setItems(categorias);
+           
+           misCategorias.setConverter(new StringConverter<Category>(){
+            @Override
+            public String toString(Category t) {
+                if(t==null){
+                    return "";
                 }
-                tabla.refresh();
-            });
+                return t.getName();
+            }
+
+            @Override
+            public Category fromString(String string) {
+                return null;
+            }
+        });
+    }
+        
+    private void inicializarCargos(){
+        try {
+            cargos = FXCollections.observableList(principalLoged.getAcount().getUserCharges());
+        } catch (AcountDAOException ex) {
+            System.out.println("error al cargar cargos");
         }
+
+        tabla.setItems(cargos);
+    }
+
+    public void selectCategories(){
+        FilteredList<Charge> cargoSelected = new FilteredList<>(cargos, p ->true);
+        tabla.setItems(cargoSelected);
+        inicializaCategorias();
+        
+        misCategorias.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal)->{
+            if(newVal != null){
+                cargoSelected.setPredicate(carGO -> carGO.getCategory().getName().equals(newVal.getName()));
+            }else {cargoSelected.setPredicate(p->true);}
+            
+            tabla.refresh();
+        });
+    }
 
     private void manejarAccion (String eleg, Charge gast){
         switch(eleg){
@@ -214,6 +218,7 @@ public class MisGastosController implements Initializable {
             break;
         }
     }
+    
     private void remove(Charge c){
         try {
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -228,6 +233,7 @@ public class MisGastosController implements Initializable {
             System.out.println("no se pudo eliminar");
         }
     }
+    
     private void detail (Charge c){
         FXMLLoader detalle = new FXMLLoader(getClass().getResource("/fxmls/gastoDetalles.fxml"));
         AnchorPane root;
@@ -264,5 +270,4 @@ public class MisGastosController implements Initializable {
             System.out.println("no se pudo cargar detalles"+ ex);
         } 
     }
-    
 }
