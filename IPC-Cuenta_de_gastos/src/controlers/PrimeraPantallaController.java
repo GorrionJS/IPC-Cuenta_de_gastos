@@ -43,14 +43,13 @@ public class PrimeraPantallaController implements Initializable {
     private Button singup_button;
     @FXML
     private AnchorPane screen;
-    @FXML
-    private AnchorPane sideScreen;
 
     private Acount cuenta;
-    @FXML
-    private HBox userImageNick;
-    @FXML
     private GridPane gridPaneArriba;
+    @FXML
+    private Button faq_piulsado;
+    @FXML
+    private Button politicas_pulsadas;
     
     private void byPass() {
         
@@ -133,21 +132,20 @@ public class PrimeraPantallaController implements Initializable {
     @FXML
     private void login(MouseEvent event) throws IOException, AcountDAOException {
         try {
-            FXMLLoader newFXML = new FXMLLoader(getClass().getResource(LOGIN + ".fxml"));
+            FXMLLoader newFXML = new FXMLLoader(getClass().getResource("/fxmls/LogIn.fxml"));
             AnchorPane newW = newFXML.load();
             resizable(newW);
-            screen.getChildren().setAll(newW);
-
             LogInController controller = newFXML.getController();
             controller.init(this);
             controller.setAccount(cuenta);
             if(BYPASS) { controller.byPass(); }
-            
+            screen.getChildren().setAll(newW);
             singup_button.setDisable(false);
             login_button.setDisable(true);
 
         } catch (IOException ex) {
             System.err.println("Error al acceder a la ventana de login. Error " + ex); }
+            
     }
  
     public AnchorPane getAnchorPane(){ return screen; }

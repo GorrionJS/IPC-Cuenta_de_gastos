@@ -121,13 +121,16 @@ public class LogInController implements Initializable {
             p.getChildren().setAll(root);
             
 */
-            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(NEXT + ".fxml"));
+            try{
+            System.out.println("se abre");
+            
+            FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(NEXT +".fxml"));
             Parent root = fxmlMain.load();
-            
-            Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
-            
             MiPerfilController controller = fxmlMain.getController();
             controller.init(principal, cuenta);
+            Scene scene = new Scene(root, javafxmlapplication.JavaFXMLApplication.MIN_WIDTH, javafxmlapplication.JavaFXMLApplication.MIN_HEIGHT);
+            
+            
             
             Stage stage = (Stage) main.getScene().getWindow();
             Stage newStage = new Stage();
@@ -135,6 +138,8 @@ public class LogInController implements Initializable {
             newStage.setScene(scene);
             stage.close();
             newStage.show();
+            }catch(IOException ex){System.err.println("no carga FXML" + ex);}
+        
         } else {
             wrongPassText.setText("Contraseña incorrecta");
             wrongPassText.setVisible(true);
@@ -170,10 +175,6 @@ public class LogInController implements Initializable {
     private void aceptarM(MouseEvent event) {
     }
 
-    @FXML
-    private void atras(ActionEvent event) {
-        
-    }
     
     
 }
