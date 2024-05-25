@@ -106,7 +106,7 @@ public class MiPerfilController implements Initializable {
         
         Mi_perfilUsuarioController control = miPerfil.getController();
         control.init(this);
-        
+        resizable(root);
         screen.getChildren().setAll(root);
         
         reEnable();
