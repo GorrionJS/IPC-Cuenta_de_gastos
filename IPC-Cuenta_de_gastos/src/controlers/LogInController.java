@@ -145,13 +145,13 @@ public class LogInController implements Initializable {
     
     @FXML
     private void cancel(ActionEvent event) {
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
         
-        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Está a punto de elminiar todos los datos rellenados.",
         ok, no);
         
-        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
+        alert.setContentText("¿Está seguro de que quiere eliminar todos los datos?");
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
@@ -173,10 +173,6 @@ public class LogInController implements Initializable {
     private void cancelarM(MouseEvent event) {
     }
 
-    @FXML
-    private void atras(ActionEvent event) {
-        
-    }
     
     
 }

@@ -65,8 +65,6 @@ public class RegisterController implements Initializable {
     @FXML
     private Label errorNick;
     @FXML
-    private Label errorNombre;
-    @FXML
     private PasswordField inputPass;
     @FXML
     private PasswordField inputPass1;
@@ -163,12 +161,12 @@ public class RegisterController implements Initializable {
     // Metodo a cambiar (de momento funciona)
     @FXML
     private void cancelar(ActionEvent event) throws IOException {
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Está a punto de elminiar todos los datos rellenados.",
         ok, no);
         
-        alert.setContentText("Esta seguro de que quiere eliminar todos los datos");
+        alert.setContentText("¿Está seguro de que quiere eliminar todos los datos?");
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
@@ -193,23 +191,31 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void acceptar(ActionEvent event) throws AcountDAOException, IOException {
-
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.NONE, "Confirme que los datos introducidos son correctos",
-        ok, no);
+        
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Proceso de creación de su cuenta");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Quiere revisar sus datos antes de continuar?");
+        alert.getButtonTypes().setAll(ok, no);
         
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ok && evaluate()) { 
- 
+        if (result.isPresent() && result.get() == ok && evaluate()) {
             boolean registered = compte.registerUser(inputNombre.getText(), inputApellido.getText(), inputEmail.getText(), inputNick.getText()
                 , inputPass.getText(), picture, LocalDate.now());
         
-            if (!registered) { alert = new Alert(Alert.AlertType.NONE, "No ha sido posible realizar el registro",
+            if (!registered) { 
+                alert = new Alert(Alert.AlertType.WARNING, "No ha sido posible realizar el registro.",
             ok, no); }
-            else { alert = new Alert(Alert.AlertType.NONE, "Su cuenta ha sido registrada exitosamente, Inicie sesion",
-            ok, no); }
-        
+            else { 
+                alert = new Alert(Alert.AlertType.INFORMATION); 
+                alert.setTitle("Proceso de creación de cuenta finalizado");
+                alert.setHeaderText("Su cuenta ha sido registrada exitosamente.");
+                alert.setContentText("Inicie sesión.");
+                alert.getButtonTypes().setAll(ok, no);
+            }
+            
             alert.show();
         }
     }

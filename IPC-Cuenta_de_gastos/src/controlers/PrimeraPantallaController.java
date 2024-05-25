@@ -31,13 +31,14 @@ public class PrimeraPantallaController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
-    private final boolean BYPASS = true;
+    private final boolean BYPASS = false;
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
     private final String SINGUP = "/fxmls/Register";
     
     private Acount cuenta;
+    private GridPane gridPaneArriba;
             
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -52,10 +53,6 @@ public class PrimeraPantallaController implements Initializable {
     private AnchorPane screen;
     @FXML
     private AnchorPane sideScreen;
-    @FXML
-    private HBox userImageNick;
-    @FXML
-    private GridPane gridPaneArriba;
     
     /**
      * Initializes the controller class.
@@ -64,9 +61,9 @@ public class PrimeraPantallaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setDisplay(FAQ, sideScreen);
         if (screen != null) { resizable(screen); }
         if (sideScreen != null) { resizable(sideScreen); }
-        setDisplay(FAQ, sideScreen);
         clear();
         
         try {
@@ -151,6 +148,7 @@ public class PrimeraPantallaController implements Initializable {
             LogInController controller = newFXML.getController();
             controller.init(this);
             controller.setAccount(cuenta);
+            
             if(BYPASS) { controller.byPass(); }
             
             singup_button.setDisable(false);

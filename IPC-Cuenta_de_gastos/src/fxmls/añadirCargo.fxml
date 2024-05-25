@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -33,13 +34,30 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="2">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del producto            " wrappingWidth="80.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Cargo">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Separator>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="160.0" spacing="30.0" GridPane.rowIndex="2">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del producto" wrappingWidth="80.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
@@ -48,9 +66,9 @@
                   <Insets left="30.0" right="50.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="3">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="3">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="descripción" wrappingWidth="80.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="80.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
@@ -59,7 +77,7 @@
                   <Insets left="30.0" right="50.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="4">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="4">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catégoria" wrappingWidth="80.0">
                      <font>
@@ -70,31 +88,19 @@
                   <Insets left="30.0" right="50.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="5">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="coste" wrappingWidth="80.0">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Text>
-               </children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="5">
                <padding>
                   <Insets left="30.0" right="50.0" />
                </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="191.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9">
-               <GridPane.margin>
-                  <Insets bottom="20.0" left="50.0" right="10.0" />
-               </GridPane.margin>
                <children>
-                  <Button mnemonicParsing="false" onAction="#cancelarMethod" text="Cancelar">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="aceptarAddCargoB" mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coste" wrappingWidth="80.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="6">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="6">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades" wrappingWidth="80.0">
                      <font>
@@ -108,9 +114,9 @@
                   <Insets right="50.0" />
                </GridPane.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="7">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="7">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="fecha" wrappingWidth="80.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" wrappingWidth="80.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
@@ -122,9 +128,9 @@
                   <Insets right="50.0" />
                </GridPane.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="8">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="8">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="imagen" wrappingWidth="80.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen" wrappingWidth="80.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
@@ -144,30 +150,32 @@
             <Text fx:id="wrong6" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <TextField fx:id="cargoNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cargoDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="cargoUnidades" onKeyTyped="#comprobarInt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="cargoCoste" accessibleText="double" onKeyTyped="#comprobarDouble" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button fx:id="cargoImagen" mnemonicParsing="false" onAction="#addScannImage" text="Insertar Scaner" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-            <DatePicker fx:id="cargoFecha" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ImageView fx:id="tesstImagen" fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
             <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="existentes" style="-fx-background-color: #FF5100;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button fx:id="butonAddCat" mnemonicParsing="false" onAction="#addCategoryMethod" prefHeight="19.0" prefWidth="80.0" text="Nueva" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <TextField fx:id="cargoCoste" accessibleText="double" onKeyTyped="#comprobarDouble" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="cargoUnidades" onKeyTyped="#comprobarInt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="cargoFecha" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button fx:id="cargoImagen" alignment="CENTER" mnemonicParsing="false" onAction="#addScannImage" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+               <graphic>
+                  <ImageView fx:id="tesstImagen" fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/recibo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="191.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="50.0" right="10.0" />
+               </GridPane.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Cargo">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <Separator prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#cancelarMethod" text="Cancelar">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="aceptarAddCargoB" mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
                </children>
-            </VBox>
+            </HBox>
+            <Button fx:id="butonAddCat" mnemonicParsing="false" onAction="#addCategoryMethod" prefHeight="19.0" prefWidth="80.0" text="Nueva" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>
