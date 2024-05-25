@@ -32,7 +32,7 @@ public class PrimeraPantallaController implements Initializable {
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
-    private final String SINGUP = "/fxmls/Register";
+    private final String SINGUP = "/fxmls/register";
             
 
     @FXML
@@ -135,10 +135,11 @@ public class PrimeraPantallaController implements Initializable {
         try {
             FXMLLoader newFXML = new FXMLLoader(getClass().getResource(LOGIN + ".fxml"));
             AnchorPane newW = newFXML.load();
+            LogInController controller = newFXML.getController();
             resizable(newW);
             screen.getChildren().setAll(newW);
 
-            LogInController controller = newFXML.getController();
+            
             controller.init(this);
             controller.setAccount(cuenta);
             if(BYPASS) { controller.byPass(); }
