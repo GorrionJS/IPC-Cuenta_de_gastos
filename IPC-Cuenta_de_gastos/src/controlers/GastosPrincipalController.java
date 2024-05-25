@@ -136,9 +136,6 @@ public class GastosPrincipalController implements Initializable {
             }// Cerramos for j
         }// Cerramos for i
         
-        tablaHash.put("Food", 250.0);
-        tablaHash.put("Transporte", 100.0);
-        
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         
         for (Map.Entry<String, Double> entry : tablaHash.entrySet()) {
@@ -431,12 +428,7 @@ public class GastosPrincipalController implements Initializable {
                     } // Ciere del switch
                 } // Cierre del while
             } // Cierre del for
-            
-            series.getData().add(new XYChart.Data<>("Enero", 500.0));
-            series.getData().add(new XYChart.Data<>("Febrero", 480.0));
-            series.getData().add(new XYChart.Data<>("Marzo", 520.0));
-            series.getData().add(new XYChart.Data<>("Abril", 510.0));
-            series.getData().add(new XYChart.Data<>("Mayo", 490.0));
+
             
             series.getData().add(new XYChart.Data("Enero", eneroC));
             series.getData().add(new XYChart.Data("Febrero", febreroC));
