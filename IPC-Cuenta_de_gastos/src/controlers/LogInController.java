@@ -33,8 +33,14 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class LogInController implements Initializable {
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private static final String NEXT = "/fxmls/Usuario_login_Marco";
     
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private Label wrongUserText;
     @FXML

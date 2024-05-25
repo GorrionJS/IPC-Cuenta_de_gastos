@@ -39,6 +39,9 @@ import model.Charge;
  */
 public class MisGastosController implements Initializable {
 
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     //private PrimeraPantallaController principal;
     private MiPerfilController principalLoged;
     private Acount cuenta;
@@ -47,7 +50,9 @@ public class MisGastosController implements Initializable {
     private ObservableList<Category> categorias = null;
     private ObservableList<Charge> cargos = null;
     
-    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private ComboBox<Category> misCategorias;
     @FXML

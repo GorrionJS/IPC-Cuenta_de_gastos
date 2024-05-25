@@ -16,7 +16,9 @@ import javafx.scene.control.Label;
  * @author elgor
  */
 public class FAQController implements Initializable {
-
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private Label texto_objetivo_expenser;
     @FXML

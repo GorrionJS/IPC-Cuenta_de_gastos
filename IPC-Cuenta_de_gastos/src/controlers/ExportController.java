@@ -39,6 +39,10 @@ import model.AcountDAOException;
 public class ExportController implements Initializable {
     private static final String EXPORTAR = "/fxmls/Exportar";
 
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private Button routeButton;
     @FXML

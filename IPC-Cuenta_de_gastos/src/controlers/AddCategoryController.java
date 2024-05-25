@@ -21,11 +21,16 @@ import model.AcountDAOException;
  * @author Usuario
  */
 public class AddCategoryController implements Initializable {
-
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private boolean pressed;
     private String nC;
     private String dC;
     
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private Stage stage;
     @FXML

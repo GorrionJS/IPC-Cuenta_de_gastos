@@ -61,6 +61,9 @@ import model.Charge;
 
 public class GastosPrincipalController implements Initializable {
 
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private Acount cuenta;
     private MiPerfilController principal;
     private List<Charge> cargosTotales;
@@ -68,6 +71,9 @@ public class GastosPrincipalController implements Initializable {
     private List<Category> categoriasUsuario;
     private Map<String, Double> tablaHash;
     
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private LineChart<String, Double> graficoTotalPorMeses;
     @FXML

@@ -34,10 +34,15 @@ import model.AcountDAOException;
  * @author joanb
  */
 public class RegisterController implements Initializable {
-    
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private static final Color ERR = Color.rgb(32, 223, 236);
     private static final Color GOOD = Color.rgb(240, 240, 240);
 
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private TextField inputNombre;
     @FXML

@@ -31,6 +31,9 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
     
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private static final String INICIO = "/fxmls/graficosPrincipal";
     private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
@@ -38,6 +41,9 @@ public class MiPerfilController implements Initializable {
     private static final String EXPORTAR = "/fxmls/Exportar";
     private static final String ANTERIOR = "/fxmls/Marco_Vacio_Inicial";
 
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private BorderPane borderPANE;
     @FXML

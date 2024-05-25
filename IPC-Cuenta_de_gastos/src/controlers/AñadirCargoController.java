@@ -48,24 +48,25 @@ import model.Category;
 import model.Charge;
 
 
-
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author elgor
  */
 
-/*
-    todavia falta implementar los datos y demás
-*/
+
 public class AñadirCargoController implements Initializable {
-    // private PrimeraPantallaController principal;
-     private MiPerfilController principalLoged;
-     private Acount cuenta;
-     private AnchorPane screen;
-     
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
+    private MiPerfilController principalLoged;
+    private Acount cuenta;
+    private AnchorPane screen;
     private PrimeraPantallaController principal;
-    //private MiPerfilController principalLoged;
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private TextField cargoNombre;
     @FXML

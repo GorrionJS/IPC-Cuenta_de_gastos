@@ -16,11 +16,12 @@ import javafx.scene.control.Label;
  * @author elgor
  */
 public class AyudaVentanaController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
     
+    // VARIABLES GLOBALES
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     private MiPerfilController principal;
     @FXML
     private Label titulo;

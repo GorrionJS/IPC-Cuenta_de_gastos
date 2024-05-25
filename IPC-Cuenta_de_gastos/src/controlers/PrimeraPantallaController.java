@@ -28,13 +28,18 @@ import model.AcountDAOException;
  * @author joanb
  */
 public class PrimeraPantallaController implements Initializable {
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private final boolean BYPASS = true;
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
     private final String SINGUP = "/fxmls/Register";
             
-
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private BorderPane borderPANE;
     @FXML
