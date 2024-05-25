@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,38 +41,14 @@ import model.AcountDAOException;
  */
 public class Mi_perfilUsuarioController implements Initializable {
 
-
-    @FXML
-    private ImageView imagen_de_perfil_de_usuario;
-    @FXML
-    private TextField campo_de_texto_del_nickname_NO_MODIFICAR;
-    @FXML
-    private PasswordField campo_de_texto_de_la_contraseña;
-    @FXML
-    private PasswordField campo_de_texto_del_email;
-    @FXML
-    private ToggleButton boton_visualizar_contraseña;
-    @FXML
-    private ImageView imagen_de_ver_y_no_ver_la_contraseña;
-    @FXML
-    private DatePicker datePicker_fecha_de_nacimiento;
-    
-    /**
-     * VAMOS A USAR ESTAS VARIABLES PARA SABER SI LO INTRODUCIDO
-     * ES CORRECTO O NO
-     */
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private Acount cuenta;
     private MiPerfilController principal;
-    @FXML
-    private Label apellidos_usuario_label;
-    @FXML
-    private TextField campo_de_texto_de_contraseña_visible;
-    @FXML
-    private Label nombre_usuario_label;
     
     private Image imagenOjoAbierto;
     private Image imagenOjoCerrado;
-    
     
     // PARA LOS LISTENERS
     // Propiedades del usuario
@@ -79,6 +56,32 @@ public class Mi_perfilUsuarioController implements Initializable {
     private final StringProperty apellidosUsuario = new SimpleStringProperty();
     private final StringProperty emailUsuario = new SimpleStringProperty();
     private final StringProperty contraseñaUsuario = new SimpleStringProperty();
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
+    @FXML
+    private ImageView imagen_de_perfil_de_usuario;
+    @FXML
+    private TextField campo_de_texto_del_nickname_NO_MODIFICAR;
+    @FXML
+    private PasswordField campo_de_texto_de_la_contraseña;
+    @FXML
+    private TextField campo_de_texto_del_email;
+    @FXML
+    private ToggleButton boton_visualizar_contraseña;
+    @FXML
+    private ImageView imagen_de_ver_y_no_ver_la_contraseña;
+    @FXML
+    private DatePicker datePicker_fecha_de_nacimiento;
+    @FXML
+    private Label apellidos_usuario_label;
+    @FXML
+    private TextField campo_de_texto_de_contraseña_visible;
+    @FXML
+    private Label nombre_usuario_label;
+    @FXML
+    private TextField fechaRegistroLabel;
     
     
     /**
@@ -115,6 +118,10 @@ public class Mi_perfilUsuarioController implements Initializable {
         campo_de_texto_del_nickname_NO_MODIFICAR.setText(nickname);
         imagen_de_perfil_de_usuario.setImage(imagen);
         
+        LocalDate fechaRegistro = cuenta.getLoggedUser().getRegisterDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = fechaRegistro.format(formatter);
+        fechaRegistroLabel.setText(formattedDate);
         
         /* CAMPOS DÓNDE AÑADIMOS LISTENERS 
         DEBE DE HABER UNO POR CADA BOTÓN
@@ -152,12 +159,21 @@ public class Mi_perfilUsuarioController implements Initializable {
         });
     }    
 
-    //public init(A)
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
     public void init (MiPerfilController prin) throws AcountDAOException {
         this.principal = prin;
     }
     
+    ///////////////////////////////////////////////////////
+    // METODOS
+    ///////////////////////////////////////////////////////
     @FXML
+    
+    ///////////////////////////////////////////////////////
+    // FOTO
+    ///////////////////////////////////////////////////////
     private void boton_cambiar_foto(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Elija nueva imagen");
@@ -182,6 +198,9 @@ public class Mi_perfilUsuarioController implements Initializable {
         }
     }
 
+    ///////////////////////////////////////////////////////
+    // NOMBRE
+    ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_nombre_de_usuario(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog("Nuevo nombre"); // Por defecto
@@ -199,9 +218,14 @@ public class Mi_perfilUsuarioController implements Initializable {
             alert.setHeaderText("Nombre del usuario cambiado.");
             alert.setContentText("Su nombre ha sido cambiado exitosamente.");
             alert.showAndWait();
+            
+            nombre_usuario_label.setText(result.get());
         }
     }
     
+    ///////////////////////////////////////////////////////
+    // APELLIDO
+    ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_apellidos_de_usuario(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog("Nuevos apellidos"); // Por defecto
@@ -219,10 +243,14 @@ public class Mi_perfilUsuarioController implements Initializable {
             alert.setHeaderText("Apellidos del usuario cambiados.");
             alert.setContentText("Sus apellidos han sido cambiados exitosamente.");
             alert.showAndWait();
+            
+            apellidos_usuario_label.setText(result.get());
         }
-        
     }
 
+    ///////////////////////////////////////////////////////
+    // CONTRASEÑA
+    ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_contraseña(ActionEvent event) {
         campo_de_texto_de_la_contraseña.setDisable(false);
@@ -264,6 +292,9 @@ public class Mi_perfilUsuarioController implements Initializable {
         }
     }
 
+    ///////////////////////////////////////////////////////
+    // EMAIL
+    ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_email(ActionEvent event) {
         campo_de_texto_del_email.setDisable(false);
@@ -289,6 +320,9 @@ public class Mi_perfilUsuarioController implements Initializable {
         
     }
 
+    ///////////////////////////////////////////////////////
+    // SE PUEDE BORRAR
+    ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_fecha_nacimiento(ActionEvent event) {
         datePicker_fecha_de_nacimiento.setDisable(false);
@@ -301,14 +335,13 @@ public class Mi_perfilUsuarioController implements Initializable {
     @FXML
     private void boton_guardar_cambios_fecha(ActionEvent event) {
         if (datePicker_fecha_de_nacimiento.getValue() != cuenta.getLoggedUser().getRegisterDate()) {
-            //cuenta.getLoggedUser().;
         }
     }
 
     @FXML
     private void miramos_fecha(ActionEvent event) {
         // Vamos a bloquear de aquí adelante
-        datePicker_fecha_de_nacimiento.setDayCellFactory((DatePicker picker) -> {
+        /*datePicker_fecha_de_nacimiento.setDayCellFactory((DatePicker picker) -> {
             return new DateCell() {
                 @Override
                 public void updateItem(LocalDate date, boolean empty) {
@@ -317,7 +350,7 @@ public class Mi_perfilUsuarioController implements Initializable {
                     setDisable(empty || date.compareTo(today) < 0);
                 }
             };
-        });
+        });*/
     }
 
 }

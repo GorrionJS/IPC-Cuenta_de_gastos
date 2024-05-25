@@ -37,34 +37,51 @@ import model.AcountDAOException;
  * @author joanb
  */
 public class ExportController implements Initializable {
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private static final String EXPORTAR = "/fxmls/Exportar";
-
+    private PrinterJob printer;
+    private Acount cuenta;
+    private MiPerfilController main;
+    private PrintRequestAttributeSet aset;
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private Button routeButton;
     @FXML
     private Button okButton;
-
-    private PrinterJob printer;
     
-    private Acount cuenta;
-    
-    private MiPerfilController main;
-    
-    private PrintRequestAttributeSet aset;
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
-
+    public void initialize(URL url, ResourceBundle rb) {}    
+    
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
+    public void init(Acount c, MiPerfilController p) {
+        cuenta = c;
+        main = p;
+    }
+    
+    ///////////////////////////////////////////////////////
+    // ACEPTAR MÉTODO
+    ///////////////////////////////////////////////////////
     @FXML
     private void accept(ActionEvent event) throws IOException, AcountDAOException, PrinterException, PrintException {
+        // Creamos la alerta
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar impresión");
         alert.setContentText("Esta seguro que quiere imprimir el archivo");
         
+        // Obtenemos el valor
         Optional<ButtonType> result = alert.showAndWait();
+        
+        // Chekeamos
         if(result.isPresent() && result.get().equals(ButtonType.OK)) {
             ExportWorker controller = new ExportWorker();
             controller.setAccount(cuenta);
@@ -83,6 +100,7 @@ public class ExportController implements Initializable {
             PrinterJob pj = PrinterJob.getPrinterJob();
             // Step 3: Find print services.
             PrintService []services = PrinterJob.lookupPrintServices();
+            
             if (services.length > 0) {
                 System.out.println("selected printer: " + services[0]);
                 try {
@@ -100,12 +118,6 @@ public class ExportController implements Initializable {
                     System.err.println(pe);
                 }
             }
+        }
     }
-    }
-    
-    public void init(Acount c, MiPerfilController p) {
-        cuenta = c;
-        main = p;
-    }
-    
 }

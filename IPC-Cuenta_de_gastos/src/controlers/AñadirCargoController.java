@@ -48,24 +48,30 @@ import model.Category;
 import model.Charge;
 
 
-
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author elgor
  */
 
-/*
-    todavia falta implementar los datos y demás
-*/
+
 public class AñadirCargoController implements Initializable {
-    // private PrimeraPantallaController principal;
-     private MiPerfilController principalLoged;
-     private Acount cuenta;
-     private AnchorPane screen;
-     
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
+    private MiPerfilController principalLoged;
+    private Acount cuenta;
+    private AnchorPane screen;
     private PrimeraPantallaController principal;
-    //private MiPerfilController principalLoged;
+    
+    private Stage stage;
+    private Image picture;
+    private ObservableList<Category> categorias = null;
+    private boolean compruebaSelectedCategory;
+    
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private TextField cargoNombre;
     @FXML
@@ -78,16 +84,12 @@ public class AñadirCargoController implements Initializable {
     private Button cargoImagen;
     @FXML
     private DatePicker cargoFecha;
-    private Stage stage;
-    private Image picture;
     @FXML
     private ImageView tesstImagen;
     @FXML
     private ComboBox<Category> desplefableListaCaategorias;
     @FXML
     private Button butonAddCat;
-    
-    private ObservableList<Category> categorias = null;
     @FXML
     private Text wrong1;
     @FXML
@@ -100,7 +102,6 @@ public class AñadirCargoController implements Initializable {
     private Text wrong5;
     @FXML
     private Text wrong6;
-    private boolean compruebaSelectedCategory ;
     @FXML
     private Button aceptarAddCargoB;
     
@@ -111,29 +112,29 @@ public class AñadirCargoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         aceptarAddCargoB.setDisable(true);
+        
         // Define el patrón para solo permitir números
         Pattern patronInt = Pattern.compile("\\d*");
         Pattern patronDouble = Pattern.compile("\\d*|\\d+\\.\\d*");
+        
         // Crea un TextFormatter con un filtro basado en el patrón
         TextFormatter<String> formatoD = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
-            if (patronDouble.matcher(change.getControlNewText()).matches()) {
-                return change;
-            } else {
-                return null;
-            }
+            if (patronDouble.matcher(change.getControlNewText()).matches()) {return change;} 
+            else {return null;}
         });
+        
         TextFormatter<String> formatoI = new TextFormatter<>((UnaryOperator<TextFormatter.Change>) change -> {
-            if (patronInt.matcher(change.getControlNewText()).matches()) {
-                return change;
-            } else {
-                return null;
-            }
+            if (patronInt.matcher(change.getControlNewText()).matches()) {return change;} 
+            else {return null;}
         });
+        
         cargoCoste.setTextFormatter(formatoD);
         cargoUnidades.setTextFormatter(formatoI);
         
+        ///////////////////////////////////////////////////////
+        // LISTENERS
+        ///////////////////////////////////////////////////////
         cargoNombre.textProperty().addListener((observable,oldValue, newValue)->{
             if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong1.setVisible(false);}});
         
@@ -153,38 +154,49 @@ public class AñadirCargoController implements Initializable {
             if(newValue==null){wrong1.setVisible(true);}else{wrong6.setVisible(false);}});
         
         desplefableListaCaategorias.valueProperty().addListener(
-                new ChangeListener<Category>(){
-                    @Override
-                    public void changed(ObservableValue<? extends Category> ov, Category t, Category t1) {
-                        if(t1== null){
-                            desplefableListaCaategorias.setStyle("-fx-border-color: #FF5100; -fx-border-width: 2px;");
-                            compruebaSelectedCategory= false;
-                        }else{
-                            desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
-                            compruebaSelectedCategory=true;
-                            aceptarAddCargoB.setDisable(false);
-                        }
+            new ChangeListener<Category>(){
+                @Override
+                public void changed(ObservableValue<? extends Category> ov, Category t, Category t1) {
+                    if(t1== null){
+                        desplefableListaCaategorias.setStyle("-fx-border-color: #FF5100; -fx-border-width: 2px;");
+                        compruebaSelectedCategory= false;
+                    }else{
+                        desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
+                        compruebaSelectedCategory=true;
+                        aceptarAddCargoB.setDisable(false);
                     }
                 }
+            }
         );
-    }    
+    }
     
-            
-    
-    
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
     public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException{
-        
-        principalLoged = princ;
+        this.principalLoged = princ;
         this.cuenta= cuenta;
         this.screen= screen;
     }
              
     public void init(PrimeraPantallaController princ) throws AcountDAOException, IOException{
-        principal = princ;
+        this.principal = princ;
         inicializaCategorias();
     }
     
+    ///////////////////////////////////////////////////////
+    // RESIZE
+    ///////////////////////////////////////////////////////
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 1.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 1.0);
+    }
     
+    ///////////////////////////////////////////////////////
+    // METODOS
+    ///////////////////////////////////////////////////////
     private boolean comprueba(){
         if(wrong1.isVisible()&& wrong2.isVisible()&& wrong3.isVisible()&&
            wrong4.isVisible()&& wrong5.isVisible()&& wrong6.isVisible() && compruebaSelectedCategory)
@@ -193,50 +205,52 @@ public class AñadirCargoController implements Initializable {
     }
     
     
-    public void inicializaCategorias() throws IOException {
-               
-         try {
-             categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
-             cuenta = Acount.getInstance();
-             categorias = FXCollections.observableList(cuenta.getUserCategories());
-         } catch (AcountDAOException ex) {
+    public void inicializaCategorias() throws IOException {   
+        try {
+            categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
+            cuenta = Acount.getInstance();
+            categorias = FXCollections.observableList(cuenta.getUserCategories());
+        } catch (AcountDAOException ex) {
              Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
-         
+        }
+        
         desplefableListaCaategorias.setItems(categorias);
         desplefableListaCaategorias.setConverter(new StringConverter<Category>(){
 
-             @Override
-             public String toString(Category t) {
+            @Override
+            public String toString(Category t) {
                 if(t==null){
-                            return "";
-                        }
-                        return t.getName();
-             }
+                    return "";
+                }
+                return t.getName();
+            }
 
-             @Override
-             public Category fromString(String string) {
-                 return null;
-             }
-
+            @Override
+            public Category fromString(String string) {
+                return null;
+            }
         });
-        
     }
 
+    ///////////////////////////////////////////////////////
+    // IMAGENES
+    ///////////////////////////////////////////////////////
     @FXML
     private void addScannImage(ActionEvent event) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Ver Imagenes");
+        
         // Modificacion de los archivos elegibles
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG", "*.png")
         );
+        
         // Seleccion de la carpeta inicial donde estara el usuario
         String dir = "user.home"; //Default poned esto en el getProperty o no ira
         fileChooser.setInitialDirectory(new File(System.getProperty(dir)));
+        
         // Creacion de un file con el archivo seleccionado
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) { 
@@ -252,6 +266,9 @@ public class AñadirCargoController implements Initializable {
         t.setVisible(true);
     }
     
+    ///////////////////////////////////////////////////////
+    // BOTONES
+    ///////////////////////////////////////////////////////
     @FXML
     private void cancelarMethod(ActionEvent event) throws AcountDAOException, IOException {
         System.out.println(principalLoged.getAcount().getUserCategories().size());//get(2).getName());
@@ -266,14 +283,12 @@ public class AñadirCargoController implements Initializable {
 
     @FXML
     private void aceptarMethod(ActionEvent event) throws AcountDAOException {
-        
         String name = cargoNombre.getText();
         String description = cargoDescripcion.getText();
         Double cost = Double.parseDouble(cargoCoste.getText());
         int unidades = Integer.parseInt(cargoUnidades.getText());
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
-        //LocalDate.MAX
         
         if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
             System.out.println("se ha registrado");
@@ -289,18 +304,9 @@ public class AñadirCargoController implements Initializable {
 
     }
 
-    
-
-    @FXML
-    private void comprobarDouble(KeyEvent event) {
-        if(!Character.isDigit(event.getCharacter().charAt(0)) && event.getCharacter().charAt(0)!='.'){
-            event.consume();
-        }
-        if(event.getCharacter().charAt(0)=='.' && cargoCoste.getText().contains(".")){
-            event.consume();
-        }
-    }
-
+    ///////////////////////////////////////////////////////
+    // AÑADIMOS CATEGORÍA
+    ///////////////////////////////////////////////////////
     @FXML
     private void addCategoryMethod(ActionEvent event) throws AcountDAOException {
             try {
@@ -318,20 +324,23 @@ public class AñadirCargoController implements Initializable {
                     principalLoged.getAcount().registerCategory(name, description);
                     inicializaCategorias();
                 }
-               
             } catch (IOException ex) {
-            Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
 
+    @FXML
+    private void comprobarDouble(KeyEvent event) {
+        if(!Character.isDigit(event.getCharacter().charAt(0)) && event.getCharacter().charAt(0)!='.'){
+            event.consume();
+        }
+        if(event.getCharacter().charAt(0)=='.' && cargoCoste.getText().contains(".")){
+            event.consume();
+        }
+    }
     
     @FXML
     private void comprobarInt(KeyEvent event) {
-        }
-    private void resizable(AnchorPane pan) {
-        pan.setBottomAnchor(pan, 0.0);
-        pan.setTopAnchor(pan, 1.0);
-        pan.setLeftAnchor(pan, 0.0);
-        pan.setRightAnchor(pan, 1.0);
+        
     }
 }

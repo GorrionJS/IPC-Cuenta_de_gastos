@@ -31,27 +31,31 @@ import model.AcountDAOException;
  */
 public class MiPerfilController implements Initializable {
     
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private static final String INICIO = "/fxmls/graficosPrincipal";
     private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
     private static final String AYUDA = "/fxmls/ayudaVentana";
     private static final String EXPORTAR = "/fxmls/Exportar";
     private static final String ANTERIOR = "/fxmls/Marco_Vacio_Inicial";
+    
+    private PrimeraPantallaController principal;
+    private AnchorPane sideScreen;
+    private Acount cuenta;
 
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private BorderPane borderPANE;
     @FXML
     private AnchorPane screen;
-
-    private PrimeraPantallaController principal;
     @FXML
     private ImageView userProfile;
     @FXML
     private Label userName;
-    
-    private AnchorPane sideScreen;
-    
-    private Acount cuenta;
     @FXML
     private Button exportarButton;
     @FXML
@@ -72,8 +76,10 @@ public class MiPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
         AnchorPane root;
+        
         try {
             root = inicio.load();
+            
             GastosPrincipalController control = inicio.getController();
             control.init(this);
 
@@ -85,6 +91,9 @@ public class MiPerfilController implements Initializable {
         }
     }
 
+    ///////////////////////////////////////////////////////
+    // INIT
+    ///////////////////////////////////////////////////////
     public void init (PrimeraPantallaController prin, Acount a) throws IOException{
         principal = prin;
         cuenta = a;
@@ -92,12 +101,20 @@ public class MiPerfilController implements Initializable {
         userProfile.setImage(cuenta.getLoggedUser().getImage());
     }
     
+///////////////////////////////////////////////////////
+    // RESIZE
+    ///////////////////////////////////////////////////////
+    private void resizable(AnchorPane pan) {
+        pan.setBottomAnchor(pan, 0.0);
+        pan.setTopAnchor(pan, 1.0);
+        pan.setLeftAnchor(pan, 0.0);
+        pan.setRightAnchor(pan, 1.0);
+    }
+    
     
     /**************************************************************************
      *                          BOTON INICIO
-     *
      */
-    
     @FXML
     private void inicio(ActionEvent event) throws IOException {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
@@ -110,11 +127,11 @@ public class MiPerfilController implements Initializable {
         reEnable();
         inicioButton.setDisable(true);
     }
+    
+    
     /**************************************************************************
      *                          BOTON PERFIL
-     *
      */
-
     @FXML
     private void miPerfil(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader miPerfil = new FXMLLoader(getClass().getResource(PERFIL + ".fxml"));
@@ -128,9 +145,7 @@ public class MiPerfilController implements Initializable {
 
     /**************************************************************************
      *                          BOTON GASTOS
-     *
      */
-    
     @FXML
     private void gastos(ActionEvent event) throws IOException, AcountDAOException {
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource(GASTOS + ".fxml"));
@@ -146,9 +161,7 @@ public class MiPerfilController implements Initializable {
     
     /**************************************************************************
      *                          BOTON EXPORTAR
-     *
      */
-
     @FXML
     private void exportar(ActionEvent event) throws IOException {
         FXMLLoader fxml = new FXMLLoader(getClass().getResource(EXPORTAR + ".fxml"));
@@ -164,7 +177,6 @@ public class MiPerfilController implements Initializable {
     
     /**************************************************************************
      *                          BOTON AYUDA
-     *
      */
     @FXML
     private void ayudaButtonPresionado(ActionEvent event) throws IOException {
@@ -181,24 +193,9 @@ public class MiPerfilController implements Initializable {
     
     /**************************************************************************
      *                          BOTON CERRAR SESION
-     *
      */
-    
-
     @FXML
     private void signOut(ActionEvent event) throws IOException {
-        /*
-        FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(ANTERIOR + ".fxml"));
-        Parent root = fxmlMain.load();
-            
-        PrimeraPantallaController controller = fxmlMain.getController();
-        cuenta.logOutUser();
-        controller.setAcount(this.cuenta);
-            
-        BorderPane p = principal.getGrid();
-        p.getChildren().setAll(root);
-        */
-        
         FXMLLoader fxmlMain = new FXMLLoader(getClass().getResource(ANTERIOR + ".fxml"));
         Parent root = fxmlMain.load();
             
@@ -212,11 +209,9 @@ public class MiPerfilController implements Initializable {
         newStage.show();
     }
     
-    /**************************************************************************
-     *                          OTRAS CLASES
-     *
-     */
-    
+    ///////////////////////////////////////////////////////
+    // METODO DE BOTONES
+    ///////////////////////////////////////////////////////
     private void reEnable() {
         inicioButton.setDisable(false);
         profileButton.setDisable(false);
@@ -225,15 +220,10 @@ public class MiPerfilController implements Initializable {
         ayudaButton.setDisable(false);
     }
     
-    public void setAcount(Acount p) {
-        cuenta = p;
-    }
-    public Acount getAcount() { return cuenta; }
-    private void resizable(AnchorPane pan) {
-        pan.setBottomAnchor(pan, 0.0);
-        pan.setTopAnchor(pan, 1.0);
-        pan.setLeftAnchor(pan, 0.0);
-        pan.setRightAnchor(pan, 1.0);
-    }
+    ///////////////////////////////////////////////////////
+    // METODOS DE CUENTA
+    ///////////////////////////////////////////////////////
+    public void setAcount(Acount p) {this.cuenta = p;}
     
+    public Acount getAcount() { return this.cuenta; }
 }

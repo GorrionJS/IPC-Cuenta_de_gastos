@@ -21,16 +21,25 @@ import model.User;
  * @author joanb
  */
 public class ExportWorker{
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private File file;
     private Acount cuenta = null;
     private User loggeduser = null;
     
+    ///////////////////////////////////////////////////////
+    // METODOS
+    ///////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////
+    // METODOS DE ARCHIVOS
+    ///////////////////////////////////////////////////////
     public void createFile() throws IOException {
-        
         file = File.createTempFile("impr", null);
-        System.out.println(file.getAbsolutePath());
-        
+        System.out.println(file.getAbsolutePath());  
     }
+    
     public void writeFile() throws IOException, AcountDAOException {
         FileWriter writer = new FileWriter(file);
         writer.write("Nombre: " + loggeduser.getName() + " Apellidos: " + loggeduser.getSurname() + "\n");
@@ -49,25 +58,33 @@ public class ExportWorker{
         writer.close();
     }
     
+    public File returnFile() { return this.file; }
+    
+    ///////////////////////////////////////////////////////
+    // METODOS DE LA CUENTA
+    ///////////////////////////////////////////////////////
     public void setAccount(Acount c) {
         this.cuenta = c;
-        this.loggeduser = c.getLoggedUser();
-                
+        this.loggeduser = c.getLoggedUser();   
     }
     
-    public File returnFile() { return file; }
-
     private String chargeToString(Charge c) {
         String res = "";
+        
         res += c.getCategory().getName() + " | ";
         res += c.getName() + ", ";
         res += c.getId() + ", ";
         res += c.getCost() + ", ";
         res += c.getDate() + ", ";
+        
         String aux = "sin ticket";
+        
         if (c.getImageScan() != null) aux = "con ticket";
         res += aux + ".";
        
         return res;
     }
+    
+    
+    
 }

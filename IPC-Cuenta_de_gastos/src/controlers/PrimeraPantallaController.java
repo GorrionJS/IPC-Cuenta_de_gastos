@@ -25,16 +25,27 @@ import model.AcountDAOException;
 /**
  * FXML Controller class
  *
- * @author joanb
+ * @author elgor
  */
 public class PrimeraPantallaController implements Initializable {
+    ///////////////////////////////////////////////////////
+    // VARIABLES GLOBALES
+    ///////////////////////////////////////////////////////
     private final boolean BYPASS = true;
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
+<<<<<<< HEAD
     private final String SINGUP = "/fxmls/register";
+=======
+    private final String SINGUP = "/fxmls/Register";
+    
+    private Acount cuenta;
+>>>>>>> pruebas_jonathan
             
-
+    ///////////////////////////////////////////////////////
+    // VARIABLES DEL NET BEANS
+    ///////////////////////////////////////////////////////
     @FXML
     private BorderPane borderPANE;
     @FXML
@@ -45,19 +56,11 @@ public class PrimeraPantallaController implements Initializable {
     private AnchorPane screen;
     @FXML
     private AnchorPane sideScreen;
-
-    private Acount cuenta;
     @FXML
     private HBox userImageNick;
     @FXML
     private GridPane gridPaneArriba;
     
-    private void byPass() {
-        
-    }
-    
-    
-
     /**
      * Initializes the controller class.
      * @param url
@@ -77,6 +80,9 @@ public class PrimeraPantallaController implements Initializable {
         }
         
     }
+    
+    private void byPass() {}
+    
     private FXMLLoader setDisplay(String dir, AnchorPane pan) {
         FXMLLoader newFXML = null;
         try {
@@ -97,14 +103,18 @@ public class PrimeraPantallaController implements Initializable {
         pan.setRightAnchor(pan, 1.0);
     }
     
-    
+    ///////////////////////////////////////////////////////
+    // BORRAR
+    ///////////////////////////////////////////////////////
     public void clear() { 
         setDisplay(NOVEDADES, screen);
         singup_button.setDisable(false);
         login_button.setDisable(false);
     }
     
-
+    ///////////////////////////////////////////////////////
+    // INICIAR SESION
+    ///////////////////////////////////////////////////////
     @FXML
     private void signup(ActionEvent event) throws IOException, AcountDAOException {
         // Direccion del FXML asociado al registro
@@ -130,6 +140,9 @@ public class PrimeraPantallaController implements Initializable {
         }
     }
         
+    ///////////////////////////////////////////////////////
+    // LOGEARSE
+    ///////////////////////////////////////////////////////
     @FXML
     private void login(MouseEvent event) throws IOException, AcountDAOException {
         try {
@@ -151,18 +164,17 @@ public class PrimeraPantallaController implements Initializable {
             System.err.println("Error al acceder a la ventana de login. Error " + ex); }
     }
  
-    public AnchorPane getAnchorPane(){ return screen; }
+    ///////////////////////////////////////////////////////
+    // GETTERS
+    ///////////////////////////////////////////////////////
+    public AnchorPane getAnchorPane(){ return this.screen; }
     
     // Devuelve la cuenta creada en register
-    public Acount getAcount() { return cuenta; }
+    public Acount getAcount() { return this.cuenta; }
     
-    public BorderPane getGrid() {return borderPANE; }
+    public BorderPane getGrid() {return this.borderPANE; }
     
-    public void setAcount(Acount c) { cuenta = c; }
+    public void setAcount(Acount c) { this.cuenta = c; }
     
-    public GridPane getImageNick(){
-        return gridPaneArriba;
-    }
-    
-    
+    public GridPane getImageNick(){ return this.gridPaneArriba; }   
 }
