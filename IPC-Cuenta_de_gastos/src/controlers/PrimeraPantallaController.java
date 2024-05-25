@@ -64,8 +64,8 @@ public class PrimeraPantallaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        resizable(screen); 
-        resizable(sideScreen);
+        if (screen != null) { resizable(screen); }
+        if (sideScreen != null) { resizable(sideScreen); }
         setDisplay(FAQ, sideScreen);
         clear();
         
@@ -92,10 +92,12 @@ public class PrimeraPantallaController implements Initializable {
     }
     
     private void resizable(AnchorPane pan) {
-        pan.setBottomAnchor(pan, 0.0);
-        pan.setTopAnchor(pan, 1.0);
-        pan.setLeftAnchor(pan, 0.0);
-        pan.setRightAnchor(pan, 1.0);
+        if (pan != null) {
+            pan.setBottomAnchor(pan, 0.0);
+            pan.setTopAnchor(pan, 1.0);
+            pan.setLeftAnchor(pan, 0.0);
+            pan.setRightAnchor(pan, 1.0);
+        }
     }
     
     ///////////////////////////////////////////////////////
