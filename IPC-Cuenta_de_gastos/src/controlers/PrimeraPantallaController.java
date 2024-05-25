@@ -65,16 +65,15 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         resizable(screen); 
-        //resizable(sideScreen);
-        //setDisplay(FAQ, screen);
-        //clear();
+        resizable(sideScreen);
+        setDisplay(FAQ, sideScreen);
+        clear();
         
         try {
             cuenta = Acount.getInstance();
         } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(PrimeraPantallaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     private void byPass() {}
