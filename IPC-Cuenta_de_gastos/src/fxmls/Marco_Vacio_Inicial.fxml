@@ -50,7 +50,7 @@
                   </ImageView>
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label id="title" styleClass="title" text="LA MIKIHERRAMIENTA" />
+                        <Label id="title" styleClass="title" text="Gasto Inteligente" />
                      </children>
                   </HBox>
                </children>

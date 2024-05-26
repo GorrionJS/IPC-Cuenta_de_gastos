@@ -62,6 +62,7 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setDisplay(FAQ, sideScreen);
+        setDisplay(NOVEDADES, screen);
         if (screen != null) { resizable(screen); }
         if (sideScreen != null) { resizable(sideScreen); }
         clear();
@@ -83,6 +84,7 @@ public class PrimeraPantallaController implements Initializable {
             AnchorPane pane = newFXML.load();
             resizable(pane);
             pan.getChildren().setAll(pane);
+            System.out.println("Se ha puesto un setDisplay");
         } catch (IOException ex) {
             System.err.println("Error al acceder a " + dir + " . Error " + ex); }
         finally { return newFXML;}
@@ -98,10 +100,9 @@ public class PrimeraPantallaController implements Initializable {
     }
     
     ///////////////////////////////////////////////////////
-    // BORRAR
+    // CLEAR
     ///////////////////////////////////////////////////////
-    public void clear() { 
-        setDisplay(NOVEDADES, screen);
+    public void clear() {
         singup_button.setDisable(false);
         login_button.setDisable(false);
     }
