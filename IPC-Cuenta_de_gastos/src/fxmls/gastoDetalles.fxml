@@ -17,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="345.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.detallesCargoController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.detallesCargoController">
    <children>
-      <GridPane minHeight="400.0" minWidth="345.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" percentWidth="30.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" percentWidth="40.0" prefWidth="145.0" />
@@ -91,12 +91,12 @@
                   <Insets bottom="20.0" left="50.0" right="10.0" />
                </GridPane.margin>
                <children>
+                  <Button fx:id="aceptarBD" mnemonicParsing="false" onAction="#aceptarMethod" text="Aceptar" textFill="WHITE" />
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelarMethod" text="Cancelar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="aceptarBD" mnemonicParsing="false" onAction="#aceptarMethod" text="Aceptar" textFill="WHITE" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="6">
