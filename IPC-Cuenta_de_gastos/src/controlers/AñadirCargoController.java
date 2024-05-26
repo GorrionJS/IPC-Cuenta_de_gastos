@@ -59,6 +59,8 @@ public class AñadirCargoController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
+    private String IMAGENPORDEFECTO ="/images/diskete.png";
+    
     private MiPerfilController principalLoged;
     private Acount cuenta;
     private AnchorPane screen;
@@ -281,7 +283,7 @@ public class AñadirCargoController implements Initializable {
     }
 
     @FXML
-    private void aceptarMethod(ActionEvent event) throws AcountDAOException {
+    private void aceptarMethod(ActionEvent event) throws AcountDAOException, FileNotFoundException {
         String name = cargoNombre.getText();
         String description = cargoDescripcion.getText();
         Double cost = Double.parseDouble(cargoCoste.getText());
@@ -289,7 +291,7 @@ public class AñadirCargoController implements Initializable {
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
         
-        if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+        if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, devuelveImagen(), dayBuy, categoria)){
             //System.out.println("se ha registrado");
             cargoNombre.setText("");
             cargoDescripcion.setText("");
@@ -300,7 +302,15 @@ public class AñadirCargoController implements Initializable {
         }else{
             //System.out.println("Faltan campos por rellenar");
         }
-
+    }
+        
+        private Image devuelveImagen() throws FileNotFoundException{
+            if(picture==null){
+                picture = new Image(new FileInputStream(IMAGENPORDEFECTO));
+                return picture;
+            }else{
+                return picture;
+        }
     }
 
     ///////////////////////////////////////////////////////
