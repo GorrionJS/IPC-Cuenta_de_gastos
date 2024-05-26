@@ -14,10 +14,13 @@
 
 <BorderPane fx:id="borderPANE" minHeight="500.0" minWidth="900.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.MiPerfilController">
    <center>
-      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="345.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="screen" minHeight="400.0" minWidth="340.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
-         </BorderPane.margin></AnchorPane>
+         </BorderPane.margin>
+         <padding>
+            <Insets right="5.0" />
+         </padding></AnchorPane>
    </center>
    <top>
       <HBox id="top" prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -42,7 +45,7 @@
                         <Label id="title" styleClass="title" text="LA MIKIHERRAMIENTA" />
                      </children>
                   </HBox>
-                  <HBox id=" " alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="287.0" spacing="20.0" styleClass="specialBox" GridPane.columnIndex="2">
+                  <HBox id=" " alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="288.0" spacing="20.0" styleClass="specialBox" GridPane.columnIndex="2">
                      <children>
                         <ImageView fx:id="userProfile" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="profileImagen">
                            <HBox.margin>
@@ -51,6 +54,9 @@
                         </ImageView>
                         <Label fx:id="userName" text="Label" />
                      </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
                   </HBox>
                </children>
             </GridPane>
@@ -58,9 +64,9 @@
       </HBox>
    </top>
    <right>
-      <GridPane maxHeight="1.7976931348623157E308" maxWidth="287" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="287.0" stylesheets="@../styles/estilo1.css" BorderPane.alignment="CENTER">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="287" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="290.0" stylesheets="@../styles/estilo1.css" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="55.0" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -72,59 +78,12 @@
             <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="ayudaButton" graphicTextGap="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ayudaButtonPresionado" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ayuda" GridPane.rowIndex="4">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="exportarButton" graphicTextGap="114.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exportar" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Exportar" GridPane.rowIndex="3">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="inicioButton" graphicTextGap="138.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#inicio" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Inicio">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="profileButton" graphicTextGap="115.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#miPerfil" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Mi Perfil" GridPane.rowIndex="1">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="gastosButton" graphicTextGap="98.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gastos" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ver Gastos" GridPane.rowIndex="2">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Button fx:id="ayudaButton" graphicTextGap="129.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ayudaButtonPresionado" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ayuda" GridPane.rowIndex="4" />
+            <Button fx:id="exportarButton" graphicTextGap="114.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exportar" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Exportar" GridPane.rowIndex="3" />
+            <Button fx:id="inicioButton" graphicTextGap="138.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#inicio" prefHeight="55.0" prefWidth="291.0" styleClass="menuButton" text="Inicio" />
+            <Button fx:id="profileButton" graphicTextGap="115.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#miPerfil" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Mi Perfil" GridPane.rowIndex="1" />
+            <Button fx:id="gastosButton" graphicTextGap="98.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#gastos" prefHeight="55.0" prefWidth="287.0" styleClass="menuButton" text="Ver Gastos" GridPane.rowIndex="2" />
             <Button id="signOut" fx:id="signOutButton" graphicTextGap="77.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOut" prefHeight="55.0" prefWidth="287.0" text="Cerrar Sesión" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Usuario.jpeg" />
-                     </image>
-                  </ImageView>
-               </graphic>
                <GridPane.margin>
                   <Insets bottom="5.0" />
                </GridPane.margin>

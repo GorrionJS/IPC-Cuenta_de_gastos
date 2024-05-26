@@ -127,7 +127,7 @@ public class MiPerfilController implements Initializable {
     private void inicio(ActionEvent event) throws IOException {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
         AnchorPane root = inicio.load();
-        
+        resizable(root);
         GastosPrincipalController control = inicio.getController();
         control.init(this, cuenta);
         
