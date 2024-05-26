@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" styleClass="anchor-pane" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AñadirCargoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AñadirCargoController">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -142,12 +142,12 @@
                   <Insets right="50.0" />
                </GridPane.margin>
             </HBox>
-            <Text fx:id="wrong1" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Text fx:id="wrong2" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Text fx:id="wrong3" fill="#e80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Text fx:id="wrong4" fill="#ee0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Text fx:id="wrong5" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Text fx:id="wrong6" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Text fx:id="wrong1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text fx:id="wrong2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Text fx:id="wrong3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Text fx:id="wrong4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Text fx:id="wrong5" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Text fx:id="wrong6" fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <TextField fx:id="cargoNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cargoDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="Existentes" style="-fx-background-color: #FF5100;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
