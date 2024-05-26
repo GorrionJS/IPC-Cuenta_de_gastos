@@ -77,6 +77,7 @@ public class AñadirCargoController implements Initializable {
      private MiPerfilController principalLoged;
      private Acount cuenta;
      private AnchorPane screen;
+     private String IMAGENPORDEFECTO ="/images/diskete.png";
      
     @FXML
     private TextField cargoNombre;
@@ -199,7 +200,14 @@ public class AñadirCargoController implements Initializable {
     
             
     
-    
+    private Image  devulveImagen() throws FileNotFoundException{
+        if(picture==null){
+            picture = new Image(new FileInputStream(IMAGENPORDEFECTO));
+            return picture;
+        }else{
+            return picture;
+        }
+    }
     public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException{
         
         principalLoged = princ;
@@ -318,7 +326,7 @@ public class AñadirCargoController implements Initializable {
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
-                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades,devulveImagen(), dayBuy, categoria)){
                 System.out.println("se ha registrado el gasto");
                 Alert bien = new Alert(Alert.AlertType.NONE,"cargo realizado",ok);
                 bien.setContentText("Se ha registrado el gasto correctamente");   
