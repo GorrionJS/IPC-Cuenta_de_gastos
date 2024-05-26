@@ -12,11 +12,13 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,7 +29,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SingleSelectionModel;
@@ -169,15 +175,27 @@ public class AñadirCargoController implements Initializable {
                 }
             }
         );
+
+        BooleanBinding textsInvisible = wrong1.visibleProperty().not()
+                .and(wrong2.visibleProperty().not())
+                .and(wrong3.visibleProperty().not())
+                .and(wrong4.visibleProperty().not())
+                .and(wrong5.visibleProperty().not())
+                .and(wrong6.visibleProperty().not());
+
+        BooleanBinding comboBoxSelected = desplefableListaCaategorias.getSelectionModel().selectedItemProperty().isNotNull();
+
+        aceptarAddCargoB.disableProperty().bind(textsInvisible.not().or(comboBoxSelected.not()));
     }
     
     ///////////////////////////////////////////////////////
     // INIT
     ///////////////////////////////////////////////////////
-    public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException{
+    public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) throws AcountDAOException, IOException{
         this.principalLoged = princ;
         this.cuenta= cuenta;
         this.screen= screen;
+        inicializaCategorias();
     }
              
     public void init(PrimeraPantallaController princ) throws AcountDAOException, IOException{
@@ -209,10 +227,8 @@ public class AñadirCargoController implements Initializable {
     public void inicializaCategorias() throws IOException {   
         try {
             categorias = FXCollections.observableList(principalLoged.getAcount().getUserCategories());
-            cuenta = Acount.getInstance();
-            categorias = FXCollections.observableList(cuenta.getUserCategories());
         } catch (AcountDAOException ex) {
-             Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         desplefableListaCaategorias.setItems(categorias);
@@ -272,18 +288,17 @@ public class AñadirCargoController implements Initializable {
     ///////////////////////////////////////////////////////
     @FXML
     private void cancelarMethod(ActionEvent event) throws AcountDAOException, IOException {
-        System.out.println(principalLoged.getAcount().getUserCategories().size());//get(2).getName());
-        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
-        AnchorPane root = verGasto.load();
-        MisGastosController control = verGasto.getController();
-        control.initMiperfil(principalLoged, cuenta, screen);
-        //principal.getGrid().setCenter(root);
-        resizable(root);
-        screen.getChildren().setAll(root);
+        Alert alerta = new Alert(AlertType.INFORMATION);
+        alerta.setTitle("Información");
+        alerta.setHeaderText(null);
+        alerta.setContentText("No se ha registrado ningún gasto");
+        alerta.showAndWait();
+        System.out.println("No se ha registrado ningún gasto");
+        vueltaAtras();
     }
 
     @FXML
-    private void aceptarMethod(ActionEvent event) throws AcountDAOException, FileNotFoundException {
+    private void aceptarMethod(ActionEvent event) throws AcountDAOException, FileNotFoundException, IOException {
         String name = cargoNombre.getText();
         String description = cargoDescripcion.getText();
         Double cost = Double.parseDouble(cargoCoste.getText());
@@ -291,25 +306,32 @@ public class AñadirCargoController implements Initializable {
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
         
-        if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, devuelveImagen(), dayBuy, categoria)){
-            //System.out.println("se ha registrado");
-            cargoNombre.setText("");
-            cargoDescripcion.setText("");
-            cargoCoste.setText("");
-            cargoUnidades.setText("");
-            cargoFecha.setValue(null);
-            desplefableListaCaategorias.setValue(null);
-        }else{
-            //System.out.println("Faltan campos por rellenar");
-        }
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.NONE, "Añadir Cargo", ok, no);
+        alert.setContentText("¿Esta seguro de realizar esta operación?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ok) { 
+                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+                System.out.println("se ha registrado el gasto");
+                Alert bien = new Alert(Alert.AlertType.NONE,"cargo realizado",ok);
+                bien.setContentText("Se ha registrado el gasto correctamente");   
+                vueltaAtras();
+                }else{
+                Alert mal = new Alert(Alert.AlertType.NONE,"cargo No realizado",no);
+                mal.setContentText("No se ha podido realizar la acción");
+                System.out.println("faltan campos por rellenar");
+                }
+            }
     }
         
-        private Image devuelveImagen() throws FileNotFoundException{
-            if(picture==null){
-                picture = new Image(new FileInputStream(IMAGENPORDEFECTO));
-                return picture;
-            }else{
-                return picture;
+    private Image devuelveImagen() throws FileNotFoundException{
+        if(picture==null){
+            picture = new Image(new FileInputStream(IMAGENPORDEFECTO));
+            return picture;
+        }else{
+            return picture;
         }
     }
 
@@ -319,7 +341,6 @@ public class AñadirCargoController implements Initializable {
     @FXML
     private void addCategoryMethod(ActionEvent event) throws AcountDAOException {
             try {
-            
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxmls/addCategoy.fxml"));
                 
                 Stage stage =loader.load();
@@ -351,5 +372,15 @@ public class AñadirCargoController implements Initializable {
     @FXML
     private void comprobarInt(KeyEvent event) {
         
+    }
+
+    private void vueltaAtras() throws IOException, AcountDAOException{
+        FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
+        AnchorPane root = verGasto.load();
+        MisGastosController control = verGasto.getController();
+        control.initMiperfil(principalLoged, cuenta, screen);
+        //principal.getGrid().setCenter(root);
+        resizable(root);
+        screen.getChildren().setAll(root);
     }
 }

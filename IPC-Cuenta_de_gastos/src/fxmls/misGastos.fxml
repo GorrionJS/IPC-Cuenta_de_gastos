@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="345.0" styleClass="anchor-pane" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.MisGastosController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="345.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.MisGastosController">
    <children>
       <GridPane alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -53,7 +53,7 @@
                   <Insets left="20.0" right="10.0" />
                </padding>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#addMethod" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #3E3E3E;" text="Registrar Gasto" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Button mnemonicParsing="false" onAction="#addMethod" prefHeight="25.0" prefWidth="101.0" text="Registrar Gasto" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="50.0" right="20.0" />
                </GridPane.margin>
