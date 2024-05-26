@@ -189,7 +189,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="14">
                <children>
-                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" styleClass="invertedButton" text="Acceptar" textFill="WHITE" />
+                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" styleClass="invertedButton" text="Aceptar" textFill="WHITE" />
                   <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
                </children>
                <GridPane.margin>

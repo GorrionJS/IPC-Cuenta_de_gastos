@@ -16,10 +16,10 @@ import javafx.stage.Stage;
 public class JavaFXMLApplication extends Application {
 
     // Minimo de redimension de la pantalla (X)
-    public static final int MIN_WIDTH = 640;
+    public static final int MIN_WIDTH = 900;
     // Minimo de redimension de la pantalla (Y) 
     // Actualmente 480 + 32 (VGA standard + title bar Windows 11 (32)) + 4 (Ajuste)
-    public static final int MIN_HEIGHT = 516;
+    public static final int MIN_HEIGHT = 500;
        
     // Nombre de la ruta del archivo FXML
     private final String archivo = "/fxmls/Marco_Vacio_Inicial";

@@ -139,19 +139,19 @@ public class AñadirCargoController implements Initializable {
             if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong1.setVisible(false);}});
         
         cargoDescripcion.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong2.setVisible(false);}});
+            if(newValue.isEmpty()){wrong2.setVisible(true);}else{wrong2.setVisible(false);}});
         
         cargoCoste.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong3.setVisible(false);}});
+            if(newValue.isEmpty()){wrong3.setVisible(true);}else{wrong3.setVisible(false);}});
         
         cargoUnidades.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong4.setVisible(false);}});
+            if(newValue.isEmpty()){wrong4.setVisible(true);}else{wrong4.setVisible(false);}});
         
         cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrong1.setVisible(true);}else{wrong5.setVisible(false);}});
+            if(newValue==null){wrong5.setVisible(true);}else{wrong5.setVisible(false);}});
         
         tesstImagen.imageProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrong1.setVisible(true);}else{wrong6.setVisible(false);}});
+            if(newValue==null){wrong6.setVisible(true);}else{wrong6.setVisible(false);}});
         
         desplefableListaCaategorias.valueProperty().addListener(
             new ChangeListener<Category>(){
@@ -163,7 +163,6 @@ public class AñadirCargoController implements Initializable {
                     }else{
                         desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
                         compruebaSelectedCategory=true;
-                        aceptarAddCargoB.setDisable(false);
                     }
                 }
             }
@@ -291,7 +290,7 @@ public class AñadirCargoController implements Initializable {
         LocalDate dayBuy = cargoFecha.getValue();
         
         if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
-            System.out.println("se ha registrado");
+            //System.out.println("se ha registrado");
             cargoNombre.setText("");
             cargoDescripcion.setText("");
             cargoCoste.setText("");
@@ -299,7 +298,7 @@ public class AñadirCargoController implements Initializable {
             cargoFecha.setValue(null);
             desplefableListaCaategorias.setValue(null);
         }else{
-            System.out.println("faltan campos por rellenar");
+            //System.out.println("Faltan campos por rellenar");
         }
 
     }

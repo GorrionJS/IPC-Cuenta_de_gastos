@@ -323,7 +323,6 @@ public class Mi_perfilUsuarioController implements Initializable {
     ///////////////////////////////////////////////////////
     // SE PUEDE BORRAR
     ///////////////////////////////////////////////////////
-    @FXML
     private void boton_cambiar_fecha_nacimiento(ActionEvent event) {
         datePicker_fecha_de_nacimiento.setDisable(false);
         
@@ -332,7 +331,6 @@ public class Mi_perfilUsuarioController implements Initializable {
         }
     }
 
-    @FXML
     private void boton_guardar_cambios_fecha(ActionEvent event) {
         if (datePicker_fecha_de_nacimiento.getValue() != cuenta.getLoggedUser().getRegisterDate()) {
         }
