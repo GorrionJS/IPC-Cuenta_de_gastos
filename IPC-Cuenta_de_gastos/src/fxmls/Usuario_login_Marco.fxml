@@ -37,12 +37,12 @@
                <children>
                   <ImageView fitHeight="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/Sin%20título.jpeg" />
+                        <Image url="@../images/logo.png.png" />
                      </image>
                   </ImageView>
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
                      <children>
-                        <Label id="title" styleClass="title" text="LA MIKIHERRAMIENTA" />
+                        <Label id="title" styleClass="title" text="Gasto Inteligente" />
                      </children>
                   </HBox>
                   <HBox id=" " alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="288.0" spacing="20.0" styleClass="specialBox" GridPane.columnIndex="2">
