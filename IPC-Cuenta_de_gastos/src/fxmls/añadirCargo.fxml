@@ -147,7 +147,6 @@
             <Text fx:id="wrong3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Text fx:id="wrong4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Text fx:id="wrong5" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Text fx:id="wrong6" fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <TextField fx:id="cargoNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cargoDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="Existentes" style="-fx-background-color: #FF5100;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -176,6 +175,11 @@
                </children>
             </HBox>
             <Button fx:id="butonAddCat" mnemonicParsing="false" onAction="#addCategoryMethod" prefHeight="19.0" prefWidth="80.0" text="Nueva" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <VBox alignment="CENTER" prefHeight="72.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <children>
+                  <Text fx:id="wrong6" fill="#f8f8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="◉ (Opcional)  ◉" underline="true" />
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </children>

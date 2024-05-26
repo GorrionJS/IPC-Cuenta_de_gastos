@@ -38,7 +38,7 @@
             <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="38.0" prefWidth="69.0" spacing="30.0" GridPane.rowIndex="2">
+            <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="38.0" prefWidth="69.0" spacing="30.0" GridPane.rowIndex="2">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre       " wrappingWidth="80.0">
                      <font>
@@ -50,7 +50,7 @@
                   <Insets left="30.0" right="50.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="40.0" prefWidth="101.0" spacing="30.0" GridPane.rowIndex="3">
+            <HBox alignment="CENTER" minWidth="-Infinity" prefHeight="40.0" prefWidth="101.0" spacing="30.0" GridPane.rowIndex="3">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="80.0">
                      <font>
@@ -144,12 +144,12 @@
                   <Insets right="50.0" />
                </GridPane.margin>
             </HBox>
-            <Text fx:id="wrongNom" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Text fx:id="wrongDesc" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Text fx:id="wrongCost" fill="#e80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Text fx:id="wrongUnity" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Text fx:id="wrongDate" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Text fx:id="wrongImage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Text fx:id="wrongNom" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text fx:id="wrongDesc" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Text fx:id="wrongCost" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Text fx:id="wrongUnity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Text fx:id="wrongDate" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío ⓘ" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Text fx:id="wrongImage" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="◉ (Opcional)  ◉" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <Button fx:id="cargoImagen" mnemonicParsing="false" onAction="#addScannImage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <graphic>
                   <ImageView fx:id="tesstImagen" fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
@@ -189,7 +189,7 @@
                   <Separator fx:id="separator" prefWidth="200.0" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
                   <DatePicker fx:id="cargoFecha" prefWidth="120.0" stylesheets="@../styles/estilo1.css" />
                   <Separator prefWidth="200.0" />

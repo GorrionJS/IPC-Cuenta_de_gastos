@@ -65,7 +65,7 @@ public class AñadirCargoController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
-    private String IMAGENPORDEFECTO ="/images/diskete.png";
+    private String IMAGENPORDEFECTO ="/images/emptyImage.png";
     
     private MiPerfilController principalLoged;
     private Acount cuenta;
@@ -158,8 +158,7 @@ public class AñadirCargoController implements Initializable {
         cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
             if(newValue==null){wrong5.setVisible(true);}else{wrong5.setVisible(false);}});
         
-        tesstImagen.imageProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrong6.setVisible(true);}else{wrong6.setVisible(false);}});
+        
         
         desplefableListaCaategorias.valueProperty().addListener(
             new ChangeListener<Category>(){
@@ -180,8 +179,8 @@ public class AñadirCargoController implements Initializable {
                 .and(wrong2.visibleProperty().not())
                 .and(wrong3.visibleProperty().not())
                 .and(wrong4.visibleProperty().not())
-                .and(wrong5.visibleProperty().not())
-                .and(wrong6.visibleProperty().not());
+                .and(wrong5.visibleProperty().not());
+                
 
         BooleanBinding comboBoxSelected = desplefableListaCaategorias.getSelectionModel().selectedItemProperty().isNotNull();
 
@@ -218,7 +217,7 @@ public class AñadirCargoController implements Initializable {
     ///////////////////////////////////////////////////////
     private boolean comprueba(){
         if(wrong1.isVisible()&& wrong2.isVisible()&& wrong3.isVisible()&&
-           wrong4.isVisible()&& wrong5.isVisible()&& wrong6.isVisible() && compruebaSelectedCategory)
+           wrong4.isVisible()&& wrong5.isVisible() && compruebaSelectedCategory)
         {return false;}
         return true;
     }
@@ -315,7 +314,7 @@ public class AñadirCargoController implements Initializable {
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
-                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, devuelveImagen(), dayBuy, categoria)){
                     Alert bien = new Alert(Alert.AlertType.CONFIRMATION,"Cargo registrado",ok);
                     bien.setContentText("Se ha registrado el gasto correctamente.");   
                     vueltaAtras();
@@ -328,7 +327,7 @@ public class AñadirCargoController implements Initializable {
         
     private Image devuelveImagen() throws FileNotFoundException{
         if(picture==null){
-            picture = new Image(new FileInputStream(IMAGENPORDEFECTO));
+            picture = new Image(IMAGENPORDEFECTO);
             return picture;
         }else{
             return picture;

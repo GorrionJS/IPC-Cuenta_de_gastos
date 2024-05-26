@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -143,12 +144,52 @@ public class detallesCargoController implements Initializable {
                 return null;
             }
         });
-        
         detailCoste.setTextFormatter(formatoD);
         detailUnidad.setTextFormatter(formatoI);
-        editable(false);
-        wrongVisible(false);
-        aceptarBD.setDisable(false);
+        
+        detailNom.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrongNom.setVisible(true);}else{wrongNom.setVisible(false);}});
+        
+        detailDesc.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrongDesc.setVisible(true);}else{wrongDesc.setVisible(false);}});
+        
+        detailCoste.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrongCost.setVisible(true);}else{wrongCost.setVisible(false);}});
+        
+        detailUnidad.textProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue.isEmpty()){wrongUnity.setVisible(true);}else{wrongUnity.setVisible(false);}});
+        
+        cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
+            if(newValue==null){wrongDate.setVisible(true);}else{wrongDate.setVisible(false);}});
+        
+        
+        
+        desplefableListaCaategorias.valueProperty().addListener(
+                new ChangeListener<Category>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Category> ov, Category t, Category t1) {
+                        if(t1== null){
+                            desplefableListaCaategorias.setStyle("-fx-border-color: #FF5100; -fx-border-width: 2px;");
+                            compruebaSelectedCategory= false;
+                        }else{
+                            desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
+                            compruebaSelectedCategory=true;
+                            
+                        }
+                    }
+                });
+                BooleanBinding textsInvisible = wrongCost.visibleProperty().not()
+                .and(wrongDate.visibleProperty().not())
+                .and(wrongDesc.visibleProperty().not())
+                .and(wrongNom.visibleProperty().not())
+                .and(wrongUnity.visibleProperty().not());
+                
+
+                BooleanBinding comboBoxSelected = desplefableListaCaategorias.getSelectionModel().selectedItemProperty().isNotNull();
+
+                aceptarBD.disableProperty().bind(textsInvisible.not().or(comboBoxSelected.not()));
+        
+        
         
     }    
 
@@ -176,6 +217,8 @@ public class detallesCargoController implements Initializable {
             } else{
                 vueltaAtras();
             }
+        }else{
+            vueltaAtras();
         }
     
     }
@@ -230,6 +273,7 @@ public class detallesCargoController implements Initializable {
         this.cuenta= cuenta;
         this.screen=screen;
         inicializaCategorias();
+        //detailComprovation();
         
     }
     
@@ -242,11 +286,14 @@ public class detallesCargoController implements Initializable {
         editableE= true;
         if(c) {
             titulosso.setText("Editar Cargo");
-            editableE= true;
+            //editableE= true;
+            cargoImagen.setDisable(false);
+            cargoFecha.setDisable(false);
+            desplefableListaCaategorias.setDisable(false);
         } 
         cancelButton.setVisible(true);
-        detailComprovation();
-        aceptarBD.setDisable(true);
+        //detailComprovation();
+        //aceptarBD.setDisable(true);
        
     }
     
@@ -266,16 +313,22 @@ public class detallesCargoController implements Initializable {
         detailDesc.setText(cargo.getDescription());
         detailCoste.setText(String.valueOf(cargo.getCost()));
         detailUnidad.setText(String.valueOf(cargo.getUnits()));
-
+        tesstImagen.setImage(cargo.getImageScan());
+        desplefableListaCaategorias.setValue(cargo.getCategory());
+        //desplefableListaCaategorias.setPromptText(cargo.getCategory().getName());
+        //cargoFecha.setPromptText(cargo.getDate().toString());
+        cargoFecha.setValue(cargo.getDate());
         if(editableE== false){
             desplefableListaCaategorias.setDisable(true);
             desplefableListaCaategorias.setPromptText(cargo.getCategory().getName());
             cargoFecha.setDisable(true);
             cargoFecha.setPromptText(this.cargo.getDate().toString());
-            cargoImagen.setVisible(false);
-            tesstImagen.setImage(cargo.getImageScan());
+            
+            
         }
     }
+    
+    
     
     private void resizable(AnchorPane pan) {
         pan.setBottomAnchor(pan, 0.0);
@@ -300,8 +353,7 @@ public class detallesCargoController implements Initializable {
         cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
             if(newValue==null){wrongDate.setVisible(true);}else{wrongDate.setVisible(false);}});
         
-        tesstImagen.imageProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrongImage.setVisible(true);}else{wrongImage.setVisible(false);}});
+        
         
         desplefableListaCaategorias.valueProperty().addListener(
                 new ChangeListener<Category>(){
@@ -313,15 +365,13 @@ public class detallesCargoController implements Initializable {
                         }else{
                             desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
                             compruebaSelectedCategory=true;
-                            aceptarBD.setDisable(false);  
+                            
                         }
                     }
                 });
+
         
-        if(wrongNom.isVisible()&& wrongCost.isVisible()&& wrongDate.isVisible()&&
-           wrongDesc.isVisible()&& wrongUnity.isVisible()&& wrongImage.isVisible() && compruebaSelectedCategory)
-        {}else{
-        aceptarBD.setDisable(false);}
+
     }
 
     private void vueltaAtras() throws IOException{
@@ -336,8 +386,9 @@ public class detallesCargoController implements Initializable {
     
     private boolean comprueba(){
         if(wrongNom.isVisible()|| wrongCost.isVisible() || wrongDate.isVisible()||
-           wrongDesc.isVisible()|| wrongUnity.isVisible()|| wrongImage.isVisible() || !compruebaSelectedCategory)
-        {return false; }
+           wrongDesc.isVisible()|| wrongUnity.isVisible()||  !compruebaSelectedCategory)
+        {
+            return false; }
         
         return true;
     }
