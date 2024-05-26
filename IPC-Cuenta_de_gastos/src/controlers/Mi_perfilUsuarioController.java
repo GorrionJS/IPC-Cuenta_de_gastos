@@ -72,6 +72,7 @@ public class Mi_perfilUsuarioController implements Initializable {
     private ToggleButton boton_visualizar_contraseña;
     @FXML
     private ImageView imagen_de_ver_y_no_ver_la_contraseña;
+    @FXML
     private DatePicker datePicker_fecha_de_nacimiento;
     @FXML
     private Label apellidos_usuario_label;
@@ -335,5 +336,19 @@ public class Mi_perfilUsuarioController implements Initializable {
         }
     }
 
+    @FXML
+    private void miramos_fecha(ActionEvent event) {
+        // Vamos a bloquear de aquí adelante
+        /*datePicker_fecha_de_nacimiento.setDayCellFactory((DatePicker picker) -> {
+            return new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    LocalDate today = LocalDate.now();
+                    setDisable(empty || date.compareTo(today) < 0);
+                }
+            };
+        });*/
+    }
 
 }

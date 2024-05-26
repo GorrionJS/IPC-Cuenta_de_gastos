@@ -306,10 +306,10 @@ public class AñadirCargoController implements Initializable {
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
         
-        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Añadir Cargo", ok, no);
-        alert.setContentText("¿Está seguro de realizar esta operación?");
+        Alert alert = new Alert(Alert.AlertType.NONE, "Añadir Cargo", ok, no);
+        alert.setContentText("¿Esta seguro de realizar esta operación?");
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
