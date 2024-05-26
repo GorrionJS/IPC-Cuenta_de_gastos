@@ -197,7 +197,7 @@ public class RegisterController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Proceso de creación de su cuenta");
         alert.setHeaderText(null);
-        alert.setContentText("¿Quiere revisar sus datos antes de continuar?");
+        alert.setContentText("¿Desea continuar con los datos introducidos?");
         alert.getButtonTypes().setAll(ok, no);
         
         Optional<ButtonType> result = alert.showAndWait();
