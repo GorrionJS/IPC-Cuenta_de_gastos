@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="345.0" styleClass="anchor-pane" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AñadirCargoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" styleClass="anchor-pane" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AñadirCargoController">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -79,7 +79,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="4">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catégoria" wrappingWidth="80.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="80.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
@@ -142,15 +142,15 @@
                   <Insets right="50.0" />
                </GridPane.margin>
             </HBox>
-            <Text fx:id="wrong1" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vaciío" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Text fx:id="wrong2" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Text fx:id="wrong3" fill="#e80000" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Text fx:id="wrong4" fill="#ee0000" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Text fx:id="wrong5" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Text fx:id="wrong6" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Text fx:id="wrong1" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text fx:id="wrong2" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Text fx:id="wrong3" fill="#e80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Text fx:id="wrong4" fill="#ee0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Text fx:id="wrong5" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Text fx:id="wrong6" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Campo vacío" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <TextField fx:id="cargoNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="cargoDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="existentes" style="-fx-background-color: #FF5100;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="desplefableListaCaategorias" prefWidth="150.0" promptText="Existentes" style="-fx-background-color: #FF5100;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="cargoCoste" accessibleText="double" onKeyTyped="#comprobarDouble" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="cargoUnidades" onKeyTyped="#comprobarInt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="cargoFecha" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -167,12 +167,12 @@
                   <Insets bottom="20.0" left="50.0" right="10.0" />
                </GridPane.margin>
                <children>
+                  <Button fx:id="aceptarAddCargoB" mnemonicParsing="false" onAction="#aceptarMethod" stylesheets="@../styles/estilo1.css" text="Aceptar" textFill="WHITE" />
                   <Button mnemonicParsing="false" onAction="#cancelarMethod" text="Cancelar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="aceptarAddCargoB" mnemonicParsing="false" onAction="#aceptarMethod" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
                </children>
             </HBox>
             <Button fx:id="butonAddCat" mnemonicParsing="false" onAction="#addCategoryMethod" prefHeight="19.0" prefWidth="80.0" text="Nueva" GridPane.columnIndex="2" GridPane.rowIndex="4" />

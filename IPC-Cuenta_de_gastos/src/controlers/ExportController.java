@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javax.print.Doc;
 import javax.print.DocFlavor;
@@ -74,19 +75,23 @@ public class ExportController implements Initializable {
     @FXML
     private void accept(ActionEvent event) throws IOException, AcountDAOException, PrinterException, PrintException {
         // Creamos la alerta
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirme su elección", ok, no);
         alert.setTitle("Confirmar impresión");
-        alert.setContentText("Esta seguro que quiere imprimir el archivo");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro de que quiere imprimir el archivo?");
         
         // Obtenemos el valor
         Optional<ButtonType> result = alert.showAndWait();
         
         // Chekeamos
-        if(result.isPresent() && result.get().equals(ButtonType.OK)) {
+        if(result.isPresent() && result.get() == ok) {
             ExportWorker controller = new ExportWorker();
             controller.setAccount(cuenta);
             
-            controller.createFile(); controller.writeFile();
+            controller.createFile(); 
+            controller.writeFile();
             File data = controller.returnFile();
             FileInputStream text = new FileInputStream(data);
             

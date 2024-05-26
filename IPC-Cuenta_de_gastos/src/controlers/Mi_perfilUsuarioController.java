@@ -46,6 +46,7 @@ public class Mi_perfilUsuarioController implements Initializable {
     ///////////////////////////////////////////////////////
     private Acount cuenta;
     private MiPerfilController principal;
+    private DatePicker datePicker_fecha_de_nacimiento;
     
     private Image imagenOjoAbierto;
     private Image imagenOjoCerrado;
@@ -72,7 +73,6 @@ public class Mi_perfilUsuarioController implements Initializable {
     private ToggleButton boton_visualizar_contraseña;
     @FXML
     private ImageView imagen_de_ver_y_no_ver_la_contraseña;
-    private DatePicker datePicker_fecha_de_nacimiento;
     @FXML
     private Label apellidos_usuario_label;
     @FXML
@@ -188,6 +188,7 @@ public class Mi_perfilUsuarioController implements Initializable {
             Image imagen = new Image(selectedFile.toURI().toString());
             cuenta.getLoggedUser().setImage(imagen);
             imagen_de_perfil_de_usuario.setImage(imagen);
+            principal.setUserProfileImage(imagen);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import com.sun.javafx.logging.PlatformLogger.Level;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
@@ -221,17 +224,20 @@ public class MisGastosController implements Initializable {
     
     private void remove(Charge c){
         try {
-            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-            alerta.setHeaderText("Estas seguro de salir?");
-            alerta.showAndWait();
-            if(principalLoged.getAcount().removeCharge(c)){
-                System.out.println("si se pudo eliminar");
-                inicializarCargos();
-                
-            }
-        } catch (AcountDAOException ex) {
-            System.out.println("no se pudo eliminar");
-        }
+            ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alerta = new Alert(Alert.AlertType.WARNING, "Eliminar cargo", ok, no);
+            alerta.setTitle("Eliminar cargo");
+            alerta.setHeaderText(null);
+            alerta.setContentText("¿Está seguro de que quiere eliminar este cargo?");
+            
+            Optional<ButtonType> result = alerta.showAndWait();
+            
+            if (result.isPresent() && result.get() == ok) {
+                principalLoged.getAcount().removeCharge(c);
+                inicializarCargos(); 
+            } 
+        } catch (AcountDAOException ex) {}
     }
     
     private void detail (Charge c){

@@ -206,7 +206,7 @@ public class GastosPrincipalController implements Initializable {
     // LANZAMOS GRAFICO LINEAL (MES A MES)
     ///////////////////////////////////////////////////////
     private void graficoMes() throws AcountDAOException {
-        double eneroC = 0.0;
+        /*double eneroC = 0.0;
         double febreroC = 0.0;
         double marzoC = 0.0;
         double abrilC = 0.0;
@@ -217,7 +217,7 @@ public class GastosPrincipalController implements Initializable {
         double septiembreC = 0.0;
         double octubreC = 0.0;
         double noviembreC = 0.0;
-        double diciembreC = 0.0;
+        double diciembreC = 0.0;*/
         
         double month[] = new double[13];
         

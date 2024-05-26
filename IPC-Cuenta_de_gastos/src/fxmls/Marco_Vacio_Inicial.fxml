@@ -28,7 +28,7 @@
                <children>
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="75.0" prefWidth="287.0" styleClass="specialBox" GridPane.columnIndex="2">
                      <children>
-                        <Button fx:id="login_button" mnemonicParsing="false" onMousePressed="#login" prefHeight="30.0" prefWidth="100.0" styleClass="specialButton" text="Iniciar Sesion">
+                        <Button fx:id="login_button" mnemonicParsing="false" onMousePressed="#login" prefHeight="30.0" prefWidth="100.0" styleClass="specialButton" text="Iniciar Sesión">
                            <HBox.margin>
                               <Insets right="25.0" />
                            </HBox.margin>

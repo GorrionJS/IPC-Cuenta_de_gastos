@@ -84,7 +84,6 @@ public class PrimeraPantallaController implements Initializable {
             AnchorPane pane = newFXML.load();
             resizable(pane);
             pan.getChildren().setAll(pane);
-            System.out.println("Se ha puesto un setDisplay");
         } catch (IOException ex) {
             System.err.println("Error al acceder a " + dir + " . Error " + ex); }
         finally { return newFXML;}

@@ -34,20 +34,21 @@
             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
-               <children>
-                  <PasswordField fx:id="campo_de_texto_de_la_contraseña" disable="true" maxWidth="150.0" promptText="New password" />
-               </children>
+            <Label contentDisplay="TOP" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Mi perfil" underline="true" GridPane.columnSpan="3">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </HBox>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+               </padding></Label>
             <TextField maxWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="campo_de_texto_de_contraseña_visible" maxWidth="150.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Button mnemonicParsing="false" onAction="#boton_cambiar_contraseña">
@@ -181,16 +182,16 @@
                   </Button>
                </children>
             </VBox>
-            <Label contentDisplay="TOP" stylesheets="@../styles/estilo1.css" text="Mi perfil" underline="true" GridPane.columnSpan="3">
-               <font>
-                  <Font name="Consolas" size="36.0" />
-               </font>
+            <PasswordField fx:id="campo_de_texto_de_la_contraseña" disable="true" maxWidth="150.0" promptText="New password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets />
+                  <Insets left="10.0" />
                </GridPane.margin>
-               <padding>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
-               </padding></Label>
+            </PasswordField>
+            <TextField fx:id="campo_de_texto_de_contraseña_visible" maxWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
       </GridPane>
    </children>

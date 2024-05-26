@@ -291,7 +291,7 @@ public class AñadirCargoController implements Initializable {
         Alert alerta = new Alert(AlertType.INFORMATION);
         alerta.setTitle("Información");
         alerta.setHeaderText(null);
-        alerta.setContentText("No se ha registrado ningún gasto");
+        alerta.setContentText("No se ha registrado ningún gasto.");
         alerta.showAndWait();
         System.out.println("No se ha registrado ningún gasto");
         vueltaAtras();
@@ -306,22 +306,22 @@ public class AñadirCargoController implements Initializable {
         Category categoria = desplefableListaCaategorias.getValue();
         LocalDate dayBuy = cargoFecha.getValue();
         
-        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.NONE, "Añadir Cargo", ok, no);
-        alert.setContentText("¿Esta seguro de realizar esta operación?");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Añadir Cargo", ok, no);
+        alert.setTitle("Guardar cargo");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro de realizar esta operación?");
         
         Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
                 if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
-                System.out.println("se ha registrado el gasto");
-                Alert bien = new Alert(Alert.AlertType.NONE,"cargo realizado",ok);
-                bien.setContentText("Se ha registrado el gasto correctamente");   
-                vueltaAtras();
+                    Alert bien = new Alert(Alert.AlertType.CONFIRMATION,"Cargo registrado",ok);
+                    bien.setContentText("Se ha registrado el gasto correctamente.");   
+                    vueltaAtras();
                 }else{
-                Alert mal = new Alert(Alert.AlertType.NONE,"cargo No realizado",no);
-                mal.setContentText("No se ha podido realizar la acción");
-                System.out.println("faltan campos por rellenar");
+                    Alert mal = new Alert(Alert.AlertType.WARNING,"Cargo no registrado",no);
+                    mal.setContentText("No se ha podido realizar la acción.");
                 }
             }
     }
