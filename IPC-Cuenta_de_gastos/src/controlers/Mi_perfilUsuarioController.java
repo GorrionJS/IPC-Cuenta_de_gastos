@@ -335,6 +335,4 @@ public class Mi_perfilUsuarioController implements Initializable {
         if (datePicker_fecha_de_nacimiento.getValue() != cuenta.getLoggedUser().getRegisterDate()) {
         }
     }
-
-
 }

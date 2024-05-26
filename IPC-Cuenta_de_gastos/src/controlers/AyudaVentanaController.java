@@ -6,6 +6,7 @@ package controlers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -36,6 +37,8 @@ public class AyudaVentanaController implements Initializable {
     private Label texto_exportar;
     @FXML
     private Label texto_graficas;
+    @FXML
+    private Label tituloT;
     
     
     @Override

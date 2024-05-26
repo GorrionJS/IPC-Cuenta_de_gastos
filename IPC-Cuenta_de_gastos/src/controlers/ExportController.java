@@ -16,11 +16,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.FileChooser;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
@@ -123,6 +125,32 @@ public class ExportController implements Initializable {
                     System.err.println(pe);
                 }
             }
+        }
+    }
+
+    @FXML
+    private void seleccionRuta(ActionEvent event) {
+        // Crear una instancia de FileChooser
+        FileChooser fileChooser = new FileChooser();
+
+        // Configurar el título del diálogo
+        fileChooser.setTitle("Guardar archivo");
+
+        // Configurar el filtro de extensiones (opcional)
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+        
+        // Mostrar el diálogo de selección de archivo
+        File selectedFile = fileChooser.showSaveDialog(
+                ((Node)event.getSource()).getScene().getWindow()
+        );
+
+        // Comprobar si se ha seleccionado un archivo
+        if (selectedFile != null) {
+            // Obtener la ruta absoluta del archivo seleccionado
+            String filePath = selectedFile.getAbsolutePath();
+            System.out.println("Archivo seleccionado: " + filePath);
+        } else {
+            System.out.println("No se ha seleccionado ningún archivo.");
         }
     }
 }
