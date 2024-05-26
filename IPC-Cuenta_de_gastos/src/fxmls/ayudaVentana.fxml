@@ -3,25 +3,53 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="345.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controlers.AyudaVentanaController">
+<AnchorPane id="AnchorPane" minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.AyudaVentanaController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="titulo" text="Titulo" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta Frequentes" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A continuación se presentarán las preguntas que mas se repiten:&quot;esto va a cambiar&quot;" />
+                     </children>
+                  </HBox>
                </children>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
                <children>
                   <Label text="¿Cómo añado un gasto?" />
                   <Label fx:id="texto_como_añadir_gasto" text="Añado gasto" />
                </children>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="2">
                <children>
                   <Label text="¿Cómo puede ver todos mis gastos?" />
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
@@ -31,17 +59,20 @@
                      </children>
                   </VBox>
                </children>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="3">
                <children>
                   <Label text="¿Es posible exportar todo a un único documento?" />
                   <Label fx:id="texto_exportar" text="Exportar" />
                </children>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
             </VBox>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
+      </GridPane>
    </children>
 </AnchorPane>

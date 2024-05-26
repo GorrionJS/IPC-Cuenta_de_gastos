@@ -193,6 +193,7 @@ public class MiPerfilController implements Initializable {
         FXMLLoader ayudaFxml = new FXMLLoader(getClass().getResource(AYUDA + ".fxml"));
         AnchorPane root = ayudaFxml.load();
         AyudaVentanaController controller = ayudaFxml.getController();
+        resizable(root);
         controller.init(this);
         
         screen.getChildren().setAll(root);
