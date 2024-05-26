@@ -36,7 +36,10 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuestra aplicación de gestión de gastos es la herramienta perfecta para llevar el control de tus finanzas personales de manera efectiva y sencilla. Diseñada pensando en la comodidad y facilidad de uso, te permite registrar, organizar y analizar todos tus gastos diarios, mensuales y anuales." textAlignment="JUSTIFY" wrappingWidth="239.0" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuestra aplicación de gestión de gastos es la herramienta perfecta para llevar el control de tus finanzas personales de manera efectiva y sencilla. Diseñada pensando en la comodidad y facilidad de uso, te permite registrar, organizar y analizar todos tus gastos diarios, mensuales y anuales." textAlignment="JUSTIFY" wrappingWidth="239.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </HBox.margin></Text>
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" />
@@ -76,15 +79,6 @@
                               <Insets left="20.0" />
                            </opaqueInsets>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accede a tus datos desde tu computadora, teléfono o tablet, estés donde estés." textAlignment="JUSTIFY" wrappingWidth="239.0">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                        </HBox>
                      </children>
                   </VBox>
                </children>
@@ -102,7 +96,7 @@
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nuestra aplicación no solo simplifica la gestión de tus finanzas, sino que también te ayuda a mejorar tus hábitos financieros y a alcanzar tus metas económicas. Desde estudiantes hasta empresarios, todos pueden beneficiarse de las poderosas herramientas que ofrecemos." textAlignment="JUSTIFY" wrappingWidth="239.0">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets bottom="5.0" left="20.0" top="5.0" />
                                  </HBox.margin>
                               </Text>
                            </children>
