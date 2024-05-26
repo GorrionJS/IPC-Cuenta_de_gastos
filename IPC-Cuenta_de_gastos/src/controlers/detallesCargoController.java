@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
@@ -24,14 +25,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -73,7 +80,7 @@ public class detallesCargoController implements Initializable {
     private MiPerfilController principalLoged;
     private Acount cuenta;
     private AnchorPane screen;
-    private boolean editableE;
+    private boolean editableE= false;
     private Charge cargo;
     private Image picture;
     private Stage stage;
@@ -99,6 +106,10 @@ public class detallesCargoController implements Initializable {
     private boolean compruebaSelectedCategory ;
     @FXML
     private Button aceptarBD;
+    @FXML
+    private VBox vBoxCatégoria;
+    @FXML
+    private Separator separator;
 
     /**
      * Initializes the controller class.
@@ -107,6 +118,7 @@ public class detallesCargoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         // Define el patrón para solo permitir números
+        
         Pattern patronInt = Pattern.compile("\\d*");
         Pattern patronDouble = Pattern.compile("\\d*|\\d+\\.\\d*");
         // Crea un TextFormatter con un filtro basado en el patrón
@@ -131,12 +143,49 @@ public class detallesCargoController implements Initializable {
         aceptarBD.setDisable(false);
         
     }    
+    
+    
 
     @FXML
     private void cancelarMethod(ActionEvent event) throws IOException {
-        vueltaAtras();
+        
+        if(editableE){
+            ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.NONE, "Esta a punto de elminiar todos los datos rellenados",
+        ok, no);
+            alert.setContentText("¿Esta seguro de que quiere descartar los cambios realizados?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ok) { 
+                inputClear(detailNom);
+                inputClear(detailDesc);
+                inputClear(detailCoste);
+                inputClear(detailUnidad);
+                
+                tesstImagen.setVisible(false);
+                picture = null;
+                cargoImagen.setVisible(true);
+                textClear(); 
+                vueltaAtras();
+            }else{
+                vueltaAtras();
+            }
+        }
     }
-
+    
+    private void textClear() {
+        wrongNom.setVisible(false);
+        wrongDesc.setVisible(false);
+        wrongUnity.setVisible(false);
+        wrongCost.setVisible(false);
+        wrongImage.setVisible(false);
+        wrongDate.setVisible(false);
+    }
+    private void inputClear(TextInputControl e) {
+        if(!(e == null || e.getText().equals(""))) e.clear();
+    }
+    
     @FXML
     private void aceptarMethod(ActionEvent event) throws IOException {
         if(editableE== true && comprueba()){
@@ -184,6 +233,7 @@ public class detallesCargoController implements Initializable {
         this.screen=screen;
         inicializaCategorias();
         
+        
     }
     
     public void editable(boolean c){
@@ -192,8 +242,15 @@ public class detallesCargoController implements Initializable {
         detailCoste.setEditable(c);
         detailUnidad.setEditable(c);
         butonAddCat.setVisible(c);
-        editableE= true;
-        if(c) titulosso.setText("Editar Cargo");
+        
+        if(c) {
+            titulosso.setText("Editar Cargo");
+            editableE= true;
+            
+            
+        
+        }
+        cancelButton.setVisible(true);
         
         detailComprovation();
         aceptarBD.setDisable(true);
@@ -215,6 +272,14 @@ public class detallesCargoController implements Initializable {
         detailDesc.setText(cargo.getDescription());
         detailCoste.setText(String.valueOf(cargo.getCost()));
         detailUnidad.setText(String.valueOf(cargo.getUnits()));
+        if(editableE== false){
+        desplefableListaCaategorias.setDisable(true);
+        desplefableListaCaategorias.setPromptText(cargo.getCategory().getName());
+        cargoFecha.setDisable(true);
+        cargoFecha.setPromptText(this.cargo.getDate().toString());
+        cargoImagen.setVisible(false);
+        tesstImagen.setImage(cargo.getImageScan());
+        }
     }
     private void resizable(AnchorPane pan) {
         pan.setBottomAnchor(pan, 0.0);

@@ -187,6 +187,7 @@ public class RegisterController implements Initializable {
                 pictureUpload.setVisible(true);
                 textClear(); 
                 principal.clear();
+                
             }
     }
     

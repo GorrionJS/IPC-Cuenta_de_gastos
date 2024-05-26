@@ -37,7 +37,8 @@ public class MiPerfilController implements Initializable {
     private static final String AYUDA = "/fxmls/";
     private static final String EXPORTAR = "/fxmls/Exportar";
     private static final String ANTERIOR = "/fxmls/Marco_Vacio_Inicial";
-
+    private final String FAQ = "/fxmls/FAQ";    
+    private final String NOVEDADES = "/fxmls/Novedades";
     @FXML
     private BorderPane borderPANE;
     @FXML
@@ -69,6 +70,7 @@ public class MiPerfilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        resizable(screen); 
         
     }
 
@@ -78,7 +80,18 @@ public class MiPerfilController implements Initializable {
         userName.setText(cuenta.getLoggedUser().getNickName());
         userProfile.setImage(cuenta.getLoggedUser().getImage());
     }
-    
+    private FXMLLoader setDisplay(String dir, AnchorPane pan) {
+        FXMLLoader newFXML = null;
+        try {
+            newFXML = new FXMLLoader(getClass().getResource(dir + ".fxml"));
+            resizable(pan);
+            AnchorPane pane = newFXML.load();
+            resizable(pane);
+            pan.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            System.err.println("Error al acceder a " + dir + " . Error " + ex); }
+        finally { return newFXML;}
+    }
     
     /**************************************************************************
      *                          BOTON INICIO
@@ -209,4 +222,8 @@ public class MiPerfilController implements Initializable {
         pan.setRightAnchor(pan, 1.0);
     }
     
+    public void clear() { 
+        setDisplay(NOVEDADES, screen);
+        
+    }
 }

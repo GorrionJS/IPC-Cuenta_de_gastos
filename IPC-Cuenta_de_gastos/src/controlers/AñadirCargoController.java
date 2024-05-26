@@ -12,11 +12,13 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,7 +29,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SingleSelectionModel;
@@ -144,19 +150,19 @@ public class AñadirCargoController implements Initializable {
             if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong1.setVisible(false);}});
         
         cargoDescripcion.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong2.setVisible(false);}});
+            if(newValue.isEmpty()){wrong2.setVisible(true);}else{wrong2.setVisible(false);}});
         
         cargoCoste.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong3.setVisible(false);}});
+            if(newValue.isEmpty()){wrong3.setVisible(true);}else{wrong3.setVisible(false);}});
         
         cargoUnidades.textProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue.isEmpty()){wrong1.setVisible(true);}else{wrong4.setVisible(false);}});
+            if(newValue.isEmpty()){wrong4.setVisible(true);}else{wrong4.setVisible(false);}});
         
         cargoFecha.valueProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrong1.setVisible(true);}else{wrong5.setVisible(false);}});
+            if(newValue==null){wrong5.setVisible(true);}else{wrong5.setVisible(false);}});
         
         tesstImagen.imageProperty().addListener((observable,oldValue, newValue)->{
-            if(newValue==null){wrong1.setVisible(true);}else{wrong6.setVisible(false);}});
+            if(newValue==null){wrong6.setVisible(true);}else{wrong6.setVisible(false);}});
         
         desplefableListaCaategorias.valueProperty().addListener(
                 new ChangeListener<Category>(){
@@ -168,7 +174,7 @@ public class AñadirCargoController implements Initializable {
                         }else{
                             desplefableListaCaategorias.setStyle("-fx-background-color: #15FF00; -fx-border-width: 2px;");
                             compruebaSelectedCategory=true;
-                            aceptarAddCargoB.setDisable(false);
+                            
                         }
                     }
                     
@@ -178,7 +184,16 @@ public class AñadirCargoController implements Initializable {
         
         
         );
-        
+        BooleanBinding textsInvisible = wrong1.visibleProperty().not()
+                .and(wrong2.visibleProperty().not())
+                .and(wrong3.visibleProperty().not())
+                .and(wrong4.visibleProperty().not())
+                .and(wrong5.visibleProperty().not())
+                .and(wrong6.visibleProperty().not());
+
+        BooleanBinding comboBoxSelected = desplefableListaCaategorias.getSelectionModel().selectedItemProperty().isNotNull();
+
+        aceptarAddCargoB.disableProperty().bind(textsInvisible.not().or(comboBoxSelected.not()));
         
     }    
     
@@ -262,6 +277,16 @@ public class AñadirCargoController implements Initializable {
     
     @FXML
     private void cancelarMethod(ActionEvent event) throws AcountDAOException, IOException {
+        
+        Alert alerta = new Alert(AlertType.INFORMATION);
+        alerta.setTitle("Información");
+        alerta.setHeaderText(null);
+        alerta.setContentText("No se ha registrado ningún gasto");
+        alerta.showAndWait();
+        System.out.println("No se ha registrado ningún gasto");
+            vueltaAtras();
+    }
+    private void vueltaAtras() throws IOException, AcountDAOException{
         System.out.println(principalLoged.getAcount().getUserCategories().size());//get(2).getName());
         FXMLLoader verGasto = new FXMLLoader(getClass().getResource("/fxmls/misGastos.fxml"));
         AnchorPane root = verGasto.load();
@@ -273,7 +298,7 @@ public class AñadirCargoController implements Initializable {
     }
 
     @FXML
-    private void aceptarMethod(ActionEvent event) throws AcountDAOException {
+    private void aceptarMethod(ActionEvent event) throws AcountDAOException, IOException {
         
         String name = cargoNombre.getText();
         String description = cargoDescripcion.getText();
@@ -283,17 +308,27 @@ public class AñadirCargoController implements Initializable {
         LocalDate dayBuy = cargoFecha.getValue();
         //LocalDate.MAX
         
-        if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
-            System.out.println("se ha registrado");
-            cargoNombre.setText("");
-            cargoDescripcion.setText("");
-            cargoCoste.setText("");
-            cargoUnidades.setText("");
-            cargoFecha.setValue(null);
-            desplefableListaCaategorias.setValue(null);
-        }else{
-            System.out.println("faltan campos por rellenar");
-        }
+        
+        
+        ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.NONE, "Añadir Cargo",
+        ok, no);
+            alert.setContentText("¿Esta seguro de realizar esta operación?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ok) { 
+                if(comprueba() && principalLoged.getAcount().registerCharge(name, description, cost, unidades, picture, dayBuy, categoria)){
+                System.out.println("se ha registrado el gasto");
+                Alert bien = new Alert(Alert.AlertType.NONE,"cargo realizado",ok);
+                bien.setContentText("Se ha registrado el gasto correctamente");   
+                vueltaAtras();
+                }else{
+                Alert mal = new Alert(Alert.AlertType.NONE,"cargo No realizado",no);
+                mal.setContentText("No se ha podido realizar la acción");
+                System.out.println("faltan campos por rellenar");
+                }
+            }
 
     }
 
