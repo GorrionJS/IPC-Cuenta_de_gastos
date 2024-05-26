@@ -29,7 +29,7 @@
 
 /* Eliminar el fondo de las filas horizontales */
 .table-row-cell {
-    -fx-background-color: #E7473C;
+    -fx-background-color: #888888;
 }
 
 /* Establecer las líneas horizontales entre los datos */
@@ -57,9 +57,39 @@
 /*prueba*/
 .table-view .table-cell{
     -fx-border-width: 0 1 1 0; /* Solo bordes a la derecha y abajo */
-    -fx-border-color: #E7473C;
+    -fx-border-color: #888888;
 }
 
+/* Estilo para el ComboBox */
+.combo-box {
+    -fx-background-color: white;
+    -fx-text-fill: red;
+}
+
+/* Estilo para los elementos desplegados del ComboBox */
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
+}
+/***************************/
+/***************************/
+.combo-box .text {
+    -fx-fill: black; /* Cambia el color del texto del prompt */
+}
+.combo-box:disabled {
+    -fx-opacity: 1.0; /* Asegura que el ComboBox no se vea opaco */
+}
+
+.date-picker:disabled .text-field {
+    -fx-opacity: 1.0; /* Mantener el prompt text no opaco, no funciona del todo */
+    -fx-text-fill: black; /* Color del texto del prompt */
+}
+
+/***************************/
+/***************************/
+
+/*
+estos colores son:#E7473C
 /* Eliminar las líneas de separación en las esquinas */
 .table-view .column-header-background {
     -fx-background-color: transparent;
