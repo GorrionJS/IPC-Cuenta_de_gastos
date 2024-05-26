@@ -62,6 +62,7 @@ public class PrimeraPantallaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setDisplay(FAQ, sideScreen);
+        setDisplay(NOVEDADES, screen);
         if (screen != null) { resizable(screen); }
         if (sideScreen != null) { resizable(sideScreen); }
         clear();
