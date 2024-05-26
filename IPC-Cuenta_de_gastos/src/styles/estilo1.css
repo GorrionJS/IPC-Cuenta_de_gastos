@@ -1,15 +1,4 @@
 
-.test1 {
-    -fx-background-color: rgb(21, 255, 0);
-}
-.test2 {
-    -fx-background-color: rgb(255, 0, 0);
-}
-
-.title {
-    font-size: 24px;
-}
-
 .button{
     -fx-background-color: red;
     -fx-text-fill: white; 
@@ -211,7 +200,8 @@ estos colores son:#E7473C
 }
 
 .menuButton:disabled {
-    -fx-background-color:#18b8c3;
+    -fx-background-color:#E7473C;
+    -fx-text-fill: #F0F0F0;
 }
 
 .root {
@@ -246,4 +236,11 @@ estos colores son:#E7473C
     -fx-background-color: #E7473C;
 }
 
+.ayuda {
+    -fx-background-color: #E7473C;
+}
+.ayuda-button {
 
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: black;
+}
