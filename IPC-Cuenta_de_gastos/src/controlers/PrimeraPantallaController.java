@@ -31,7 +31,7 @@ public class PrimeraPantallaController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
-    private final boolean BYPASS = true;
+    private final boolean BYPASS = false;
     private final String NOVEDADES = "/fxmls/Novedades";
     private final String FAQ = "/fxmls/FAQ";
     private final String LOGIN = "/fxmls/LogIn";
