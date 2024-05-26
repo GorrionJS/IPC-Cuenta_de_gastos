@@ -157,9 +157,9 @@ public class detallesCargoController implements Initializable {
         if(editableE){
             ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Esta a punto de elminiar todos los datos rellenados",
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Está a punto de elminiar todos los datos rellenados",
             ok, no);
-            alert.setContentText("¿Esta seguro de que quiere descartar los cambios realizados?");
+            alert.setContentText("¿Está seguro de que quiere descartar los cambios realizados?");
         
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ok) { 
