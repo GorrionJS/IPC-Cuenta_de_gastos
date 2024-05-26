@@ -34,6 +34,7 @@ public class MiPerfilController implements Initializable {
     ///////////////////////////////////////////////////////
     // VARIABLES GLOBALES
     ///////////////////////////////////////////////////////
+    private static final boolean BYPASS = true;
     private static final String INICIO = "/fxmls/graficosPrincipal";
     private static final String PERFIL = "/fxmls/mi_perfil_usuario_datos";
     private static final String GASTOS = "/fxmls/misGastos";
@@ -76,12 +77,18 @@ public class MiPerfilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         FXMLLoader inicio = new FXMLLoader(getClass().getResource(INICIO + ".fxml"));
         AnchorPane root;
-        
+        try {
+            cuenta = Acount.getInstance();
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(MiPerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MiPerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             root = inicio.load();
             
             GastosPrincipalController control = inicio.getController();
-            control.init(this);
+            control.init(this, cuenta);
             resizable(root);
             resizable(screen);
             screen.getChildren().setAll(root);
@@ -97,7 +104,7 @@ public class MiPerfilController implements Initializable {
     ///////////////////////////////////////////////////////
     public void init (PrimeraPantallaController prin, Acount a) throws IOException{
         principal = prin;
-        cuenta = a;
+        //cuenta = a;
         userName.setText(cuenta.getLoggedUser().getNickName());
         userProfile.setImage(cuenta.getLoggedUser().getImage());
     }
@@ -122,7 +129,7 @@ public class MiPerfilController implements Initializable {
         AnchorPane root = inicio.load();
         
         GastosPrincipalController control = inicio.getController();
-        control.init(this);
+        control.init(this, cuenta);
         
         screen.getChildren().setAll(root);
         reEnable();
