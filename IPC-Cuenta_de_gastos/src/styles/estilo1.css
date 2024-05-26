@@ -189,3 +189,31 @@
     -fx-text-fill: #F0F0F0;
     
 }
+
+#vertical .chart-vertical-grid-lines{
+    -fx-stroke: #18b8c3;
+    -fx-stroke-widht: 1px;
+    -fx-stroke-dash-array: 5px;
+    -fx-vertical-grid-lines: true;
+}
+
+#bigone .chart-horizontal-grid-lines {
+    -fx-stroke: #18b8c3;
+    -fx-stroke-widht: 1px;
+    -fx-stroke-dash-array: 5px;
+    
+}
+
+.axis-label {
+    -fx-fill: #f0f0f0;
+}
+
+.chart-pie-label {
+    -fx-background-color: #F0F0F0;
+}
+
+.chart {
+    -fx-background-color: #E7473C;
+}
+
+

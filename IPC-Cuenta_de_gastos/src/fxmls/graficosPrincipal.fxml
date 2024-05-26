@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.GastosPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.GastosPrincipalController">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -22,20 +22,20 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <BarChart fx:id="graficoBarras" title="Gastos del mes actual" GridPane.columnSpan="2">
+            <BarChart id="bigone" fx:id="graficoBarras" title="Gastos del mes actual" GridPane.columnSpan="2">
                <xAxis>
-                  <CategoryAxis side="BOTTOM" />
+                  <CategoryAxis side="BOTTOM" tickLabelFill="#f0f0f0" />
                </xAxis>
                <yAxis>
-                  <NumberAxis side="LEFT" />
+                  <NumberAxis side="LEFT" tickLabelFill="#f0f0f0" />
                </yAxis>
             </BarChart>
-            <LineChart fx:id="graficoTotalPorMeses" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="328.0" prefWidth="410.0" title="Gasto por meses" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <LineChart id="vertical" fx:id="graficoTotalPorMeses" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="328.0" prefWidth="410.0" title="Gasto por meses" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <xAxis>
-                  <CategoryAxis fx:id="ejeXGraficoMeses" label="Meses" side="BOTTOM" />
+                  <CategoryAxis id="vertical" fx:id="ejeXGraficoMeses" label="Meses" side="BOTTOM" tickLabelFill="#f0f0f0" />
                </xAxis>
                <yAxis>
-                  <NumberAxis fx:id="ejeYGraficoMeses" label="Dinero gastado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minorTickCount="10" side="LEFT" />
+                  <NumberAxis fx:id="ejeYGraficoMeses" label="Dinero gastado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minorTickCount="10" side="LEFT" tickLabelFill="#f0f0f0" />
                </yAxis>
             </LineChart>
             <PieChart fx:id="bolaGrafico" prefHeight="200.0" prefWidth="200.0" title="Gasto por categorías" GridPane.rowIndex="1" />
