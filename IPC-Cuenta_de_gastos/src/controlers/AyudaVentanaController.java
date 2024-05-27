@@ -24,11 +24,6 @@ public class AyudaVentanaController implements Initializable {
     ///////////////////////////////////////////////////////
     private MiPerfilController principal;
     
-    ///////////////////////////////////////////////////////
-    // VARIABLES DEL NET BEANS
-    ///////////////////////////////////////////////////////
-    @FXML
-    private HBox titulo;
     @FXML
     private Label texto_como_añadir_gasto;
     @FXML
