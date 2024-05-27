@@ -26,6 +26,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.AnchorPane;
@@ -93,12 +94,14 @@ public class MisGastosController implements Initializable {
         acciones.setCellFactory(param-> new TableCell<Charge, Void>(){
             private final ComboBox<String> combo = new ComboBox<>();
             {
-                combo.setValue("🔶");
+                //caracter de ejemplo "🔶"
+                combo.setValue("");
                 combo.getItems().addAll("Ver Detalles", "Editar", "Eliminar");
                 combo.setOnAction(event->{
                     String elegido = combo.getSelectionModel().getSelectedItem();
                     Charge gasto = getTableView().getItems().get(getIndex());
-                    manejarAccion(elegido, gasto);
+                    manejarAccion(elegido, gasto,combo);
+                    
                 });
             }
             @Override
@@ -111,16 +114,11 @@ public class MisGastosController implements Initializable {
                 }
             }
         });
-        
         tabla.getColumns().setAll(nombrelList,fechaList,costoList, acciones);
+        
     }    
        
-//    public void init(PrimeraPantallaController princ) throws AcountDAOException{
-//        principal = princ;
-//        inicializarCargos();
-//        selectCategories();  
-//    }
-    
+
     ///////////////////////////////////////////////////////
     // INIT
     ///////////////////////////////////////////////////////
@@ -206,7 +204,7 @@ public class MisGastosController implements Initializable {
         });
     }
 
-    private void manejarAccion (String eleg, Charge gast){
+    private void manejarAccion (String eleg, Charge gast,ComboBox<String> combo){
         switch(eleg){
             case "Ver Detalles":
                 detail(gast);
@@ -215,14 +213,14 @@ public class MisGastosController implements Initializable {
                 edit(gast, true);
                 break;
             case "Eliminar":
-                remove(gast);
+                remove(gast,combo);
                 break;
             default:
             break;
         }
     }
     
-    private void remove(Charge c){
+    private void remove(Charge c, ComboBox<String> combo){
         try {
             ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -237,7 +235,13 @@ public class MisGastosController implements Initializable {
                 principalLoged.getAcount().removeCharge(c);
                 inicializarCargos(); 
             } 
+            
         } catch (AcountDAOException ex) {}
+        finally{
+            
+             combo.setValue("");
+             
+        }
     }
     
     private void detail (Charge c){
