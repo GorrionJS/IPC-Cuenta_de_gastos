@@ -42,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.Acount;
@@ -188,7 +189,7 @@ public class detallesCargoController implements Initializable {
                 BooleanBinding comboBoxSelected = desplefableListaCaategorias.getSelectionModel().selectedItemProperty().isNotNull();
 
                 aceptarBD.disableProperty().bind(textsInvisible.not().or(comboBoxSelected.not()));
-        
+        butonAddCat.setVisible(false);
         
         
     }    
@@ -266,7 +267,26 @@ public class detallesCargoController implements Initializable {
     }
 
     @FXML
-    private void addCategoryMethod(ActionEvent event) {}
+    private void addCategoryMethod(ActionEvent event) throws AcountDAOException {
+        try {
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxmls/addCategoy.fxml"));
+                
+                Stage stage =loader.load();
+                AddCategoryController addCat = loader.getController();
+                stage.setTitle("Vista añadir Categoría");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+                if(addCat.isPressed()){
+                    String name = addCat.getNomCat();
+                    String description = addCat.getDescCat();
+                    principalLoged.getAcount().registerCategory(name, description);
+                    inicializaCategorias();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(AñadirCargoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+    }
     
     public void initMiPerfil(MiPerfilController princ, Acount cuenta, AnchorPane screen) {
         this.principalLoged = princ;
@@ -283,6 +303,7 @@ public class detallesCargoController implements Initializable {
         detailCoste.setEditable(c);
         detailUnidad.setEditable(c);
         butonAddCat.setVisible(c);
+        
         editableE= true;
         if(c) {
             titulosso.setText("Editar Cargo");

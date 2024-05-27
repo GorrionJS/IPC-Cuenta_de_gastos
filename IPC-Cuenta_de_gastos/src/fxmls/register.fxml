@@ -41,14 +41,6 @@
             <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label styleClass="title" text="Registrarse" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="25.0" />
-               </GridPane.margin>
-            </Label>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" minHeight="60.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
                   <Label text="Nombre" textAlignment="RIGHT" wrapText="true" />
@@ -189,7 +181,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="14">
                <children>
-                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" styleClass="invertedButton" text="Aceptar" textFill="WHITE" />
+                  <Button fx:id="bottonAcceptar" mnemonicParsing="false" onAction="#acceptar" text="Aceptar" textFill="WHITE" />
                   <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
                </children>
                <GridPane.margin>
@@ -199,6 +191,11 @@
             <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="6" />
             <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="10" />
             <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+            <Label styleClass="specialTitle" text="Registrarse" underline="true" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

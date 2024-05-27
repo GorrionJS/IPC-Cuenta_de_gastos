@@ -27,7 +27,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label ellipsisString="" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Iniciar sesión" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
+            <Label ellipsisString="" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Iniciar sesión" underline="true" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
