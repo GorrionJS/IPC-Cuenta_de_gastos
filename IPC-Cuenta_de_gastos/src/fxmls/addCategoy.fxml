@@ -65,8 +65,8 @@
                   </GridPane>
                   <HBox alignment="CENTER_RIGHT" spacing="24.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#aceptar" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
-                        <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+                        <Button mnemonicParsing="false" onAction="#aceptar" text="Aceptar" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#cancelar" text="Cancelar" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
