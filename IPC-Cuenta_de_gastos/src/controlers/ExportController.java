@@ -8,6 +8,7 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -22,12 +23,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintException;
 import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -49,6 +54,9 @@ public class ExportController implements Initializable {
     private MiPerfilController main;
     private PrintRequestAttributeSet aset;
     
+    private String rutaArchivo = "";
+    private String nombreArchivo = "alfonso";
+    
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
     ///////////////////////////////////////////////////////
@@ -56,6 +64,10 @@ public class ExportController implements Initializable {
     private Button routeButton;
     @FXML
     private Button okButton;
+    @FXML
+    private Label rutaArchivoLabel;
+    @FXML
+    private Label nombreArchivoLabel;
     
     /**
      * Initializes the controller class.
@@ -89,7 +101,7 @@ public class ExportController implements Initializable {
         
         // Chekeamos
         if(result.isPresent() && result.get() == ok) {
-            ExportWorker controller = new ExportWorker();
+            /*ExportWorker controller = new ExportWorker();
             controller.setAccount(cuenta);
             
             controller.createFile(); 
@@ -124,33 +136,86 @@ public class ExportController implements Initializable {
                 } catch (PrinterException pe) {
                     System.err.println(pe);
                 }
+            }*/
+            try {
+            // Setup and export file
+            ExportWorker controller = new ExportWorker();
+            controller.setAccount(cuenta);
+            // Se va a crear el archivo
+            controller.createFile(rutaArchivo, nombreArchivo);
+            // Se va a escribir en el archivo
+            controller.writeFile();
+            File data = controller.returnFile();
+            FileInputStream text = new FileInputStream(data);
+
+            // Create a Doc object to hold the file content
+            DocFlavor psInformat = DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST;
+            Doc myDoc = new SimpleDoc(text, psInformat, null);
+            
+            // Alerta avisando de que se ha hecho bien el traspaso de información
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Guardado correctamente");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Se ha guardado correctamente el archivo en formato TXT.");
+            alerta.show();
+
+            // Step 1: Set up initial print settings.
+            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+
+            // Step 2: Obtain a print job.
+            PrinterJob pj = PrinterJob.getPrinterJob();
+
+            // Step 3: Find print services.
+            PrintService[] services = PrintServiceLookup.lookupPrintServices(psInformat, aset);
+
+            if (services.length > 0) {
+                System.out.println("Selected printer: " + services[0].getName());
+                try {
+                    pj.setPrintService(services[0]);
+
+                    // Step 4: Show print dialog and get user settings
+                    if (pj.printDialog(aset)) {
+                        // Create a print job from the selected service
+                        DocPrintJob job = services[0].createPrintJob();
+
+                        // Step 5: Pass the final settings into the print request.
+                        job.print(myDoc, aset);
+                    }
+                } catch (PrinterException | PrintException pe) {
+                    System.err.println(pe);
+                } finally {
+                    text.close();
+                }
+            } else {
+                System.out.println("No suitable print service found.");
+            }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 
     @FXML
     private void seleccionRuta(ActionEvent event) {
-        // Crear una instancia de FileChooser
-        FileChooser fileChooser = new FileChooser();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Seleccione directorio");
 
-        // Configurar el título del diálogo
-        fileChooser.setTitle("Guardar archivo");
-
-        // Configurar el filtro de extensiones (opcional)
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
-        
-        // Mostrar el diálogo de selección de archivo
-        File selectedFile = fileChooser.showSaveDialog(
+        // Obtenemos el directorio y lo guardamos
+        File selectedDirectory = directoryChooser.showDialog(
                 ((Node)event.getSource()).getScene().getWindow()
         );
+        rutaArchivo = selectedDirectory.getAbsolutePath();
+        rutaArchivoLabel.setText(rutaArchivo);
+    }
 
-        // Comprobar si se ha seleccionado un archivo
-        if (selectedFile != null) {
-            // Obtener la ruta absoluta del archivo seleccionado
-            String filePath = selectedFile.getAbsolutePath();
-            System.out.println("Archivo seleccionado: " + filePath);
-        } else {
-            System.out.println("No se ha seleccionado ningún archivo.");
-        }
+    @FXML
+    private void seleccionarNombrePulsado(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog("Nombre del archivo");
+        dialog.setTitle("Elegir nombre del archivo");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Introduzca un nuevo nombre para el archivo:");
+        
+        Optional<String> result = dialog.showAndWait();
+        nombreArchivoLabel.setText(result.get());
     }
 }

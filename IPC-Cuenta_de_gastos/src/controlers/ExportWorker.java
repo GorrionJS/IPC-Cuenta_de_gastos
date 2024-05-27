@@ -35,9 +35,8 @@ public class ExportWorker{
     ///////////////////////////////////////////////////////
     // METODOS DE ARCHIVOS
     ///////////////////////////////////////////////////////
-    public void createFile() throws IOException {
-        file = File.createTempFile("impr", null);
-        System.out.println(file.getAbsolutePath());  
+    public void createFile(String directory, String fileName) throws IOException {
+        file = new File(directory, fileName + ".txt");
     }
     
     public void writeFile() throws IOException, AcountDAOException {
@@ -46,7 +45,7 @@ public class ExportWorker{
         writer.write("Nick: " + loggeduser.getNickName() + " Email: " + loggeduser.getEmail() 
                 + " Fecha de registro: " + loggeduser.getRegisterDate() + "\n");
         String res = "Cargos: \n";
-        res += "Nº. | Categoria | Nombre | Id | Precio | Fecha | Ticket \n";
+        res += "Nº. \t Categoria \t Nombre \t Id \t Precio \t Fecha \t Ticket \n";
         List<Charge> charges = cuenta.getUserCharges();
         List<Charge> aux = charges;
         for(int i = 0; i < aux.size(); i++) {
@@ -71,11 +70,12 @@ public class ExportWorker{
     private String chargeToString(Charge c) {
         String res = "";
         
-        res += c.getCategory().getName() + " | ";
-        res += c.getName() + ", ";
-        res += c.getId() + ", ";
-        res += c.getCost() + ", ";
-        res += c.getDate() + ", ";
+        /*res += c.getCategory().getName() + " \t ";
+        res += c.getName() + "\t ";
+        res += c.getId() + "\t ";
+        res += c.getCost() + "\t ";
+        res += c.getDate() + "\t ";*/
+        res += c.getCategory().getName() + " \t " + c.getName() + "\t " + c.getId() + "\t " + c.getCost() + "\t " + c.getDate() + "\t ";
         
         String aux = "sin ticket";
         
