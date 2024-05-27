@@ -165,7 +165,7 @@ public class GastosPrincipalController implements Initializable {
         cargosTotales = cuenta.getUserCharges();
         tablaHash = new HashMap<>(categoriasUsuario.size());
         
-        /*
+        
         for (int i = 0; i < cargosTotales.size(); i++) {
             for (int j = 0; i < categoriasUsuario.size(); i++) {
                 // Vamos comprobando cada lista a ver si lo tenemos en X categoría
@@ -199,7 +199,7 @@ public class GastosPrincipalController implements Initializable {
         }        
         
         bolaGrafico.getData().addAll(pieChartData);
-*/  
+
     }// Cerramos metodo
     
     ///////////////////////////////////////////////////////
