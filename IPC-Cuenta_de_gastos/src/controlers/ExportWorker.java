@@ -50,19 +50,23 @@ public class ExportWorker{
     }
     
     public void writeFile() throws IOException, AcountDAOException {
+        
         FileWriter writer = new FileWriter(file);
         writer.write("Nombre: " + loggeduser.getName() + " - Apellidos: " + loggeduser.getSurname() + "\n\n");
         writer.write("Nick: " + loggeduser.getNickName() + " - Email: " + loggeduser.getEmail() 
                 + " - Fecha de registro: " + loggeduser.getRegisterDate() + "\n\n");
+        
         String res = "Cargos: \n";
-        res += "Nº. \t Categoria \t Nombre \t Id \t Precio \t Fecha \t Ticket \n";
+        //res += "Nº.\tCategoria\tNombre\tId\tPrecio\tFecha\tTicket\n";
+        
         List<Charge> charges = cuenta.getUserCharges();
         List<Charge> aux = charges;
+        
         for(int i = 0; i < aux.size(); i++) {
             Charge str = aux.get(i);
-            res += i + ". " +
-                    chargeToString(aux.get(i)) + "\n";
+            res += i + ". " + chargeToString(aux.get(i)) + "\n";
         }
+        
         writer.write(res);
         writer.close();
     }
@@ -80,12 +84,12 @@ public class ExportWorker{
     private String chargeToString(Charge c) {
         String res = "";
         
-        /*res += c.getCategory().getName() + " \t ";
-        res += c.getName() + "\t ";
-        res += c.getId() + "\t ";
-        res += c.getCost() + "\t ";
-        res += c.getDate() + "\t ";*/
-        res += c.getCategory().getName() + " \t " + c.getName() + "\t " + c.getId() + "\t " + c.getCost() + "\t " + c.getDate() + "\t ";
+        //res += c.getCategory().getName() + "\t" + c.getName() + "\t" + c.getId() + "\t" + c.getCost() + "\t" + c.getDate() + "\t";
+        res += c.getCategory().getName() + " | ";
+        res += c.getName() + ", ";
+        res += c.getId() + ", ";
+        res += c.getCost() + ", ";
+        res += c.getDate() + ", ";
         
         String aux = "sin ticket";
         
