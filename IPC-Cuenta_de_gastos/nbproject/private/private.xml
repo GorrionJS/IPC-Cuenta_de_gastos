@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/controlers/RegisterController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>243</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/AyudaVentanaController.java</file>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/styles/estilo1.css</file>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/RegisterController.java</file>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/Mi_perfilUsuarioController.java</file>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/ExportController.java</file>
+            <file>file:/C:/Users/elgor/Documents/GitHub/IPC-Cuenta_de_gastos/IPC-Cuenta_de_gastos/src/controlers/ExportWorker.java</file>
+        </group>
     </open-files>
 </project-private>
