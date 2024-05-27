@@ -97,7 +97,7 @@
                            </children>
                         </VBox>
                         <Button fx:id="routeButton" mnemonicParsing="false" onAction="#seleccionRuta" stylesheets="@../styles/estilo1.css" text="Seleccionar ruta" />
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#accept" stylesheets="@../styles/estilo1.css" text="Aceptar" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#accept" stylesheets="@../styles/estilo1.css" text="Exportar" />
                      </children>
                      <opaqueInsets>
                         <Insets />
