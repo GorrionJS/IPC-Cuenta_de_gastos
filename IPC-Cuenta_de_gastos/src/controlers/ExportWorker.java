@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import model.Acount;
 import model.AcountDAOException;
@@ -36,7 +37,16 @@ public class ExportWorker{
     // METODOS DE ARCHIVOS
     ///////////////////////////////////////////////////////
     public void createFile(String directory, String fileName) throws IOException {
-        file = new File(directory, fileName + ".txt");
+        if (directory.equals("") || fileName.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error al configurar el archivo");
+            alert.setHeaderText("Compruebe los datos del archivo");
+            alert.setContentText("No puede dejar los campos en blanco.");
+            alert.showAndWait();
+        } else {
+            file = new File(directory, fileName + ".txt");
+        }
+        
     }
     
     public void writeFile() throws IOException, AcountDAOException {
