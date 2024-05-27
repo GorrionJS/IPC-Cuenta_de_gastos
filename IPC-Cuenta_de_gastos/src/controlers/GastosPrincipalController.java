@@ -167,7 +167,7 @@ public class GastosPrincipalController implements Initializable {
         
         
         for (int i = 0; i < cargosTotales.size(); i++) {
-            for (int j = 0; i < categoriasUsuario.size(); i++) {
+            for (int j = 0; j < categoriasUsuario.size(); j++) {
                 // Vamos comprobando cada lista a ver si lo tenemos en X categoría
                 Charge cargoAct = cargosTotales.get(i);
                 Category categoriaCargo = cargoAct.getCategory();
