@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,70 +15,181 @@
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="70.0" minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="70.0" minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="titulo" prefHeight="27.0" prefWidth="600.0">
+            <VBox prefHeight="66.0" prefWidth="550.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="tituloT" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Preguntas frecuentes" underline="true">
-                     <padding>
-                        <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <VBox prefHeight="66.0" prefWidth="550.0" spacing="5.0" GridPane.rowIndex="1">
-               <children>
-                  <Label stylesheets="@../styles/estilo1.css" text="¿Cómo añado un gasto?" underline="true">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                  <Label fx:id="texto_como_añadir_gasto" text="Si quieres añadir un gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." />
-                  <Label text="¡Introduce el gasto que desees, y listo!" />
-               </children>
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="2">
-               <children>
-                  <Label stylesheets="@../styles/estilo1.css" text="¿Cómo puede ver todos mis gastos?" underline="true">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="texto_ver_gastos" text="Si quieres ver tus gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." />
-                        <Label fx:id="texto_graficas" text="¡Ahí podrás ver todos los gastos que llevas hasta el momento!" />
+                        <Label stylesheets="@../styles/estilo1.css" text="► ¿Cómo añado un gasto?" underline="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="303.0">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </HBox>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="texto_como_añadir_gasto" text="Si quieres añadir un gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="¡Introduce el gasto que desees, y listo!" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
                </children>
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="3">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label stylesheets="@../styles/estilo1.css" text="¿Es posible exportar todo a un único documento?" underline="true">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                  <Label fx:id="texto_exportar" text="Así es, es posible." />
-                  <Label text="¡Únicamente pulsa sobre el botón &quot;Exportar&quot;, elige el formato que quieras, y expórtalo!" />
-                  <Label text="Sin embargo, si prefieres un método más visual, también puedes ver tus gastos en gráficas." />
-                  <Label text="¡Al pulsar sobre el botón &quot;Inicio&quot;, podrás ver hasta tres gráficas con toda tu información!" />
-                  <Label text="¡La información está repartida en:" />
-                  <Label text="1. A lo largo del mes actual. 2. Según las categorías que añadas. 3. Durante todo el año." />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label stylesheets="@../styles/estilo1.css" text="► ¿Cómo puede ver todos mis gastos?" underline="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="303.0">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="texto_ver_gastos" text="Si quieres ver tus gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="texto_graficas" text="¡Ahí podrás ver todos los gastos que llevas hasta el momento!" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
                </children>
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label stylesheets="@../styles/estilo1.css" text="► ¿Es posible exportar todo a un único documento?" underline="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="303.0">
+                           <children>
+                              <Separator prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="texto_exportar" text="Así es, es posible." textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="¡Únicamente pulsa sobre el botón &quot;Exportar&quot;, elige el formato que quieras, y expórtalo!" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Sin embargo, si prefieres un método más visual, también puedes ver tus gastos en gráficas." textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="¡Al pulsar sobre el botón &quot;Inicio&quot;, podrás ver hasta tres gráficas con toda tu información!" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="¡La información está repartida en:" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="1. A lo largo del mes actual. 2. Según las categorías que añadas. 3. Durante todo el año." textFill="WHITE">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <HBox fx:id="titulo" prefHeight="27.0" prefWidth="600.0">
+                     <children>
+                        <Label fx:id="tituloT" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Preguntas frecuentes" underline="true">
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
          </children>
       </GridPane>
