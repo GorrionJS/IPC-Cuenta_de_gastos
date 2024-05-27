@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="345.0" stylesheets="/styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.LogInController">
+<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" stylesheets="/styles/estilo1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlers.LogInController">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0" minHeight="400.0" minWidth="345.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -27,7 +27,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label ellipsisString="" styleClass="title" text="Iniciar sesión" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
+            <Label ellipsisString="" styleClass="specialTitle" stylesheets="@../styles/estilo1.css" text="Iniciar sesión" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -58,11 +58,11 @@
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin></TextField>
-            <Label fx:id="wrongUserText" text="Usuario Incorrecto" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Label fx:id="wrongUserText" text="Usuario incorrecto ⓘ" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Label>
-            <Label fx:id="wrongPassText" text="Contraseña Incorrecta" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <Label fx:id="wrongPassText" text="Contraseña incorrecta ⓘ" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Label>
@@ -73,7 +73,7 @@
             </PasswordField>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#acceptar" onMousePressed="#aceptarM" style="-fx-background-color: #00647C;" text="Aceptar" textFill="WHITE" />
+                  <Button fx:id="acceptButton" mnemonicParsing="false" onAction="#acceptar" onMousePressed="#aceptarM" text="Aceptar" />
                   <Button mnemonicParsing="false" onAction="#cancel" onMousePressed="#cancelarM" text="Cancelar" />
                </children>
             </HBox>

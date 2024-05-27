@@ -126,6 +126,12 @@ estos colores son:#E7473C
     -FX-font-size: 24px;
 }
 
+.specialNombreApellido {
+    -fx-text-fill: #f0f0f0;
+    -fx-font-weight: bolder;
+    -FX-font-size: 18px;
+}
+
 .specialBox{
     -fx-background-color: #E7473C;
     -fx-border-width: 0px 0px 0px 2px;

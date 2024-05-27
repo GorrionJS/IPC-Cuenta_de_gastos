@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -89,8 +90,8 @@ public class Mi_perfilUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //imagenOjoAbierto = new Image(getClass().getResource("images/ojo.png").toString());
-        //imagenOjoCerrado = new Image(getClass().getResource("/images/visible.png").toString());
+        imagenOjoAbierto = new Image("images/ojo.png");
+        imagenOjoCerrado = new Image("/images/visible.png");
         
         try {
             cuenta = Acount.getInstance();
@@ -253,11 +254,8 @@ public class Mi_perfilUsuarioController implements Initializable {
     ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_contraseña(ActionEvent event) {
-        campo_de_texto_de_la_contraseña.setDisable(false);
-        
-        if (campo_de_texto_de_la_contraseña.isDisable()) {
-            campo_de_texto_de_la_contraseña.setDisable(true);
-        }
+        if (campo_de_texto_de_la_contraseña.isDisable()) {campo_de_texto_de_la_contraseña.setDisable(false);}
+        else {campo_de_texto_de_la_contraseña.setDisable(true);}
     }
 
     @FXML
@@ -297,18 +295,18 @@ public class Mi_perfilUsuarioController implements Initializable {
     ///////////////////////////////////////////////////////
     @FXML
     private void boton_cambiar_email(ActionEvent event) {
-        campo_de_texto_del_email.setDisable(false);
-        
-        if (campo_de_texto_del_email.isDisable()) {
-            campo_de_texto_del_email.setDisable(true);
-        }
+        if (campo_de_texto_del_email.isDisable()) {campo_de_texto_del_email.setDisable(false);}
+        else {campo_de_texto_del_email.setDisable(true);}
     }
 
     @FXML
     private void boton_guardar_cambios_email(ActionEvent event) {
         String nuevoCorreo = campo_de_texto_del_email.getText();
+        String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        Pattern pat = Pattern.compile(regex);
+        // sacado de https://www.baeldung.com/java-email-validation-regex
         
-        if (!nuevoCorreo.equals(cuenta.getLoggedUser().getEmail())){
+        if (!nuevoCorreo.equals(cuenta.getLoggedUser().getEmail()) && pat.matcher(nuevoCorreo).matches()){
             cuenta.getLoggedUser().setEmail(nuevoCorreo);
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -316,8 +314,13 @@ public class Mi_perfilUsuarioController implements Initializable {
             alert.setHeaderText("Dirección de correo electrónico cambiada.");
             alert.setContentText("Su drección de correo electrónico ha sido cambiada exitosamente.");
             alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cambios en el perfil");
+            alert.setHeaderText("Dirección de correo electrónico no válida.");
+            alert.setContentText("Por favor, vuelva a confirmar su dirección de correo electrónico.");
+            alert.showAndWait();
         }
-        
     }
 
     ///////////////////////////////////////////////////////

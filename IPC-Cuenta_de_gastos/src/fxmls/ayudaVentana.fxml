@@ -38,7 +38,7 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Label fx:id="texto_como_añadir_gasto" text="Si quieres añadir un gasto, pulsa sobre el botón \&quot;Añadir gasto\&quot;." />
+                  <Label fx:id="texto_como_añadir_gasto" text="Si quieres añadir un gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." />
                   <Label text="¡Introduce el gasto que desees, y listo!" />
                </children>
                <GridPane.margin>
@@ -53,7 +53,7 @@
                      </font></Label>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
                      <children>
-                        <Label fx:id="texto_ver_gastos" text="Si quieres ver tus gasto, pulsa sobre el botón \&quot;Añadir gasto\&quot;." />
+                        <Label fx:id="texto_ver_gastos" text="Si quieres ver tus gasto, pulsa sobre el botón &quot;Añadir gasto&quot;." />
                         <Label fx:id="texto_graficas" text="¡Ahí podrás ver todos los gastos que llevas hasta el momento!" />
                      </children>
                   </VBox>

@@ -22,7 +22,7 @@
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="30.0" prefWidth="30.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="150.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="0.0" prefWidth="53.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="0.0" prefWidth="70.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
@@ -150,19 +150,23 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </TextField>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#boton_cambiar_nombre_de_usuario" prefHeight="25.0" text="Cambiar mi nombre" />
-                  <Label fx:id="nombre_usuario_label" stylesheets="@../styles/estilo1.css" text="ALFONSO J." wrapText="true" />
+                  <Label fx:id="nombre_usuario_label" styleClass="specialNombreApellido" stylesheets="@../styles/estilo1.css" text="ALFONSO J." wrapText="true">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
                </children>
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" onAction="#boton_cambiar_apellidos_de_usuario" text="Cambiar mis apellidos" />
-                  <Label fx:id="apellidos_usuario_label" stylesheets="@../styles/estilo1.css" text="MUNUERA PARRA" wrapText="true" />
+                  <Label fx:id="apellidos_usuario_label" styleClass="specialNombreApellido" stylesheets="@../styles/estilo1.css" text="MUNUERA PARRA" wrapText="true">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
                </children>
                <GridPane.margin>
                   <Insets right="10.0" />
@@ -192,6 +196,16 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </TextField>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#boton_cambiar_nombre_de_usuario" prefHeight="25.0" text="Cambiar mi nombre" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#boton_cambiar_apellidos_de_usuario" text="Cambiar mis apellidos" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </children>
