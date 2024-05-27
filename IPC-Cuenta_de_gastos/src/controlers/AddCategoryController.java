@@ -79,5 +79,7 @@ public class AddCategoryController implements Initializable {
     }
 
     @FXML
-    private void cancelar(ActionEvent event) {}
+    private void cancelar(ActionEvent event) {
+            categoryName.getScene().getWindow().hide();
+    }
 }
