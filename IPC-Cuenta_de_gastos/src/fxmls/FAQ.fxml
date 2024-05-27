@@ -32,7 +32,7 @@
                         <Button fx:id="boton1" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="270.0" text="¿En qué consiste nuestra aplicación?" />
                      </children>
                   </HBox>
-                  <VBox fx:id="color1" prefHeight="133.0" prefWidth="270.0" style="-fx-background-color: #6F0A0A;">
+                  <VBox fx:id="color1" prefHeight="133.0" prefWidth="270.0" style="-fx-background-color: #F08080;">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -56,7 +56,7 @@
                         <Button fx:id="boton2" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" text="Beneficios para Ti:" />
                      </children>
                   </HBox>
-                  <VBox fx:id="color2" minWidth="270.0" prefHeight="94.0" style="-fx-background-color: #6F0A0A;">
+                  <VBox fx:id="color2" minWidth="270.0" prefHeight="94.0" style="-fx-background-color: #F08080;">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -90,7 +90,7 @@
                         <Button fx:id="boton3" alignment="TOP_LEFT" minWidth="270.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="270.0" text="¿Por Qué Elegirnos?" />
                      </children>
                   </HBox>
-                  <VBox fx:id="fila3" minWidth="268.0" prefHeight="112.0" prefWidth="268.0" style="-fx-background-color: #6F0A0A;">
+                  <VBox fx:id="fila3" minWidth="268.0" prefHeight="112.0" prefWidth="268.0" style="-fx-background-color: #F08080;">
                      <children>
                         <HBox minWidth="270.0" prefHeight="112.0" prefWidth="271.0">
                            <children>
