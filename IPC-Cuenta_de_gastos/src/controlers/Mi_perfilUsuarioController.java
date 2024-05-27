@@ -193,7 +193,7 @@ public class Mi_perfilUsuarioController implements Initializable {
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Imagen de perfil cambiada.");
+            alert.setHeaderText("Imagen de perfil cambiada");
             alert.setContentText("Su imagen de perfil ha sido cambiada exitosamente.");
             alert.showAndWait();
         }
@@ -216,7 +216,7 @@ public class Mi_perfilUsuarioController implements Initializable {
         
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Nombre del usuario cambiado.");
+            alert.setHeaderText("Nombre del usuario cambiado");
             alert.setContentText("Su nombre ha sido cambiado exitosamente.");
             alert.showAndWait();
             
@@ -241,7 +241,7 @@ public class Mi_perfilUsuarioController implements Initializable {
         
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Apellidos del usuario cambiados.");
+            alert.setHeaderText("Apellidos del usuario cambiados");
             alert.setContentText("Sus apellidos han sido cambiados exitosamente.");
             alert.showAndWait();
             
@@ -266,7 +266,7 @@ public class Mi_perfilUsuarioController implements Initializable {
         
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Contraseña cambiada.");
+            alert.setHeaderText("Contraseña cambiada");
             alert.setContentText("Su contraseña ha sido cambiada exitosamente.");
             alert.showAndWait();
         }
@@ -311,13 +311,13 @@ public class Mi_perfilUsuarioController implements Initializable {
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Dirección de correo electrónico cambiada.");
+            alert.setHeaderText("Dirección de correo electrónico cambiada");
             alert.setContentText("Su drección de correo electrónico ha sido cambiada exitosamente.");
             alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Cambios en el perfil");
-            alert.setHeaderText("Dirección de correo electrónico no válida.");
+            alert.setHeaderText("Dirección de correo electrónico no válida");
             alert.setContentText("Por favor, vuelva a confirmar su dirección de correo electrónico.");
             alert.showAndWait();
         }

@@ -51,9 +51,9 @@ public class ExportWorker{
     
     public void writeFile() throws IOException, AcountDAOException {
         FileWriter writer = new FileWriter(file);
-        writer.write("Nombre: " + loggeduser.getName() + " Apellidos: " + loggeduser.getSurname() + "\n");
-        writer.write("Nick: " + loggeduser.getNickName() + " Email: " + loggeduser.getEmail() 
-                + " Fecha de registro: " + loggeduser.getRegisterDate() + "\n");
+        writer.write("Nombre: " + loggeduser.getName() + " - Apellidos: " + loggeduser.getSurname() + "\n\n");
+        writer.write("Nick: " + loggeduser.getNickName() + " - Email: " + loggeduser.getEmail() 
+                + " - Fecha de registro: " + loggeduser.getRegisterDate() + "\n\n");
         String res = "Cargos: \n";
         res += "Nº. \t Categoria \t Nombre \t Id \t Precio \t Fecha \t Ticket \n";
         List<Charge> charges = cuenta.getUserCharges();

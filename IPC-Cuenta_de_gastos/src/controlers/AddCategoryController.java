@@ -68,10 +68,12 @@ public class AddCategoryController implements Initializable {
      */
     @FXML
     private void aceptar(ActionEvent event) throws AcountDAOException {
-        String nomC =categoryName.getText();
-        String descC =descriptionCategory.getText();
+        String nomC = categoryName.getText();
+        String descC = descriptionCategory.getText();
         if(!nomC.isEmpty() && !descC.isEmpty() ){
-            nC = nomC; dC = descC; pressed = true;
+            nC = nomC; 
+            dC = descC; 
+            pressed = true;
             categoryName.getScene().getWindow().hide();
         }
     }

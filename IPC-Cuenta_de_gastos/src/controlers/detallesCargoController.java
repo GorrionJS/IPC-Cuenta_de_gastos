@@ -233,7 +233,7 @@ public class detallesCargoController implements Initializable {
             cargo.setCost(Double.parseDouble(detailCoste.getText()));
             cargo.setUnits(Integer.parseInt(detailUnidad.getText())); cargo.setDate(LocalDate.MAX);
             cargo.setImageScan(picture); vueltaAtras();
-            System.out.println("Bien al tratar de cambiar los datos del cargo");
+            //System.out.println("Bien al tratar de cambiar los datos del cargo");
         }else{
             vueltaAtras();
             System.out.println("error al tratar de cambiar los datos del cargo");
