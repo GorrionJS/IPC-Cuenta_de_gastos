@@ -81,7 +81,7 @@ public class AddCategoryController implements Initializable {
             Alert alerta = new Alert(AlertType.INFORMATION);
         alerta.setTitle("Información");
         alerta.setHeaderText(null);
-        alerta.setContentText("Los campos no son correctos, no re ha creado categoría");
+        alerta.setContentText("Los campos no son correctos, comprueba los campos.");
         alerta.showAndWait();
         }
     }
