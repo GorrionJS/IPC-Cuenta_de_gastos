@@ -211,7 +211,7 @@ public class RegisterController implements Initializable {
             else { 
                 alert = new Alert(Alert.AlertType.INFORMATION); 
                 alert.setTitle("Proceso de creación de cuenta finalizado");
-                alert.setHeaderText("Su cuenta ha sido registrada exitosamente.");
+                alert.setHeaderText("Su cuenta ha sido registrada exitosamente");
                 alert.setContentText("Inicie sesión.");
                 alert.getButtonTypes().setAll(ok, no);
             }
