@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.AcountDAOException;
@@ -70,11 +72,17 @@ public class AddCategoryController implements Initializable {
     private void aceptar(ActionEvent event) throws AcountDAOException {
         String nomC = categoryName.getText();
         String descC = descriptionCategory.getText();
-        if(!nomC.isEmpty() && !descC.isEmpty() ){
+        if(!nomC.isEmpty() || !descC.isEmpty() ){
             nC = nomC; 
             dC = descC; 
             pressed = true;
             categoryName.getScene().getWindow().hide();
+        }else{
+            Alert alerta = new Alert(AlertType.INFORMATION);
+        alerta.setTitle("Información");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Los campos no son correctos, no re ha creado categoría");
+        alerta.showAndWait();
         }
     }
 
