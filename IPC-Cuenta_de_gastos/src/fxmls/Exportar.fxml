@@ -70,59 +70,67 @@
                   <Insets left="50.0" />
                </padding>
             </VBox>
-            <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="500.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
+                        <HBox prefHeight="80.0" prefWidth="472.0">
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="A continuación, escoge la ruta y el nombre del archivo a guardar." />
-                                    <Separator minWidth="-Infinity" prefWidth="400.0" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="50.0" prefWidth="100.0">
+                              <VBox prefHeight="200.0" prefWidth="200.0" spacing="10.0">
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          <Label text="A continuación, escoge la ruta y el nombre del archivo a guardar." />
+                                          <Separator minWidth="-Infinity" prefWidth="400.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="50.0" prefWidth="100.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <HBox prefHeight="100.0" prefWidth="250.0">
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label text="La ruta seleccionada es: " />
-                                                      <Label fx:id="rutaArchivoLabel" />
+                                                      <HBox prefHeight="100.0" prefWidth="250.0">
+                                                         <children>
+                                                            <Label text="La ruta seleccionada es: " />
+                                                            <Label fx:id="rutaArchivoLabel" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0">
+                                                         <children>
+                                                            <Button fx:id="routeButton" mnemonicParsing="false" onAction="#seleccionRuta" prefHeight="25.0" prefWidth="150.0" stylesheets="@../styles/estilo1.css" text="Introduzca ruta" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </HBox>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0">
+                                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Button fx:id="routeButton" mnemonicParsing="false" onAction="#seleccionRuta" prefHeight="25.0" prefWidth="150.0" stylesheets="@../styles/estilo1.css" text="Seleccionar ruta" />
+                                                      <HBox prefHeight="25.0" prefWidth="250.0">
+                                                         <children>
+                                                            <Label text="El nombre del archivo es: " />
+                                                            <Label fx:id="nombreArchivoLabel" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="150.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#seleccionarNombrePulsado" prefHeight="25.0" prefWidth="150.0" text="Introduzca nombre" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </HBox>
                                              </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <HBox prefHeight="25.0" prefWidth="250.0">
-                                                   <children>
-                                                      <Label text="El nombre del archivo es: " />
-                                                      <Label fx:id="nombreArchivoLabel" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="150.0">
-                                                   <children>
-                                                      <Button mnemonicParsing="false" onAction="#seleccionarNombrePulsado" prefHeight="25.0" prefWidth="150.0" text="Seleccione nombre" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </HBox>
+                                          </VBox>
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
-                              <Button fx:id="okButton" mnemonicParsing="false" onAction="#accept" stylesheets="@../styles/estilo1.css" text="Exportar" />
                            </children>
-                        </VBox>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#accept" stylesheets="@../styles/estilo1.css" text="Exportar" />
                      </children>
                   </HBox>
                </children>

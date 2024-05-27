@@ -55,7 +55,7 @@ public class ExportController implements Initializable {
     private PrintRequestAttributeSet aset;
     
     private String rutaArchivo = "";
-    private String nombreArchivo = "alfonso";
+    private String nombreArchivo = "";
     
     ///////////////////////////////////////////////////////
     // VARIABLES DEL NET BEANS
@@ -217,5 +217,6 @@ public class ExportController implements Initializable {
         
         Optional<String> result = dialog.showAndWait();
         nombreArchivoLabel.setText(result.get());
+        nombreArchivo = result.get();
     }
 }
