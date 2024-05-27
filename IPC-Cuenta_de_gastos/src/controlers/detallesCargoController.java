@@ -197,10 +197,12 @@ public class detallesCargoController implements Initializable {
     @FXML
     private void cancelarMethod(ActionEvent event) throws IOException { 
         if(editableE){
-            ButtonType ok = new ButtonType("Acceptar", ButtonBar.ButtonData.OK_DONE);
+            ButtonType ok = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
             Alert alert = new Alert(Alert.AlertType.WARNING, "Está a punto de elminiar todos los datos rellenados",
             ok, no);
+            alert.setTitle("Cancelar edición de cargo");
+            alert.setHeaderText(null);
             alert.setContentText("¿Está seguro de que quiere descartar los cambios realizados?");
         
             Optional<ButtonType> result = alert.showAndWait();
